@@ -79,7 +79,7 @@
 
 
 
-  <meta name="keywords" content="生活," />
+  <meta name="keywords" content="android," />
 
 
 
@@ -92,38 +92,21 @@
 
 
 
-<meta name="description" content="那个时候所有人只是把鸣人当做孤儿看待。他长相最多只能算一般，成绩吊车尾，缺家教，没才华，家世没有，血统没有，智商没有，然后还调皮爱恶作剧。">
-<meta name="keywords" content="生活">
+<meta name="description" content="android事件的源头在哪里？当用户触摸屏幕或者按键等时，形成事件，事件经过linux底层Event节点捕获之后，一直传到android应用层。中间传递的过程不是本文的重点，我也不是很清楚（哈哈哈）。本文的重点是事件在应用层的分发机制。 事件在View树中的分发过程View树： 在Android中，事件的分发过程就是">
+<meta name="keywords" content="android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《火影忍者》--鸣人和雏田">
-<meta property="og:url" content="http://zhangsunyucong.top/2017/12/28/huoying/index.html">
+<meta property="og:title" content="Android的MotionEvent事件分发机制">
+<meta property="og:url" content="http://zhangsunyucong.top/2018/01/10/android-event/index.html">
 <meta property="og:site_name" content="长孙雨聪--七星上将">
-<meta property="og:description" content="那个时候所有人只是把鸣人当做孤儿看待。他长相最多只能算一般，成绩吊车尾，缺家教，没才华，家世没有，血统没有，智商没有，然后还调皮爱恶作剧。">
+<meta property="og:description" content="android事件的源头在哪里？当用户触摸屏幕或者按键等时，形成事件，事件经过linux底层Event节点捕获之后，一直传到android应用层。中间传递的过程不是本文的重点，我也不是很清楚（哈哈哈）。本文的重点是事件在应用层的分发机制。 事件在View树中的分发过程View树： 在Android中，事件的分发过程就是MotionEvent在view树分发的过程。默认是中从上而下，然后从下而上">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/huoying_mingren_z.jpeg?imageView2/2/w/800">
-<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/huoying_1.jpg?imageView2/2/w/640">
-<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/huoying_3.jpg?imageView2/2/w/800">
-<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/huoying_2.jpg?imageView2/2/w/800">
-<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/huoying_4.jpg?imageView2/2/w/2000">
-<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/huoying_5.jpg?imageView2/2/w/600">
-<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/huoying_6.jpg?imageView2/2/w/600">
-<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/huoying_7.jpg?imageView2/2/w/600">
-<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/huoying_8.jpg?imageView2/2/w/600">
-<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/huoying_9.jpg?imageView2/2/w/600">
-<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/huoying_10.jpg?imageView2/2/w/600">
-<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/huooying_11.jpg?imageView2/2/w/700">
-<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/huoying20.jpg?imageView2/2/w/600">
-<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/huoying21.jpg?imageView2/2/w/600">
-<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/huoying22.jpg?imageView2/2/w/600">
-<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/huoying23.jpg?imageView2/2/w/600">
-<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/huoying24.jpg?imageView2/2/w/600">
-<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/huoying25.jpg?imageView2/2/w/600">
-<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/huoying33.jpg?imageView2/2/w/600">
-<meta property="og:updated_time" content="2018-01-09T10:00:34.462Z">
+<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/2018_1_10_touch_event_2.png">
+<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/2018_1_10_touch_event_1.png">
+<meta property="og:updated_time" content="2018-01-10T10:11:09.746Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《火影忍者》--鸣人和雏田">
-<meta name="twitter:description" content="那个时候所有人只是把鸣人当做孤儿看待。他长相最多只能算一般，成绩吊车尾，缺家教，没才华，家世没有，血统没有，智商没有，然后还调皮爱恶作剧。">
-<meta name="twitter:image" content="http://o8bym0zmt.bkt.clouddn.com/huoying_mingren_z.jpeg?imageView2/2/w/800">
+<meta name="twitter:title" content="Android的MotionEvent事件分发机制">
+<meta name="twitter:description" content="android事件的源头在哪里？当用户触摸屏幕或者按键等时，形成事件，事件经过linux底层Event节点捕获之后，一直传到android应用层。中间传递的过程不是本文的重点，我也不是很清楚（哈哈哈）。本文的重点是事件在应用层的分发机制。 事件在View树中的分发过程View树： 在Android中，事件的分发过程就是MotionEvent在view树分发的过程。默认是中从上而下，然后从下而上">
+<meta name="twitter:image" content="http://o8bym0zmt.bkt.clouddn.com/2018_1_10_touch_event_2.png">
 
 
 
@@ -153,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://zhangsunyucong.top/2017/12/28/huoying/"/>
+  <link rel="canonical" href="http://zhangsunyucong.top/2018/01/10/android-event/"/>
 
 
 
 
 
-  <title>《火影忍者》--鸣人和雏田 | 长孙雨聪--七星上将</title>
+  <title>Android的MotionEvent事件分发机制 | 长孙雨聪--七星上将</title>
   
 
 
@@ -342,7 +325,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2017/12/28/huoying/">
+    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2018/01/10/android-event/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="长孙雨聪--七星上将">
@@ -359,7 +342,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">《火影忍者》--鸣人和雏田</h1>
+          <h1 class="post-title" itemprop="name headline">Android的MotionEvent事件分发机制</h1>
         
 
         <div class="post-meta">
@@ -371,8 +354,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-28T15:45:26+08:00">
-                2017-12-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T08:41:26+08:00">
+                2018-01-10
               </time>
             
 
@@ -391,8 +374,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/12/28/huoying/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/12/28/huoying/" itemprop="commentsCount"></span>
+                <a href="/2018/01/10/android-event/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/01/10/android-event/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -400,7 +383,7 @@
 
           
           
-             <span id="/2017/12/28/huoying/" class="leancloud_visitors" data-flag-title="《火影忍者》--鸣人和雏田">
+             <span id="/2018/01/10/android-event/" class="leancloud_visitors" data-flag-title="Android的MotionEvent事件分发机制">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -432,7 +415,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  622字
+                  2,094字
                 </span>
               
 
@@ -448,7 +431,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2分钟
+                  9分钟
                 </span>
               
             </div>
@@ -471,23 +454,43 @@
 
       
         <script src="\assets\js\APlayer.min.js"> </script><hr>
-<p><img src="http://o8bym0zmt.bkt.clouddn.com/huoying_mingren_z.jpeg?imageView2/2/w/800" alt="鸣人和雏田"></p>
-<p>那个时候所有人只是把鸣人当做孤儿看待。他长相最多只能算一般，成绩吊车尾，缺家教，没才华，家世没有，血统没有，智商没有，然后还调皮爱恶作剧。<br><a id="more"></a></p>
-<p><img src="http://o8bym0zmt.bkt.clouddn.com/huoying_1.jpg?imageView2/2/w/640" alt=""></p>
-<p>除非傻子才会喜欢那时的鸣人。但是雏田硬是喜欢上了，这一喜欢，不仅坚持了好多年，而且还因为这份喜欢，改变了自己。</p>
-<p><img src="http://o8bym0zmt.bkt.clouddn.com/huoying_3.jpg?imageView2/2/w/800" alt=""></p>
-<p>雏田她硬是透过了种种外在因素，一眼就看清楚了鸣人的内在：阳光，乐观，有梦想，能努力，坚持到底，不服输。可以看出她是多么强大的主见，不理会别人看法的主见。<br><img src="http://o8bym0zmt.bkt.clouddn.com/huoying_2.jpg?imageView2/2/w/800" alt=""></p>
-<p>雏田总是在默默注视着鸣人，一直支持着他，追赶着他。</p>
-<p>你知道当你一个人面临绝望的时候，此时却有一个义无反顾的身影挡在你面前，保护你，是什么感觉吗？</p>
-<p>在佩恩来袭，鸣人最为脆弱的时候，挡在他身前保护他。鸣人在十尾的木遁下无处可逃时，她也毅然决然的挡在他身前。<br>那么一个弱弱小小的女孩子，她的勇敢和坚毅却超乎寻常的强大。</p>
-<p><img src="http://o8bym0zmt.bkt.clouddn.com/huoying_4.jpg?imageView2/2/w/2000" alt=""></p>
-<p><img src="http://o8bym0zmt.bkt.clouddn.com/huoying_5.jpg?imageView2/2/w/600" alt=""><br><img src="http://o8bym0zmt.bkt.clouddn.com/huoying_6.jpg?imageView2/2/w/600" alt=""><br><img src="http://o8bym0zmt.bkt.clouddn.com/huoying_7.jpg?imageView2/2/w/600" alt=""><br><img src="http://o8bym0zmt.bkt.clouddn.com/huoying_8.jpg?imageView2/2/w/600" alt=""><br><img src="http://o8bym0zmt.bkt.clouddn.com/huoying_9.jpg?imageView2/2/w/600" alt=""><br><img src="http://o8bym0zmt.bkt.clouddn.com/huoying_10.jpg?imageView2/2/w/600" alt=""></p>
-<p>两个人第一次去约会，鸣人却因为没钱请不起高级料理，不知道怎么开口。雏田用白眼看鸣人的钱包，然后主动说去吃一乐拉面。</p>
-<p><img src="http://o8bym0zmt.bkt.clouddn.com/huooying_11.jpg?imageView2/2/w/700" alt=""></p>
-<p>忍界大战开始中。《宁次之死》，让雏田和鸣人打击沉重，鸣人的意志开始动摇，在鸣人内心的防线即将崩溃时，雏田强忍失去亲人的伤痛，一巴掌打醒鸣人，告诉鸣人是宁次用生命换取他活下去的用意，告诉鸣人要清醒，要秉持自己的信念，不要放弃自己的忍道，鼓励他带领大家继续战斗。<br>雏田她看似弱不禁风的外表下其实有着很强大的内心和很坚强的意志。<br>忍界大战胜利后，鸣人成为救世主。</p>
-<p><img src="http://o8bym0zmt.bkt.clouddn.com/huoying20.jpg?imageView2/2/w/600" alt=""><br><img src="http://o8bym0zmt.bkt.clouddn.com/huoying21.jpg?imageView2/2/w/600" alt=""><br><img src="http://o8bym0zmt.bkt.clouddn.com/huoying22.jpg?imageView2/2/w/600" alt=""><br><img src="http://o8bym0zmt.bkt.clouddn.com/huoying23.jpg?imageView2/2/w/600" alt=""><br><img src="http://o8bym0zmt.bkt.clouddn.com/huoying24.jpg?imageView2/2/w/600" alt=""><br><img src="http://o8bym0zmt.bkt.clouddn.com/huoying25.jpg?imageView2/2/w/600" alt=""></p>
-<p>多年之后，鸣人的儿子博人问鸣人：“爸爸，你年轻的时候干了什么伟大的事啊？”<br>鸣人摸了摸他的头，然后说：“我用了十五年，帮我曾经最喜欢的女生追回了她的丈夫。”儿子又问：“那妈妈呢？”鸣人眼里光线都温柔了：“妈妈坚持爱到了我爱她的那一天。“</p>
-<p><img src="http://o8bym0zmt.bkt.clouddn.com/huoying33.jpg?imageView2/2/w/600" alt=""></p>
+<h3 id="android事件的源头在哪里？"><a href="#android事件的源头在哪里？" class="headerlink" title="android事件的源头在哪里？"></a>android事件的源头在哪里？</h3><p>当用户触摸屏幕或者按键等时，形成事件，事件经过linux底层Event节点捕获之后，一直传到android应用层。中间传递的过程不是本文的重点，我也不是很清楚（哈哈哈）。本文的重点是事件在应用层的分发机制。</p>
+<h3 id="事件在View树中的分发过程"><a href="#事件在View树中的分发过程" class="headerlink" title="事件在View树中的分发过程"></a>事件在View树中的分发过程</h3><p>View树：<br><img src="http://o8bym0zmt.bkt.clouddn.com/2018_1_10_touch_event_2.png" alt="图片"></p>
+<p>在Android中，事件的分发过程就是MotionEvent在view树分发的过程。默认是中从上而下，然后从下而上的传递的，直到有view、viewgroup或者Activity处理事件为止。</p>
+<p>为什么要先从上而下？是为了在默认情况下，屏幕上层叠的所有控件都有机会处理事件。这个阶段我们称为事件下发阶段。</p>
+<p>为什么要从下而上？是为了在从上而下分发时，事件没有控件处理时，再从下而上冒泡事件，是否有控件愿意处理事件。如果中间没有控件处理，事件就只能由Acitivity处理了。这个阶段我们称为事件的冒泡阶段。</p>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>事件序列：从用户手指触摸屏幕开始，经过滑动到手指离开屏幕。这个操作产生了一个dowm事件，一系列move事件，最后一个up事件结束。我们把这一个操作产生的事件称为一个事件序列。</p>
+<p>Acitivity中和事件传递有关的函数<br>事件分发：dispatchTouchEvent<br>事件处理：onTouchEvent</p>
+<p>ViewGrop中和事件传递有关的函数<br>事件分发：dispatchTouchEvent<br>事件拦截：onInterceptTouchEvent<br>事件处理：onTouchEvent</p>
+<p>View中和事件传递有关的函数<br>事件分发：dispatchTouchEvent<br>事件处理：onTouchEvent</p>
+<p>从上面可以看出，ViewGrop中多了事件拦截onInterceptTouchEvent函数，是为了询问自己是否拦截事件（在事件分发中询问），如果没有拦截就传递事件给直接子view，如果拦截就将事件交给自己的事件处理函数处理。View中没有事件拦截函数，因为view是在view树中的叶节点，已经没有子view。</p>
+<p>下面是先进行源码分析，然后再验证得出一些结论。代码迟点上传github。<br>用图表示布局的层级关系：<br><img src="http://o8bym0zmt.bkt.clouddn.com/2018_1_10_touch_event_1.png" alt="图片"></p>
+<p>这里分析事件的分发过程，是从down事件的分发开始，以及分析它在两个阶段的传递过程：下发阶段和冒泡阶段。</p>
+<h3 id="事件下发阶段"><a href="#事件下发阶段" class="headerlink" title="事件下发阶段"></a>事件下发阶段</h3><p>（1）在Acitvity中的源码分析：</p>
+<p>Activity#dispatchTouchEvent</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public boolean dispatchTouchEvent(MotionEvent ev) &#123;</span><br><span class="line">        if (ev.getAction() == MotionEvent.ACTION_DOWN) &#123;</span><br><span class="line">            onUserInteraction();</span><br><span class="line">        &#125;</span><br><span class="line">        if (getWindow().superDispatchTouchEvent(ev)) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        return onTouchEvent(ev);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在第4行，Acivity将事件传递给了Window，Window是一个抽象类。在手机系统中它的实现是PhoneWindow.下面进入PhoneWindow中。</p>
+<p>PhoneWindow#superDispatchTouchEvent<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public boolean superDispatchTouchEvent(MotionEvent event) &#123;</span><br><span class="line">    return mDecor.superDispatchTouchEvent(event);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>从上面可以看出，事件已经从Acitivity到PhoneWindow，再传到了DecorView。DecorView是一个继承FrameLayout的ViewGroup，从而事件进入了View树的传递。</p>
+<p>重写在Acitvity中的事件传递方法</p>
+<p>重写Activity#dispatchTouchEvent：<br>1、返回false，事件不分发，所有事件在Acitivity的分发函数中就中断（真的不见了），连Acitivity的事件处理函数都到达不了。<br>2、返回true，所有事件在Acitivity的分发函数中就中断，和false一样<br>3、返回父函数方法，事件就传给直接子view分发</p>
+<p>（2）在ViewGruop中的源码分析：<br>ViewGruop#dispatchTouchEvent<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">final int action = ev.getAction();</span><br><span class="line">final int actionMasked = action &amp; MotionEvent.ACTION_MASK;</span><br><span class="line"></span><br><span class="line">// Handle an initial down.</span><br><span class="line">if (actionMasked == MotionEvent.ACTION_DOWN) &#123;</span><br><span class="line">    // Throw away all previous state when starting a new touch gesture.</span><br><span class="line">    // The framework may have dropped the up or cancel event for the previous gesture</span><br><span class="line">    // due to an app switch, ANR, or some other state change.</span><br><span class="line">    cancelAndClearTouchTargets(ev);</span><br><span class="line">    resetTouchState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Check for interception.</span><br><span class="line">final boolean intercepted;</span><br><span class="line">if (actionMasked == MotionEvent.ACTION_DOWN</span><br><span class="line">    || mFirstTouchTarget != null) &#123;</span><br><span class="line">        final boolean disallowIntercept = (mGroupFlags &amp; FLAG_DISALLOW_INTERCEPT) != 0;</span><br><span class="line">        if (!disallowIntercept) &#123;</span><br><span class="line">            intercepted = onInterceptTouchEvent(ev);</span><br><span class="line">            ev.setAction(action); // restore action in case it was changed</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            intercepted = false;</span><br><span class="line">        &#125;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    // There are no touch targets and this action is not an initial down</span><br><span class="line">    // so this view group continues to intercept touches.</span><br><span class="line">    intercepted = true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在5-11行，是每个新的事件系列开始前，会重置事件相关的状态。这里我们关注两个地方。第一个是第17行的disallowIntercept标志，第二个是第19行调用了事件拦截函数，询问是否拦截事件。</p>
+<p>ViewGruop#onInterceptTouchEvent<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public boolean onInterceptTouchEvent(MotionEvent ev) &#123;</span><br><span class="line">        if (ev.isFromSource(InputDevice.SOURCE_MOUSE)</span><br><span class="line">                &amp;&amp; ev.getAction() == MotionEvent.ACTION_DOWN</span><br><span class="line">                &amp;&amp; ev.isButtonPressed(MotionEvent.BUTTON_PRIMARY)</span><br><span class="line">                &amp;&amp; isOnScrollbarThumb(ev.getX(), ev.getY())) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>onInterceptTouchEvent的代码很简单。</p>
+<p>重写在ViewGroup中的事件传递方法<br>重写ViewGroup#dispatchTouchEvent：<br>1、返回false，不分发，down事件给父ViewGroup处理，以后的事件全部直接通过父ViewGroup分发函数给父ViewGroup的事件处理函数处理。<br>2、返回true，则所有的事件都从头来到这里就中断，不见了。<br>3、返回父函数方法，看下面拦截函数</p>
+<p>重写ViewGroup#onInterceptTouchEvent（询问是否拦截）：<br>1、返回true，就调用处理函数，在处理函数中是否消耗down事件<br>2、返回false，是否是最后一个view？否，down事件就分发给子View；是，就调用一次它的处理函数，进入冒泡阶段（就是一寸事件处理函数调用）<br>3、返回父函数的方法，和返回false一样</p>
+<p>重写ViewGroup的onTouchEvent，当down事件来到中onTouchEvent时，<br>1、返回true，就消耗down事件，后面全部事件从头分发到处理函数（不用再询问是否拦截）。后面的事件根据是否消耗而是否消失（不消耗就消失），消失的所有事件由Acitivity处理（注意消失的事件也是从头传递到这里再传给Acitivity的）。<br>2、返回false，将down事件冒泡回去，看谁会处理。<br>3、返回父函数方法，是默认不消耗。</p>
+<p>（3）在View中的源码分析：<br>View#dispatchTouchEvent</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">if (onFilterTouchEventForSecurity(event)) &#123;</span><br><span class="line">    if ((mViewFlags &amp; ENABLED_MASK) == ENABLED &amp;&amp; handleScrollBarDragging(event)) &#123;</span><br><span class="line">        result = true;</span><br><span class="line">    &#125;</span><br><span class="line">    //noinspection SimplifiableIfStatement</span><br><span class="line">    ListenerInfo li = mListenerInfo;</span><br><span class="line">    if (li != null &amp;&amp; li.mOnTouchListener != null</span><br><span class="line">        &amp;&amp; (mViewFlags &amp; ENABLED_MASK) == ENABLED</span><br><span class="line">            &amp;&amp; li.mOnTouchListener.onTouch(this, event)) &#123;</span><br><span class="line">                result = true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (!result &amp;&amp; onTouchEvent(event)) &#123;</span><br><span class="line">        result = true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里关注的地方是，第9行和第13行。第9行是当前view如果设置了onTouch事件，并且它返回了true，那它就直接将result设置为true，事件就消耗了，不会再继续传递下去，只到达onTouch。第13行，是事件处理函数。可以看出onTouch是优先于onTouchEvent的。</p>
+<p>View#dispatchTouchEvent</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">....</span><br><span class="line">final boolean clickable = ((viewFlags &amp; CLICKABLE) == CLICKABLE</span><br><span class="line">                || (viewFlags &amp; LONG_CLICKABLE) == LONG_CLICKABLE)</span><br><span class="line">                || (viewFlags &amp; CONTEXT_CLICKABLE) == CONTEXT_CLICKABLE;</span><br><span class="line">...                </span><br><span class="line"></span><br><span class="line">if (clickable || (viewFlags &amp; TOOLTIP) == TOOLTIP) &#123;</span><br><span class="line">    switch (action) &#123;</span><br><span class="line">        case MotionEvent.ACTION_UP:</span><br><span class="line">        mPrivateFlags3 &amp;= ~PFLAG3_FINGER_DOWN;</span><br><span class="line">        if ((viewFlags &amp; TOOLTIP) == TOOLTIP) &#123;</span><br><span class="line">            handleTooltipUp();</span><br><span class="line">        &#125;</span><br><span class="line">        if (!clickable) &#123;</span><br><span class="line">            removeTapCallback();</span><br><span class="line">            removeLongPressCallback();</span><br><span class="line">            mInContextButtonPress = false;</span><br><span class="line">            mHasPerformedLongPress = false;</span><br><span class="line">            mIgnoreNextUpEvent = false;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        boolean prepressed = (mPrivateFlags &amp; PFLAG_PREPRESSED) != 0;</span><br><span class="line">        if ((mPrivateFlags &amp; PFLAG_PRESSED) != 0 || prepressed) &#123;</span><br><span class="line">            // take focus if we don&apos;t have it already and we should in</span><br><span class="line">            // touch mode.</span><br><span class="line">            boolean focusTaken = false;</span><br><span class="line">            if (isFocusable() &amp;&amp; isFocusableInTouchMode() &amp;&amp; !isFocused()) &#123;</span><br><span class="line">                focusTaken = requestFocus();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (prepressed) &#123;</span><br><span class="line">                // The button is being released before we actually</span><br><span class="line">                // showed it as pressed.  Make it show the pressed</span><br><span class="line">                // state now (before scheduling the click) to ensure</span><br><span class="line">                // the user sees it.</span><br><span class="line">                setPressed(true, x, y);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (!mHasPerformedLongPress &amp;&amp; !mIgnoreNextUpEvent) &#123;</span><br><span class="line">                // This is a tap, so remove the longpress check</span><br><span class="line">                removeLongPressCallback();</span><br><span class="line"></span><br><span class="line">                // Only perform take click actions if we were in the pressed state</span><br><span class="line">                if (!focusTaken) &#123;</span><br><span class="line">                    // Use a Runnable and post this rather than calling</span><br><span class="line">                    // performClick directly. This lets other visual state</span><br><span class="line">                    // of the view update before click actions start.</span><br><span class="line">                    if (mPerformClick == null) &#123;</span><br><span class="line">                        mPerformClick = new PerformClick();</span><br><span class="line">                    &#125;</span><br><span class="line">                    if (!post(mPerformClick)) &#123;</span><br><span class="line">                        performClick();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                ...</span><br></pre></td></tr></table></figure>
+<p>view根据是否可以点击等等一系列判断什么的。这里关注up事件中的第42-53行，有performClick。</p>
+<p>View#performClick<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public boolean performClick() &#123;</span><br><span class="line">    final boolean result;</span><br><span class="line">    final ListenerInfo li = mListenerInfo;</span><br><span class="line">    if (li != null &amp;&amp; li.mOnClickListener != null) &#123;</span><br><span class="line">        playSoundEffect(SoundEffectConstants.CLICK);</span><br><span class="line">        li.mOnClickListener.onClick(this);</span><br><span class="line">        result = true;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        result = false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED);</span><br><span class="line"></span><br><span class="line">    notifyEnterOrExitForAutoFillIfNeeded(true);</span><br><span class="line"></span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果view设置了mOnClickListener，即点击事件，会调用view的点击事件。如果在父view中拦截了up事件，使up事件到达不了这里，会使view的点击事件失效。</p>
+<p>可以知道，onTouch是优先于onTouchEvent，onTouchEvent优先于onclick。</p>
+<h3 id="事件冒泡阶段"><a href="#事件冒泡阶段" class="headerlink" title="事件冒泡阶段"></a>事件冒泡阶段</h3><p>当down事件到达了最后一个子view，如果仍然没有view愿意处理它，就调用一次最后一个子view的事件处理函数，是否处理dowm事件，如果不处理，就一直冒泡回去，直到有view的onTouchEvent处理为止。如果都不处理，就只有Acitivity自己处理了。整个事件冒泡阶段就是一串onTouchEvent的回溯过程，自下而上。</p>
 
       
     </div>
@@ -563,7 +566,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/生活/" rel="tag"># 生活</a>
+            <a href="/tags/android/" rel="tag"># android</a>
           
         </div>
       
@@ -576,8 +579,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/25/android-encryption/" rel="next" title="android和nodejs搭建一个应用">
-                <i class="fa fa-chevron-left"></i> android和nodejs搭建一个应用
+              <a href="/2017/12/28/huoying/" rel="next" title="《火影忍者》--鸣人和雏田">
+                <i class="fa fa-chevron-left"></i> 《火影忍者》--鸣人和雏田
               </a>
             
           </div>
@@ -585,10 +588,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/10/android-event/" rel="prev" title="Android的MotionEvent事件分发机制">
-                Android的MotionEvent事件分发机制 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -645,8 +644,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -787,6 +795,22 @@ show_date_time();
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#android事件的源头在哪里？"><span class="nav-number">1.</span> <span class="nav-text">android事件的源头在哪里？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件在View树中的分发过程"><span class="nav-number">2.</span> <span class="nav-text">事件在View树中的分发过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备"><span class="nav-number">3.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件下发阶段"><span class="nav-number">4.</span> <span class="nav-text">事件下发阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件冒泡阶段"><span class="nav-number">5.</span> <span class="nav-text">事件冒泡阶段</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
