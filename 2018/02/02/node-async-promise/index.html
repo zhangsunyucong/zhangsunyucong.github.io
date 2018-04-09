@@ -1,0 +1,1712 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+	<meta name="baidu-site-verification" content="IwHYiEzBBM" />
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="true" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="node.js," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="长孙雨聪--七星上将" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前言这篇文章主要讲两个内容，一是，初步认识Promise，二是，Async模块和Async/Await的使用">
+<meta name="keywords" content="node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初始Promise&#x2F;A+规范">
+<meta property="og:url" content="http://zhangsunyucong.top/2018/02/02/node-async-promise/index.html">
+<meta property="og:site_name" content="长孙雨聪--七星上将">
+<meta property="og:description" content="前言这篇文章主要讲两个内容，一是，初步认识Promise，二是，Async模块和Async/Await的使用">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/node_promise_1.png?imageView2/2/w/600">
+<meta property="og:updated_time" content="2018-02-02T09:03:03.573Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初始Promise&#x2F;A+规范">
+<meta name="twitter:description" content="前言这篇文章主要讲两个内容，一是，初步认识Promise，二是，Async模块和Async/Await的使用">
+<meta name="twitter:image" content="http://o8bym0zmt.bkt.clouddn.com/node_promise_1.png?imageView2/2/w/600">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zhangsunyucong.top/2018/02/02/node-async-promise/"/>
+
+
+
+
+
+  <title>初始Promise/A+规范 | 长孙雨聪--七星上将</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+	
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">长孙雨聪--七星上将</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">坚持不懈，必有回响。</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-music">
+          <a href="/music/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-music"></i> <br />
+            
+            音乐
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-github">
+          <a href="https://github.com/zhangsunyucong?tab=repositories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-github"></i> <br />
+            
+            Github
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+  
+     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2018/02/02/node-async-promise/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="长孙雨聪--七星上将">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myphoto.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="长孙雨聪--七星上将">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">初始Promise/A+规范</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-02T10:19:32+08:00">
+                2018-02-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-02T17:03:03+08:00">
+                2018-02-02
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/02/02/node-async-promise/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/02/02/node-async-promise/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2018/02/02/node-async-promise/" class="leancloud_visitors" data-flag-title="初始Promise/A+规范">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,206字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="\assets\js\APlayer.min.js"> </script><hr>
+<p><img src="http://o8bym0zmt.bkt.clouddn.com/node_promise_1.png?imageView2/2/w/600" alt="view继承关系"></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这篇文章主要讲两个内容，一是，初步认识Promise，二是，Async模块和Async/Await的使用</p>
+<a id="more"></a>
+<h3 id="什么是Promise"><a href="#什么是Promise" class="headerlink" title="什么是Promise"></a>什么是Promise</h3><p>Promise表示一个异步操作的最终结果。一个Promise对象有一个then方法，then方法中返回一个Promise。</p>
+<h4 id="相关的概念"><a href="#相关的概念" class="headerlink" title="相关的概念"></a>相关的概念</h4><blockquote>
+<ul>
+<li>promise是一个包含了兼容promise规范then方法的对象或函数，</li>
+<li>thenable 是一个包含了then方法的对象或函数。</li>
+<li>value 是任何Javascript值。 (包括 undefined, thenable, promise等).</li>
+<li>exception 是由throw表达式抛出来的值。</li>
+<li>reason 是一个用于描述Promise被拒绝原因的值。</li>
+</ul>
+</blockquote>
+<h4 id="Promise的状态"><a href="#Promise的状态" class="headerlink" title="Promise的状态"></a>Promise的状态</h4><p>Promise有三种状态：pending, fulfilled 或 rejected。pending是等待执行状态，fulfilled是成功执行状态，rejected是失败执行状态。</p>
+<p>Promise只能从pending到fulfilled或者从pending到rejected状态，当状态发生改变时，promise.then(onFulfilled, onRejected)方法将被调用。Promise可以使用resolve或者reject将value或者reason作为下一个Promise的第一个回调参数。</p>
+<p>来个简单的Promise基本用法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var promise = new Promise(function(resolve, reject)&#123;</span><br><span class="line">    //do something</span><br><span class="line">    if(success)&#123;</span><br><span class="line">        resolve(value);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        reject(value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">promise.then(function(value)&#123;</span><br><span class="line">    //成功时调用</span><br><span class="line">&#125;, function(value)&#123;</span><br><span class="line">    //失败时调用</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面的代码只是表示Promise用法的流程.</p>
+<p>使用Promise/A+规范实现以下几个功能</p>
+<blockquote>
+<ul>
+<li>上一步的结果可以作为下一步的参数</li>
+<li>出现异常时，能够捕获到异常</li>
+<li>可以在每一步进行流程控制</li>
+</ul>
+</blockquote>
+<p>Promise的具体知识，可以<a href="https://segmentfault.com/a/1190000002452115" target="_blank" rel="noopener">参考这里</a></p>
+<p>下面介绍Async模块和ES7的Async/Await的使用</p>
+<h3 id="Async模块"><a href="#Async模块" class="headerlink" title="Async模块"></a>Async模块</h3><p>Async模块的github地址：<a href="https://github.com/caolan/async/" target="_blank" rel="noopener">https://github.com/caolan/async/</a></p>
+<p>配置好node的环境后（具体过程，自己百度），安装Async模块</p>
+<blockquote>
+<p>npm install –save async</p>
+</blockquote>
+<p>Async模块提供了很多关于集合，流程控制，工具方法，这里只体验几个常见的流程控制方法：series，parallel，waterfall，auto。其他方法的用法，可以查看官方文档：<a href="https://caolan.github.io/async/" target="_blank" rel="noopener">文档地址</a></p>
+<h4 id="series的使用"><a href="#series的使用" class="headerlink" title="series的使用"></a>series的使用</h4><blockquote>
+<p>series(tasks, callback)</p>
+</blockquote>
+<p>tasks可以是数组或者对象</p>
+<p>series是串行执行tasks中的任务，如果有一个任务执行返回了错误信息，则不再继续执行后面未执行的任务，并将结果以数组或者对象的形式传给callback。具体结果的格式由你定义tasks时使用的是数组还是对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">async.series([</span><br><span class="line">    function (callback) &#123;</span><br><span class="line">        setTimeout(function () &#123;</span><br><span class="line">            console.log(&quot;one&quot;);</span><br><span class="line">            callback(null, &apos;one&apos;);</span><br><span class="line">        &#125;, 300);</span><br><span class="line">    &#125;,</span><br><span class="line">    function (callback) &#123;</span><br><span class="line">        setTimeout(function () &#123;</span><br><span class="line">            console.log(&quot;two&quot;);</span><br><span class="line">            callback(null, &apos;two&apos;);</span><br><span class="line">        &#125;, 200);</span><br><span class="line">    &#125;,</span><br><span class="line">    function (callback) &#123;</span><br><span class="line">        setTimeout(function () &#123;</span><br><span class="line">            console.log(&quot;three&quot;);</span><br><span class="line">            callback(null, &apos;three&apos;);</span><br><span class="line">        &#125;, 100);</span><br><span class="line">    &#125;</span><br><span class="line">], function (err, results) &#123;</span><br><span class="line">    console.log(err);</span><br><span class="line">    console.log(results);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<blockquote>
+<p>one<br>two<br>three<br>null<br>[ ‘one’, ‘two’, ‘three’ ]</p>
+</blockquote>
+<p>当tasks是对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">async.series(&#123;</span><br><span class="line">        one: function (callback) &#123;</span><br><span class="line">            setTimeout(function () &#123;</span><br><span class="line">                console.log(&quot;one&quot;);</span><br><span class="line">                callback(null, &apos;one&apos;);</span><br><span class="line">            &#125;, 300);</span><br><span class="line">        &#125;,</span><br><span class="line">        two: function (callback) &#123;</span><br><span class="line">            setTimeout(function () &#123;</span><br><span class="line">                console.log(&quot;two&quot;);</span><br><span class="line">                callback(null, &apos;two&apos;);</span><br><span class="line">            &#125;, 200);</span><br><span class="line">        &#125;,</span><br><span class="line">        three: function (callback) &#123;</span><br><span class="line">            setTimeout(function () &#123;</span><br><span class="line">                console.log(&quot;three&quot;);</span><br><span class="line">                callback(null, &apos;three&apos;);</span><br><span class="line">            &#125;, 100);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, function (err, results) &#123;</span><br><span class="line">        if(err) &#123;</span><br><span class="line">            console.log(&quot;异常结束&quot; + &apos;结果为：&apos; + results);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        console.log(results);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<blockquote>
+<p>one<br>two<br>three<br>{ one: ‘one’, two: ‘two’, three: ‘three’ }</p>
+</blockquote>
+<p>上面代码中，从上到下的函数开始执行时间是逐渐减小的，而运行结果的输出顺序是one，two，three，说明series是串行执行任务的。</p>
+<p>将第二个任务的代码改为以下的样子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function (callback) &#123;</span><br><span class="line">    console.log(&quot;two&quot;);</span><br><span class="line">    setTimeout(function () &#123;</span><br><span class="line">        callback(&quot;errMsg&quot;, &apos;two&apos;);</span><br><span class="line">    &#125;, 200);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行的结果为：</p>
+<blockquote>
+<p>one<br>two<br>errMsg<br>[ ‘one’, ‘two’ ]</p>
+</blockquote>
+<p>可以看到，当第二个任务返回了错误信息，则不会再继续执行后面未执行的任务</p>
+<h4 id="parallel的使用"><a href="#parallel的使用" class="headerlink" title="parallel的使用"></a>parallel的使用</h4><blockquote>
+<p>parallel(tasks, callback)</p>
+</blockquote>
+<p>tasks可以是一个数组或者对象</p>
+<p>parallel是并行执行多个任务，如果有一个任务执行返回了一个错误信息，则不再继续执行后面未执行的任务，并将结果以数组或者对象的形式传给callback。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">async.parallel([</span><br><span class="line">        function (callback) &#123;</span><br><span class="line">            setTimeout(function() &#123;</span><br><span class="line">                console.log(&apos;one&apos;);</span><br><span class="line">                callback(null, &apos;one&apos;);</span><br><span class="line">            &#125;, 500);</span><br><span class="line">        &#125;,</span><br><span class="line">        function (callback) &#123;</span><br><span class="line">            setTimeout(function() &#123;</span><br><span class="line">                console.log(&apos;two&apos;);</span><br><span class="line">                callback(null, &apos;two&apos;);</span><br><span class="line">            &#125;, 200);</span><br><span class="line">        &#125;,</span><br><span class="line">        function (callback) &#123;</span><br><span class="line">            setTimeout(function() &#123;</span><br><span class="line">                console.log(&apos;three&apos;);</span><br><span class="line">                callback(null, &apos;three&apos;);</span><br><span class="line">            &#125;, 100);</span><br><span class="line">        &#125;</span><br><span class="line">    ], function (err, results) &#123;</span><br><span class="line">        console.log(err);</span><br><span class="line">        console.log(results);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>运行结果为：</p>
+<blockquote>
+<p>three<br>two<br>one<br>null<br>[ ‘one’, ‘two’, ‘three’ ]</p>
+</blockquote>
+<p>结果中的输出顺序是three,two,one，说明parallel是并行执行任务的。</p>
+<p>同样，将第二个任务的代码改为：（数组定义tasks）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function (callback) &#123;</span><br><span class="line">    setTimeout(function() &#123;</span><br><span class="line">        console.log(&apos;two&apos;);</span><br><span class="line">        callback(&quot;errMsg&quot;, &apos;two&apos;);</span><br><span class="line">    &#125;, 200);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>运行的结果为：</p>
+<blockquote>
+<p>three<br>two<br>errMsg<br>[ <1 empty="" item="">, ‘two’, ‘three’ ]<br>one</1></p>
+</blockquote>
+<hr>
+<p>将第二个任务代码改为：（数组定义tasks）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function (callback) &#123;</span><br><span class="line">    setTimeout(function() &#123;</span><br><span class="line">        console.log(&apos;two&apos;);</span><br><span class="line">        callback(&quot;errMsg&quot;, &apos;two&apos;);</span><br><span class="line">    &#125;, 200);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<p>将第三个任务代码改为：（数组定义tasks）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function (callback) &#123;</span><br><span class="line">    setTimeout(function() &#123;</span><br><span class="line">        console.log(&apos;three&apos;);</span><br><span class="line">        callback(null, &apos;three&apos;);</span><br><span class="line">    &#125;, 200);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>也就是，第三个的开始执行时间改成和出现错误信息的第二个任务的时间一样。</p>
+<p>运行的结果为：</p>
+<blockquote>
+<p>two<br>errMsg<br>[ <1 empty="" item="">, ‘two’ ]<br>three<br>one</1></p>
+</blockquote>
+<p>从结果中可以看出，当前面执行的未完成的任务会占一个位置，而后面未完成的任务不会占数组的位置。</p>
+<blockquote>
+<p>parallelLimit(tasks, limit, callback)</p>
+</blockquote>
+<p>parallelLimit和parallel差不多，区别是它可以指定同时并行执行任务的最大数量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">async.parallelLimit(&#123;</span><br><span class="line">    one: function (callback) &#123;</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            console.log(&apos;one&apos;);</span><br><span class="line">            callback(null, &apos;one&apos;);</span><br><span class="line">        &#125;, 200);</span><br><span class="line">    &#125;,</span><br><span class="line">    two: function (callback) &#123;</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            console.log(&apos;two&apos;);</span><br><span class="line">            callback(error, &apos;two&apos;);</span><br><span class="line">        &#125;, 200);</span><br><span class="line">    &#125;,</span><br><span class="line">    three: function (callback) &#123;</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            console.log(&apos;three&apos;);</span><br><span class="line">            callback(null, &apos;three&apos;);</span><br><span class="line">        &#125;, 100);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, 2, function (err, results) &#123;</span><br><span class="line">    console.log(err);</span><br><span class="line">    console.log(results);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>运行的结果为：</p>
+<blockquote>
+<p>one<br>two<br>errMsg<br>{ one: ‘one’, two: ‘two’ }<br>three</p>
+</blockquote>
+<p>如果是tasks是数组时，运行的结果是：</p>
+<blockquote>
+<p>two<br>errMsg<br>[ <1 empty="" item="">, ‘two’ ]<br>one</1></p>
+</blockquote>
+<p>由于同时并行执行任务的最大数量是2，由于第二个任务产生错误信息，第三个任务还没开始执行。另外如果要取最后回调结果中的值，对象定义tasks可能会更好。</p>
+<h4 id="waterfall的使用"><a href="#waterfall的使用" class="headerlink" title="waterfall的使用"></a>waterfall的使用</h4><blockquote>
+<p>waterfall(tasks, callback)</p>
+</blockquote>
+<p>tasks只能是数组类型</p>
+<p>waterfall会串行执行tasks中的任务，前一个任务的结果可以作为下一个任务的参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">async.waterfall([</span><br><span class="line">    function (callback) &#123;</span><br><span class="line">        console.log(&quot;one&quot;);</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            callback(null, &apos;one&apos;, &apos;two&apos;);</span><br><span class="line">        &#125;, 200);</span><br><span class="line">    &#125;,</span><br><span class="line">    function (arg1, arg2, callback) &#123;</span><br><span class="line">        console.log(&quot;two&quot; + &apos;参数：&apos; + &quot;arg1是&quot; + arg1 + &quot;arg2是&quot; + arg2);</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            callback(null, &apos;three&apos;);</span><br><span class="line">        &#125;, 200);</span><br><span class="line">    &#125;,</span><br><span class="line">    function (arg3, callback) &#123;</span><br><span class="line">        console.log(&quot;three&quot; + &apos;参数：&apos; + &quot;arg3是&quot; + arg3);</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            callback(null, &apos;done&apos;, &apos;done1&apos;);</span><br><span class="line">        &#125;, 200);</span><br><span class="line">    &#125;</span><br><span class="line">], function (err, results) &#123;</span><br><span class="line">    if(err) &#123;</span><br><span class="line">        console.log(&quot;异常结束&quot; + &apos;结果为：&apos; + results);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    console.log(results);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>运行的结果是：</p>
+<blockquote>
+<p>one<br>two参数：arg1是onearg2是two<br>three参数：arg3是three<br>done</p>
+</blockquote>
+<p>输出的结果的顺序是one，two， three，是串行执行的。前一个任务的结果可以作为下一个任务的参数。</p>
+<p>注意一下，代码中控制台输出的one，two，three代码是移到了定时器的外面。</p>
+<h4 id="auto的使用"><a href="#auto的使用" class="headerlink" title="auto的使用"></a>auto的使用</h4><blockquote>
+<p>auto(tasks, concurrencyopt, callback)</p>
+</blockquote>
+<p>auto可以串行和并行执行任务，可以定义任务之间的依赖关系。没有依赖关系的任务会尽可能快的开始并行执行，串行是由于任务的依赖关系而实现的。concurrencyopt指定的是并行执行任务的最大数量。tasks只能是对象类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">async.auto(&#123;</span><br><span class="line">    task1: function(callback) &#123;</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            console.log(&apos;task1&apos;);</span><br><span class="line">            callback(null, &apos;data&apos;, &apos;data1&apos;);</span><br><span class="line">        &#125;, 200);</span><br><span class="line">    &#125;,</span><br><span class="line">    task2: function(callback) &#123;</span><br><span class="line">        setTimeout(function () &#123;</span><br><span class="line">            console.log(&apos;task2&apos;);</span><br><span class="line">            callback(null, &apos;data2&apos;);</span><br><span class="line">        &#125;, 100)</span><br><span class="line">    &#125;,</span><br><span class="line">    task3: [&apos;task1&apos;, &apos;task2&apos;, function(results, callback) &#123;</span><br><span class="line">        console.log(&apos;task3&apos;, JSON.stringify(results));</span><br><span class="line">        setTimeout(function () &#123;</span><br><span class="line">            console.log(&apos;task3&apos;);</span><br><span class="line">            callback(null, &apos;data3&apos;);</span><br><span class="line">        &#125;, 200);</span><br><span class="line"></span><br><span class="line">    &#125;],</span><br><span class="line">    task4: [&apos;task3&apos;, function(results, callback) &#123;</span><br><span class="line">        console.log(&apos;task4&apos;, JSON.stringify(results));</span><br><span class="line">        setTimeout(function () &#123;</span><br><span class="line">            console.log(&apos;task4&apos;);</span><br><span class="line">            callback(null, &#123;&apos;task2&apos;:results.task2, &apos;task4&apos;:&apos;data4&apos;&#125;);</span><br><span class="line">        &#125;, 100);</span><br><span class="line"></span><br><span class="line">    &#125;]</span><br><span class="line">&#125;, function(err, results) &#123;</span><br><span class="line">    console.log(&apos;err = &apos;, err);</span><br><span class="line">    console.log(&apos;results = &apos;, results);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>运行的结果是：</p>
+<blockquote>
+<p>task2<br>task1<br>task3 {“task2”:”data2”,”task1”:[“data”,”data1”]}<br>task3<br>task4 {“task2”:”data2”,”task1”:[“data”,”data1”],”task3”:”data3”}<br>task4<br>err =  null<br>results =  { task2: ‘data2’,<br>  task1: [ ‘data’, ‘data1’ ],<br>  task3: ‘data3’,<br>  task4: { task2: ‘data2’, task4: ‘data4’ } }</p>
+</blockquote>
+<p>task1和task2是不依赖于任何其他任务的，它们会尽可能的开始，而且由于它们是并行执行的，task2的开始时间较短，所以task2比task1先开始。task3依赖于task1和task2，所以task3等到task1和task2执行完毕后再执行。task4依赖task3，所以task4要等到task3执行完毕后再执行。</p>
+<h3 id="ES7的Async-Await"><a href="#ES7的Async-Await" class="headerlink" title="ES7的Async/Await"></a>ES7的Async/Await</h3><p>主要看它们的用法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var task1 = function () &#123;</span><br><span class="line">    return new Promise(function (resolve, reject) &#123;</span><br><span class="line">        setTimeout(function () &#123;</span><br><span class="line">            resolve(&quot;result&quot;);</span><br><span class="line">        &#125;, 1000);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var excTask1 = async function () &#123;</span><br><span class="line">    console.log(&quot;start&quot;);</span><br><span class="line">    console.log(await task1());</span><br><span class="line">    console.log(&quot;end&quot;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function awaitDemo() &#123;</span><br><span class="line">    excTask1();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>连续点击运行四次，运行的结果为：</p>
+<blockquote>
+<p>start<br>start<br>start<br>start<br>result<br>end<br>result<br>end<br>result<br>end<br>result<br>end</p>
+</blockquote>
+<p>async代表是一个async函数，await只能用在async函数中，await等待一个Promise的返回，直到Promise返回了才会继续执行await后面的代码。这里的Promise利用setTimeout模拟异步任务。</p>
+<p>从输出结果中可以看出，每次执行都是到await时，就停止等待Promise的返回，后再继续执行await后面的代码。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+	  
+		<!--MOB SHARE BEGIN-->
+ <button id="rewardButton" class="-mob-share-open" style="margin-right:5px;">
+    <span>分享</span>
+  </button>
+<div class="-mob-share-ui" style="display: none">
+    <ul class="-mob-share-list">
+        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+            <li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
+            <li class="-mob-share-qzone"><p>QQ空间</p></li>
+            <li class="-mob-share-qq"><p>QQ好友</p></li>
+            <li class="-mob-share-weixin"><p>微信</p></li>
+            <li class="-mob-share-douban"><p>豆瓣</p></li>
+            <li class="-mob-share-renren"><p>人人网</p></li>
+            <li class="-mob-share-kaixin"><p>开心网</p></li>
+            <li class="-mob-share-facebook"><p>Facebook</p></li>
+            <li class="-mob-share-twitter"><p>Twitter</p></li>
+            <li class="-mob-share-pocket"><p>Pocket</p></li>
+            <li class="-mob-share-google"><p>Google+</p></li>
+            <li class="-mob-share-youdao"><p>有道云笔记</p></li>
+    </ul>
+    <div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=230df6a994c78"></script>
+<!--MOB SHARE END-->
+      
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  
+  
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="长孙雨聪--七星上将 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="长孙雨聪--七星上将 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+	
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    长孙雨聪--七星上将
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://zhangsunyucong.top/2018/02/02/node-async-promise/" title="初始Promise/A+规范">http://zhangsunyucong.top/2018/02/02/node-async-promise/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node-js/" rel="tag"><i class="fa fa-tag"></i> node.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/01/android-handler/" rel="next" title="Android中的消息机制">
+                <i class="fa fa-chevron-left"></i> Android中的消息机制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/06/android-simple-draw-and-path/" rel="prev" title="Android中绘制简单几何图形和路径Path">
+                Android中绘制简单几何图形和路径Path <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  
+	  
+	  
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+			<a href="/" class="site-author-image" rel="start" style="border:none">
+              <img class="site-author-image" itemprop="image"
+                src="/images/myphoto.jpg"
+                alt="长孙雨聪--七星上将" />
+			</a>	
+            
+              <p class="site-author-name" itemprop="name">长孙雨聪--七星上将</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/zhangsunyucong?tab=repositories" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:969887864@qq.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.wanandroid.com/" title="鸿洋_" target="_blank">鸿洋_</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://luodw.cc/" title="罗道文" target="_blank">罗道文</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://litten.me/" title="Litten" target="_blank">Litten</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://luuman.github.io" title="luuman" target="_blank">luuman</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.barretlee.com" title="小胡子哥" target="_blank">小胡子哥</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.halyul.cc" title="halyul" target="_blank">halyul</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/mine_song/article/details/64121769" title="剑指" target="_blank">剑指</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.ithmz.com/" title="奶爸大哥" target="_blank">奶爸大哥</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ruanyifeng.com" title="阮一峰" target="_blank">阮一峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://0xcc0xcd.com" title="老罗" target="_blank">老罗</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wangyuquan.net/" title="top2" target="_blank">top2</a>
+                  </li>
+                
+              </ul>
+			   
+			   <div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+	window.setTimeout("show_date_time()", 1000);
+	BirthDay = new Date("11/24/2017 15:00:00");
+	today  =new Date();
+	timeold = (today.getTime()-BirthDay.getTime());
+	sectimeold = timeold/1000
+	secondsold = Math.floor(sectimeold);
+	msPerDay = 24*60*60*1000
+	e_daysold = timeold/msPerDay
+	daysold = Math.floor(e_daysold);
+	e_hrsold = (e_daysold-daysold)*24;
+	hrsold = setzero(Math.floor(e_hrsold));
+	e_minsold = (e_hrsold-hrsold)*60;
+	minsold = setzero(Math.floor((e_hrsold-hrsold)*60));
+	seconds = setzero(Math.floor((e_minsold-minsold)*60));
+	document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+	if (i<10)
+	{
+		i="0" + i
+	};
+	return i;
+}
+show_date_time();
+</script>
+
+			  
+            </div>
+          
+
+         
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是Promise"><span class="nav-number">2.</span> <span class="nav-text">什么是Promise</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#相关的概念"><span class="nav-number">2.1.</span> <span class="nav-text">相关的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Promise的状态"><span class="nav-number">2.2.</span> <span class="nav-text">Promise的状态</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Async模块"><span class="nav-number">3.</span> <span class="nav-text">Async模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#series的使用"><span class="nav-number">3.1.</span> <span class="nav-text">series的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#parallel的使用"><span class="nav-number">3.2.</span> <span class="nav-text">parallel的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#waterfall的使用"><span class="nav-number">3.3.</span> <span class="nav-text">waterfall的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#auto的使用"><span class="nav-number">3.4.</span> <span class="nav-text">auto的使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES7的Async-Await"><span class="nav-number">4.</span> <span class="nav-text">ES7的Async/Await</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">长孙雨聪--七星上将</span>
+  
+</div>
+
+Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytlJYAPJ';
+      var conf = '72c4d5b62ad9725c5f533c23a6f1097e';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("2YPqqc43cMkbPegNE3Auieo4-gzGzoHsz", "TVVsPYw3swS3SrByLqNtqlAL");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.3"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.3"></script>
+
+
+  
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

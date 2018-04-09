@@ -1,1 +1,1 @@
-http://zhangsunyucong.top/2018/01/10/android-event/
+http://zhangsunyucong.top/2018/04/09/java-pattern-builder-factory-clone/

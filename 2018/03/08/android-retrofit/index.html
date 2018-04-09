@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+	<meta name="baidu-site-verification" content="IwHYiEzBBM" />
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="true" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="长孙雨聪--七星上将" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前言本文基于的retrofit版本是：2.1.0，文章会从retrofit的使用逐渐进入它的源码进行分析。retrofit是一个基于okhttp封装的，具有RESTful风格的HTTP网络请求框架。也就是说，它只负责网络接口配置和调用的封装，实际底层调用的工作还是由okhttp完成的。可以使用它以注解的形式配置请求的地">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android中的retrofit源码分析">
+<meta property="og:url" content="http://zhangsunyucong.top/2018/03/08/android-retrofit/index.html">
+<meta property="og:site_name" content="长孙雨聪--七星上将">
+<meta property="og:description" content="前言本文基于的retrofit版本是：2.1.0，文章会从retrofit的使用逐渐进入它的源码进行分析。retrofit是一个基于okhttp封装的，具有RESTful风格的HTTP网络请求框架。也就是说，它只负责网络接口配置和调用的封装，实际底层调用的工作还是由okhttp完成的。可以使用它以注解的形式配置请求的地址，请求参数等，还可以添加自定义拦截器、网络拦截器和数据转换器等进行处理和扩展">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/android_retrofit_01.png">
+<meta property="og:updated_time" content="2018-04-09T06:36:51.447Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android中的retrofit源码分析">
+<meta name="twitter:description" content="前言本文基于的retrofit版本是：2.1.0，文章会从retrofit的使用逐渐进入它的源码进行分析。retrofit是一个基于okhttp封装的，具有RESTful风格的HTTP网络请求框架。也就是说，它只负责网络接口配置和调用的封装，实际底层调用的工作还是由okhttp完成的。可以使用它以注解的形式配置请求的地址，请求参数等，还可以添加自定义拦截器、网络拦截器和数据转换器等进行处理和扩展">
+<meta name="twitter:image" content="http://o8bym0zmt.bkt.clouddn.com/android_retrofit_01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zhangsunyucong.top/2018/03/08/android-retrofit/"/>
+
+
+
+
+
+  <title>Android中的retrofit源码分析 | 长孙雨聪--七星上将</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+	
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">长孙雨聪--七星上将</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">坚持不懈，必有回响。</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-music">
+          <a href="/music/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-music"></i> <br />
+            
+            音乐
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-github">
+          <a href="https://github.com/zhangsunyucong?tab=repositories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-github"></i> <br />
+            
+            Github
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+  
+     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2018/03/08/android-retrofit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="长孙雨聪--七星上将">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myphoto.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="长孙雨聪--七星上将">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Android中的retrofit源码分析</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-08T13:05:41+08:00">
+                2018-03-08
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-09T14:36:51+08:00">
+                2018-04-09
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/03/08/android-retrofit/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/03/08/android-retrofit/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2018/03/08/android-retrofit/" class="leancloud_visitors" data-flag-title="Android中的retrofit源码分析">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,510字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  18分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="\assets\js\APlayer.min.js"> </script><hr>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文基于的retrofit版本是：2.1.0，文章会从retrofit的使用逐渐进入它的源码进行分析。retrofit是一个基于okhttp封装的，具有RESTful风格的HTTP网络请求框架。也就是说，它只负责网络接口配置和调用的封装，实际底层调用的工作还是由okhttp完成的。可以使用它以注解的形式配置请求的地址，请求参数等，还可以添加自定义拦截器、网络拦截器和数据转换器等进行处理和扩展。</p>
+<h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><a id="more"></a>
+<p>从使用开始讲起。</p>
+<p>创建retrofit实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Retrofit retrofit = new Retrofit.Builder()</span><br><span class="line">        baseUrl(&quot;https://heyunjian.leanapp.cn/&quot;)</span><br><span class="line">        .addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">        .build();</span><br></pre></td></tr></table></figure></p>
+<p>从形式上看，可以知道retrofit的创建使用了建造者模式。下面我们进入它的源码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public final class Retrofit &#123;</span><br><span class="line">  // 网络请求配置对象（对使用时的注解进行解析后得到的对象保存在里面）</span><br><span class="line">  private final Map&lt;Method, ServiceMethod&lt;?, ?&gt;&gt; serviceMethodCache = new ConcurrentHashMap&lt;&gt;();</span><br><span class="line">  </span><br><span class="line">  //网络请求器工厂</span><br><span class="line">  final okhttp3.Call.Factory callFactory;</span><br><span class="line">  </span><br><span class="line">  //网络请求的基地址</span><br><span class="line">  final HttpUrl baseUrl;</span><br><span class="line">  </span><br><span class="line">  //数据转换工厂</span><br><span class="line">  final List&lt;Converter.Factory&gt; converterFactories;</span><br><span class="line">  </span><br><span class="line">  //网络请求适配器</span><br><span class="line">  final List&lt;CallAdapter.Factory&gt; adapterFactories;</span><br><span class="line">  </span><br><span class="line">  //回调方法执行器</span><br><span class="line">  final Executor callbackExecutor;</span><br><span class="line">  final boolean validateEagerly;</span><br><span class="line"></span><br><span class="line">  Retrofit(okhttp3.Call.Factory callFactory, HttpUrl baseUrl,</span><br><span class="line">      List&lt;Converter.Factory&gt; converterFactories, List&lt;CallAdapter.Factory&gt; adapterFactories,</span><br><span class="line">      Executor callbackExecutor, boolean validateEagerly) &#123;</span><br><span class="line">    this.callFactory = callFactory;</span><br><span class="line">    this.baseUrl = baseUrl;</span><br><span class="line">    this.converterFactories = unmodifiableList(converterFactories); // Defensive copy at call site.</span><br><span class="line">    this.adapterFactories = unmodifiableList(adapterFactories); // Defensive copy at call site.</span><br><span class="line">    this.callbackExecutor = callbackExecutor;</span><br><span class="line">    this.validateEagerly = validateEagerly;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @SuppressWarnings(&quot;unchecked&quot;) // Single-interface proxy creation guarded by parameter safety.</span><br><span class="line">  public &lt;T&gt; T create(final Class&lt;T&gt; service) &#123;</span><br><span class="line">    Utils.validateServiceInterface(service);</span><br><span class="line">    if (validateEagerly) &#123;</span><br><span class="line">      eagerlyValidateMethods(service);</span><br><span class="line">    &#125;</span><br><span class="line">    return (T) Proxy.newProxyInstance(service.getClassLoader(), new Class&lt;?&gt;[] &#123; service &#125;,</span><br><span class="line">        new InvocationHandler() &#123;</span><br><span class="line">          private final Platform platform = Platform.get();</span><br><span class="line"></span><br><span class="line">          @Override public Object invoke(Object proxy, Method method, Object[] args)</span><br><span class="line">              throws Throwable &#123;</span><br><span class="line">            // If the method is a method from Object then defer to normal invocation.</span><br><span class="line">            if (method.getDeclaringClass() == Object.class) &#123;</span><br><span class="line">              return method.invoke(this, args);</span><br><span class="line">            &#125;</span><br><span class="line">            if (platform.isDefaultMethod(method)) &#123;</span><br><span class="line">              return platform.invokeDefaultMethod(method, service, proxy, args);</span><br><span class="line">            &#125;</span><br><span class="line">            ServiceMethod&lt;Object, Object&gt; serviceMethod =</span><br><span class="line">                (ServiceMethod&lt;Object, Object&gt;) loadServiceMethod(method);</span><br><span class="line">            OkHttpCall&lt;Object&gt; okHttpCall = new OkHttpCall&lt;&gt;(serviceMethod, args);</span><br><span class="line">            return serviceMethod.callAdapter.adapt(okHttpCall);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line">  </span><br><span class="line"> </span><br><span class="line">  public static final class Builder &#123;</span><br><span class="line">    private final Platform platform;</span><br><span class="line">    private okhttp3.Call.Factory callFactory;</span><br><span class="line">    private HttpUrl baseUrl;</span><br><span class="line">    private final List&lt;Converter.Factory&gt; converterFactories = new ArrayList&lt;&gt;();</span><br><span class="line">    private final List&lt;CallAdapter.Factory&gt; adapterFactories = new ArrayList&lt;&gt;();</span><br><span class="line">    private Executor callbackExecutor;</span><br><span class="line">    private boolean validateEagerly;</span><br><span class="line"></span><br><span class="line">    Builder(Platform platform) &#123;</span><br><span class="line">      this.platform = platform;</span><br><span class="line">      // Add the built-in converter factory first. This prevents overriding its behavior but also</span><br><span class="line">      // ensures correct behavior when using converters that consume all types.</span><br><span class="line">      converterFactories.add(new BuiltInConverters());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Builder() &#123;</span><br><span class="line">      this(Platform.get());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Builder(Retrofit retrofit) &#123;</span><br><span class="line">      platform = Platform.get();</span><br><span class="line">      callFactory = retrofit.callFactory;</span><br><span class="line">      baseUrl = retrofit.baseUrl;</span><br><span class="line">      converterFactories.addAll(retrofit.converterFactories);</span><br><span class="line">      adapterFactories.addAll(retrofit.adapterFactories);</span><br><span class="line">      // Remove the default, platform-aware call adapter added by build().</span><br><span class="line">      adapterFactories.remove(adapterFactories.size() - 1);</span><br><span class="line">      callbackExecutor = retrofit.callbackExecutor;</span><br><span class="line">      validateEagerly = retrofit.validateEagerly;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   ...</span><br><span class="line">   </span><br><span class="line">    public Retrofit build() &#123;</span><br><span class="line">      if (baseUrl == null) &#123;</span><br><span class="line">        throw new IllegalStateException(&quot;Base URL required.&quot;);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      okhttp3.Call.Factory callFactory = this.callFactory;</span><br><span class="line">      if (callFactory == null) &#123;</span><br><span class="line">        callFactory = new OkHttpClient();</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      Executor callbackExecutor = this.callbackExecutor;</span><br><span class="line">      if (callbackExecutor == null) &#123;</span><br><span class="line">        callbackExecutor = platform.defaultCallbackExecutor();</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      // Make a defensive copy of the adapters and add the default Call adapter.</span><br><span class="line">      List&lt;CallAdapter.Factory&gt; adapterFactories = new ArrayList&lt;&gt;(this.adapterFactories);</span><br><span class="line">      adapterFactories.add(platform.defaultCallAdapterFactory(callbackExecutor));</span><br><span class="line"></span><br><span class="line">      // Make a defensive copy of the converters.</span><br><span class="line">      List&lt;Converter.Factory&gt; converterFactories = new ArrayList&lt;&gt;(this.converterFactories);</span><br><span class="line"></span><br><span class="line">      return new Retrofit(callFactory, baseUrl, converterFactories, adapterFactories,</span><br><span class="line">          callbackExecutor, validateEagerly);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在Retrofit#Builder类中的成员变量和Retrofit的基本是一样的，这也正是建造者模式的特点。Retrofit的成员变量已经在源码中有注释。在Builder中，主要看Platform。</p>
+<p>Platform的子类：<br><img src="http://o8bym0zmt.bkt.clouddn.com/android_retrofit_01.png" alt="图片"></p>
+<p>主要有两个子类，对应着retrofit支持的平台：Android和java8的平台。</p>
+<p>Platform子类Android的源码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">static class Android extends Platform &#123;</span><br><span class="line">  @Override public Executor defaultCallbackExecutor() &#123;</span><br><span class="line">    return new MainThreadExecutor();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override CallAdapter.Factory defaultCallAdapterFactory(Executor callbackExecutor) &#123;</span><br><span class="line">    return new ExecutorCallAdapterFactory(callbackExecutor);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  static class MainThreadExecutor implements Executor &#123;</span><br><span class="line">    private final Handler handler = new Handler(Looper.getMainLooper());</span><br><span class="line"></span><br><span class="line">    @Override public void execute(Runnable r) &#123;</span><br><span class="line">      handler.post(r);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>MainThreadExecutor静态内部类中，创建了主线程的handler，用于将请求处理的结果返回给Android主线程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">retrofit.create(CSDNAPIService.class);</span><br></pre></td></tr></table></figure>
+<p>进入create方法源码</p>
+<p>Retrofit#create</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">@SuppressWarnings(&quot;unchecked&quot;) // Single-interface proxy creation guarded by parameter safety.</span><br><span class="line"> public &lt;T&gt; T create(final Class&lt;T&gt; service) &#123;</span><br><span class="line">   Utils.validateServiceInterface(service);</span><br><span class="line">   if (validateEagerly) &#123;</span><br><span class="line">     eagerlyValidateMethods(service);</span><br><span class="line">   &#125;</span><br><span class="line">   return (T) Proxy.newProxyInstance(service.getClassLoader(), new Class&lt;?&gt;[] &#123; service &#125;,</span><br><span class="line">       new InvocationHandler() &#123;</span><br><span class="line">         private final Platform platform = Platform.get();</span><br><span class="line"></span><br><span class="line">         @Override public Object invoke(Object proxy, Method method, Object[] args)</span><br><span class="line">             throws Throwable &#123;</span><br><span class="line">           // If the method is a method from Object then defer to normal invocation.</span><br><span class="line">           if (method.getDeclaringClass() == Object.class) &#123;</span><br><span class="line">             return method.invoke(this, args);</span><br><span class="line">           &#125;</span><br><span class="line">           if (platform.isDefaultMethod(method)) &#123;</span><br><span class="line">             return platform.invokeDefaultMethod(method, service, proxy, args);</span><br><span class="line">           &#125;</span><br><span class="line">           ServiceMethod&lt;Object, Object&gt; serviceMethod =</span><br><span class="line">               (ServiceMethod&lt;Object, Object&gt;) loadServiceMethod(method);</span><br><span class="line">           OkHttpCall&lt;Object&gt; okHttpCall = new OkHttpCall&lt;&gt;(serviceMethod, args);</span><br><span class="line">           return serviceMethod.callAdapter.adapt(okHttpCall);</span><br><span class="line">         &#125;</span><br><span class="line">       &#125;);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，上面使用了动态代理。proxy就是反射创建的类对象，method是对象要调用的方法，args是要调用方法的参数。主要分析loadServiceMethod方法。</p>
+<p>Retrofit#loadServiceMethod<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ServiceMethod&lt;?, ?&gt; loadServiceMethod(Method method) &#123;</span><br><span class="line">  ServiceMethod&lt;?, ?&gt; result = serviceMethodCache.get(method);</span><br><span class="line">  if (result != null) return result;</span><br><span class="line"></span><br><span class="line">  synchronized (serviceMethodCache) &#123;</span><br><span class="line">    result = serviceMethodCache.get(method);</span><br><span class="line">    if (result == null) &#123;</span><br><span class="line">      result = new ServiceMethod.Builder&lt;&gt;(this, method).build();</span><br><span class="line">      serviceMethodCache.put(method, result);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>serviceMethodCache是一个缓存，首先从缓存中取数据，没有，线程锁定，调用ServiceMethod的相关代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result = new ServiceMethod.Builder&lt;&gt;(this, method).build();</span><br></pre></td></tr></table></figure>
+<p>主要工作在build方法中，</p>
+<p>ServiceMethod#build</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">public ServiceMethod build() &#123;</span><br><span class="line">  callAdapter = createCallAdapter();</span><br><span class="line">  responseType = callAdapter.responseType();</span><br><span class="line">  if (responseType == Response.class || responseType == okhttp3.Response.class) &#123;</span><br><span class="line">    throw methodError(&quot;&apos;&quot;</span><br><span class="line">        + Utils.getRawType(responseType).getName()</span><br><span class="line">        + &quot;&apos; is not a valid response body type. Did you mean ResponseBody?&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  responseConverter = createResponseConverter();</span><br><span class="line"></span><br><span class="line">  for (Annotation annotation : methodAnnotations) &#123;</span><br><span class="line">    parseMethodAnnotation(annotation);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (httpMethod == null) &#123;</span><br><span class="line">    throw methodError(&quot;HTTP method annotation is required (e.g., @GET, @POST, etc.).&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (!hasBody) &#123;</span><br><span class="line">    if (isMultipart) &#123;</span><br><span class="line">      throw methodError(</span><br><span class="line">          &quot;Multipart can only be specified on HTTP methods with request body (e.g., @POST).&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    if (isFormEncoded) &#123;</span><br><span class="line">      throw methodError(&quot;FormUrlEncoded can only be specified on HTTP methods with &quot;</span><br><span class="line">          + &quot;request body (e.g., @POST).&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  int parameterCount = parameterAnnotationsArray.length;</span><br><span class="line">  parameterHandlers = new ParameterHandler&lt;?&gt;[parameterCount];</span><br><span class="line">  for (int p = 0; p &lt; parameterCount; p++) &#123;</span><br><span class="line">    Type parameterType = parameterTypes[p];</span><br><span class="line">    if (Utils.hasUnresolvableType(parameterType)) &#123;</span><br><span class="line">      throw parameterError(p, &quot;Parameter type must not include a type variable or wildcard: %s&quot;,</span><br><span class="line">          parameterType);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Annotation[] parameterAnnotations = parameterAnnotationsArray[p];</span><br><span class="line">    if (parameterAnnotations == null) &#123;</span><br><span class="line">      throw parameterError(p, &quot;No Retrofit annotation found.&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    parameterHandlers[p] = parseParameter(p, parameterType, parameterAnnotations);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (relativeUrl == null &amp;&amp; !gotUrl) &#123;</span><br><span class="line">    throw methodError(&quot;Missing either @%s URL or @Url parameter.&quot;, httpMethod);</span><br><span class="line">  &#125;</span><br><span class="line">  if (!isFormEncoded &amp;&amp; !isMultipart &amp;&amp; !hasBody &amp;&amp; gotBody) &#123;</span><br><span class="line">    throw methodError(&quot;Non-body HTTP method cannot contain @Body.&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  if (isFormEncoded &amp;&amp; !gotField) &#123;</span><br><span class="line">    throw methodError(&quot;Form-encoded method must contain at least one @Field.&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  if (isMultipart &amp;&amp; !gotPart) &#123;</span><br><span class="line">    throw methodError(&quot;Multipart method must contain at least one @Part.&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return new ServiceMethod&lt;&gt;(this);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里主要看第11行，这里主要是解析使用时的各种配置注解。</p>
+<p>ServiceMethod#parseMethodAnnotation<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">private void parseMethodAnnotation(Annotation annotation) &#123;</span><br><span class="line">  if (annotation instanceof DELETE) &#123;</span><br><span class="line">    parseHttpMethodAndPath(&quot;DELETE&quot;, ((DELETE) annotation).value(), false);</span><br><span class="line">  &#125; else if (annotation instanceof GET) &#123;</span><br><span class="line">    parseHttpMethodAndPath(&quot;GET&quot;, ((GET) annotation).value(), false);</span><br><span class="line">  &#125; else if (annotation instanceof HEAD) &#123;</span><br><span class="line">    parseHttpMethodAndPath(&quot;HEAD&quot;, ((HEAD) annotation).value(), false);</span><br><span class="line">    if (!Void.class.equals(responseType)) &#123;</span><br><span class="line">      throw methodError(&quot;HEAD method must use Void as response type.&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; else if (annotation instanceof PATCH) &#123;</span><br><span class="line">    parseHttpMethodAndPath(&quot;PATCH&quot;, ((PATCH) annotation).value(), true);</span><br><span class="line">  &#125; else if (annotation instanceof POST) &#123;</span><br><span class="line">    parseHttpMethodAndPath(&quot;POST&quot;, ((POST) annotation).value(), true);</span><br><span class="line">  &#125; else if (annotation instanceof PUT) &#123;</span><br><span class="line">    parseHttpMethodAndPath(&quot;PUT&quot;, ((PUT) annotation).value(), true);</span><br><span class="line">  &#125; else if (annotation instanceof OPTIONS) &#123;</span><br><span class="line">    parseHttpMethodAndPath(&quot;OPTIONS&quot;, ((OPTIONS) annotation).value(), false);</span><br><span class="line">  &#125; else if (annotation instanceof HTTP) &#123;</span><br><span class="line">    HTTP http = (HTTP) annotation;</span><br><span class="line">    parseHttpMethodAndPath(http.method(), http.path(), http.hasBody());</span><br><span class="line">  &#125; else if (annotation instanceof retrofit2.http.Headers) &#123;</span><br><span class="line">    String[] headersToParse = ((retrofit2.http.Headers) annotation).value();</span><br><span class="line">    if (headersToParse.length == 0) &#123;</span><br><span class="line">      throw methodError(&quot;@Headers annotation is empty.&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    headers = parseHeaders(headersToParse);</span><br><span class="line">  &#125; else if (annotation instanceof Multipart) &#123;</span><br><span class="line">    if (isFormEncoded) &#123;</span><br><span class="line">      throw methodError(&quot;Only one encoding annotation is allowed.&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    isMultipart = true;</span><br><span class="line">  &#125; else if (annotation instanceof FormUrlEncoded) &#123;</span><br><span class="line">    if (isMultipart) &#123;</span><br><span class="line">      throw methodError(&quot;Only one encoding annotation is allowed.&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    isFormEncoded = true;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>从上面可以看到具体的注解。</p>
+<p>分析retrofit的同步和异步请求过程：</p>
+<h4 id="异步请求"><a href="#异步请求" class="headerlink" title="异步请求"></a>异步请求</h4><p>OkHttpCall#enqueue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">@Override public void enqueue(final Callback&lt;T&gt; callback) &#123;</span><br><span class="line">  if (callback == null) throw new NullPointerException(&quot;callback == null&quot;);</span><br><span class="line"></span><br><span class="line">  okhttp3.Call call;</span><br><span class="line">  Throwable failure;</span><br><span class="line"></span><br><span class="line">  synchronized (this) &#123;</span><br><span class="line">    if (executed) throw new IllegalStateException(&quot;Already executed.&quot;);</span><br><span class="line">    executed = true;</span><br><span class="line"></span><br><span class="line">    call = rawCall;</span><br><span class="line">    failure = creationFailure;</span><br><span class="line">    if (call == null &amp;&amp; failure == null) &#123;</span><br><span class="line">      try &#123;</span><br><span class="line">        call = rawCall = createRawCall();</span><br><span class="line">      &#125; catch (Throwable t) &#123;</span><br><span class="line">        failure = creationFailure = t;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (failure != null) &#123;</span><br><span class="line">    callback.onFailure(this, failure);</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (canceled) &#123;</span><br><span class="line">    call.cancel();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  call.enqueue(new okhttp3.Callback() &#123;</span><br><span class="line">    @Override public void onResponse(okhttp3.Call call, okhttp3.Response rawResponse)</span><br><span class="line">        throws IOException &#123;</span><br><span class="line">      Response&lt;T&gt; response;</span><br><span class="line">      try &#123;</span><br><span class="line">        response = parseResponse(rawResponse);</span><br><span class="line">      &#125; catch (Throwable e) &#123;</span><br><span class="line">        callFailure(e);</span><br><span class="line">        return;</span><br><span class="line">      &#125;</span><br><span class="line">      callSuccess(response);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override public void onFailure(okhttp3.Call call, IOException e) &#123;</span><br><span class="line">      try &#123;</span><br><span class="line">        callback.onFailure(OkHttpCall.this, e);</span><br><span class="line">      &#125; catch (Throwable t) &#123;</span><br><span class="line">        t.printStackTrace();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void callFailure(Throwable e) &#123;</span><br><span class="line">      try &#123;</span><br><span class="line">        callback.onFailure(OkHttpCall.this, e);</span><br><span class="line">      &#125; catch (Throwable t) &#123;</span><br><span class="line">        t.printStackTrace();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void callSuccess(Response&lt;T&gt; response) &#123;</span><br><span class="line">      try &#123;</span><br><span class="line">        callback.onResponse(OkHttpCall.this, response);</span><br><span class="line">      &#125; catch (Throwable t) &#123;</span><br><span class="line">        t.printStackTrace();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>看第15行，createRawCall()创建了call，call是一个接口，它的子类有RealCall.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Call extends Cloneable</span><br><span class="line"></span><br><span class="line">final class RealCall implements Call</span><br></pre></td></tr></table></figure>
+<p>进入OkHttpCall#createRawCall方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">private okhttp3.Call createRawCall() throws IOException &#123;</span><br><span class="line">  Request request = serviceMethod.toRequest(args);</span><br><span class="line">  okhttp3.Call call = serviceMethod.callFactory.newCall(request);</span><br><span class="line">  if (call == null) &#123;</span><br><span class="line">    throw new NullPointerException(&quot;Call.Factory returned null.&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  return call;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>它用参数创建http请求对象，然后创建call，并返回。</p>
+<p>分析newCall方法，是callFactory的方法，看Factory<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface Factory &#123;</span><br><span class="line">    Call newCall(Request request);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>它被OkHttpClient实现，所以会到OkHttpClient的newCall</p>
+<p>OkHttpClient#newCall</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@Override public Call newCall(Request request) &#123;</span><br><span class="line">    return new RealCall(this, request, false /* for web socket */);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>现在分析到了RealCall。异步和同步请求调用的方法，都会来到RealCall调用enqueue和execute方法。</p>
+<p>看异步的enqueue方法<br>RealCall#enqueue<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Override public void enqueue(Callback responseCallback) &#123;</span><br><span class="line">    synchronized (this) &#123;</span><br><span class="line">      if (executed) throw new IllegalStateException(&quot;Already Executed&quot;);</span><br><span class="line">      executed = true;</span><br><span class="line">    &#125;</span><br><span class="line">    captureCallStackTrace();</span><br><span class="line">    client.dispatcher().enqueue(new AsyncCall(responseCallback));</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>看第7行，AsyncCall是一个Runnable任务，会提交给线程池执行。responseCallback是异步请求结果的回调。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">final class AsyncCall extends NamedRunnable</span><br><span class="line"></span><br><span class="line">public abstract class NamedRunnable implements Runnable</span><br></pre></td></tr></table></figure>
+<p>responseCallback是一个Callback</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public interface Callback &#123;</span><br><span class="line"></span><br><span class="line">  void onFailure(Call call, IOException e);</span><br><span class="line"></span><br><span class="line">  void onResponse(Call call, Response response) throws IOException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>AsyncCall是一个Runnable任务，那它做的任务是什么呢？</p>
+<p>AsyncCall#execute<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">@Override protected void execute() &#123;</span><br><span class="line">      boolean signalledCallback = false;</span><br><span class="line">      try &#123;</span><br><span class="line">        Response response = getResponseWithInterceptorChain();</span><br><span class="line">        if (retryAndFollowUpInterceptor.isCanceled()) &#123;</span><br><span class="line">          signalledCallback = true;</span><br><span class="line">          responseCallback.onFailure(RealCall.this, new IOException(&quot;Canceled&quot;));</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          signalledCallback = true;</span><br><span class="line">          responseCallback.onResponse(RealCall.this, response);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; catch (IOException e) &#123;</span><br><span class="line">        if (signalledCallback) &#123;</span><br><span class="line">          // Do not signal the callback twice!</span><br><span class="line">          Platform.get().log(INFO, &quot;Callback failure for &quot; + toLoggableString(), e);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          responseCallback.onFailure(RealCall.this, e);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; finally &#123;</span><br><span class="line">        client.dispatcher().finished(this);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的第4行getResponseWithInterceptorChain返回了请求的结果，其实它里面发生了整个请求的过程。等一下会进去分析它是如何责任链的调用拦截器的和它是怎样根据响应结果调用callback的回调方法的。</p>
+<p>AsyncCall#execute是重写NamedRunnable中的execute方法的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public abstract class NamedRunnable implements Runnable &#123;</span><br><span class="line">  protected final String name;</span><br><span class="line"></span><br><span class="line">  public NamedRunnable(String format, Object... args) &#123;</span><br><span class="line">    this.name = Util.format(format, args);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override public final void run() &#123;</span><br><span class="line">    String oldName = Thread.currentThread().getName();</span><br><span class="line">    Thread.currentThread().setName(name);</span><br><span class="line">    try &#123;</span><br><span class="line">      execute();</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">      Thread.currentThread().setName(oldName);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  protected abstract void execute();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>看到，在任务的主要工作run方法中，调用了execute方法。而主要工作做了什么？就是上面的AsyncCall#execute所做的。</p>
+<p>回到前面，RealCall#enqueue，进入第7行的Dispatcher的enqueue</p>
+<p>Dispatcher#enqueue<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">synchronized void enqueue(AsyncCall call) &#123;</span><br><span class="line">  if (runningAsyncCalls.size() &lt; maxRequests &amp;&amp; runningCallsForHost(call) &lt; maxRequestsPerHost) &#123;</span><br><span class="line">    runningAsyncCalls.add(call);</span><br><span class="line">    executorService().execute(call);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    readyAsyncCalls.add(call);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>runningAsyncCalls保存了异步执行的任务，它的解析如下的英文解释。如果同时执行的任务数没有超过线程池的最大可执行次数，就直接放到线程池中执行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/** Running asynchronous calls. Includes canceled calls that haven&apos;t finished yet. */</span><br><span class="line">  private final Deque&lt;AsyncCall&gt; runningAsyncCalls = new ArrayDeque&lt;&gt;();</span><br><span class="line">  </span><br><span class="line">  ...</span><br><span class="line">  </span><br><span class="line">  private int maxRequests = 64;</span><br><span class="line">  private int maxRequestsPerHost = 5;</span><br></pre></td></tr></table></figure></p>
+<p>之前在分析AsyncCall#execute时说过，在第4行的getResponseWithInterceptorrChain中完成了整个网络请求的过程，在过程中责任链式的调用了拦截器和网络拦截器。下面从源码上分析拦截器的调用过程。</p>
+<p>AsyncCall#getResponseWithInterceptorChain<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Response getResponseWithInterceptorChain() throws IOException &#123;</span><br><span class="line">  // Build a full stack of interceptors.</span><br><span class="line">  List&lt;Interceptor&gt; interceptors = new ArrayList&lt;&gt;();</span><br><span class="line">  interceptors.addAll(client.interceptors());</span><br><span class="line">  interceptors.add(retryAndFollowUpInterceptor);</span><br><span class="line">  interceptors.add(new BridgeInterceptor(client.cookieJar()));</span><br><span class="line">  interceptors.add(new CacheInterceptor(client.internalCache()));</span><br><span class="line">  interceptors.add(new ConnectInterceptor(client));</span><br><span class="line">  if (!forWebSocket) &#123;</span><br><span class="line">    interceptors.addAll(client.networkInterceptors());</span><br><span class="line">  &#125;</span><br><span class="line">  interceptors.add(new CallServerInterceptor(forWebSocket));</span><br><span class="line"></span><br><span class="line">  Interceptor.Chain chain = new RealInterceptorChain(</span><br><span class="line">      interceptors, null, null, null, 0, originalRequest);</span><br><span class="line">  return chain.proceed(originalRequest);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到，是先将所有的拦截器放到了interceptors列表中。然后在第14到16行调用了拦截器。这里还有一个主要的分析工作，就是各个系统提供的拦截器在网络请求过程负责做了什么。（本篇文章没讲）</p>
+<p>RealInterceptorChain#proceed</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public Response proceed(Request request, StreamAllocation streamAllocation, HttpCodec httpCodec,</span><br><span class="line">    RealConnection connection) throws IOException &#123;</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  // Call the next interceptor in the chain.</span><br><span class="line">  RealInterceptorChain next = new RealInterceptorChain(</span><br><span class="line">      interceptors, streamAllocation, httpCodec, connection, index + 1, request);</span><br><span class="line">  Interceptor interceptor = interceptors.get(index);</span><br><span class="line">  Response response = interceptor.intercept(next);</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">  return response;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>index刚开始是0，从第一个拦截器开始调用，在RealInterceptorChain#proceed中又创建了下一个RealInterceptorChain，然后执行当前拦截器。</p>
+<p>到这里暂停一下，先了解一个拦截器是怎么样定义的？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class CustomInterceptor implements Interceptor &#123;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public Response intercept(Chain chain) throws IOException &#123;</span><br><span class="line">        Request request = chain.request();</span><br><span class="line">        ...</span><br><span class="line">        //做拦截器做的事情</span><br><span class="line">        ...</span><br><span class="line">        return chain.proceed(request);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后那条语句正和AsyncCall#getResponseWithInterceptorChain的最后一句是一样的。这样子就形成了一条链，不断的index + 1即一个一个的按顺序执行完所有的拦截器，而每个拦截器负责自己的责任，这就是责任链模式。</p>
+<h4 id="同步请求"><a href="#同步请求" class="headerlink" title="同步请求"></a>同步请求</h4><p>OkHttpCall#execute<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">@Override public Response&lt;T&gt; execute() throws IOException &#123;</span><br><span class="line">  okhttp3.Call call;</span><br><span class="line"></span><br><span class="line">  synchronized (this) &#123;</span><br><span class="line">    if (executed) throw new IllegalStateException(&quot;Already executed.&quot;);</span><br><span class="line">    executed = true;</span><br><span class="line"></span><br><span class="line">    if (creationFailure != null) &#123;</span><br><span class="line">      if (creationFailure instanceof IOException) &#123;</span><br><span class="line">        throw (IOException) creationFailure;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        throw (RuntimeException) creationFailure;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    call = rawCall;</span><br><span class="line">    if (call == null) &#123;</span><br><span class="line">      try &#123;</span><br><span class="line">        call = rawCall = createRawCall();</span><br><span class="line">      &#125; catch (IOException | RuntimeException e) &#123;</span><br><span class="line">        creationFailure = e;</span><br><span class="line">        throw e;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (canceled) &#123;</span><br><span class="line">    call.cancel();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return parseResponse(call.execute());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>同异步请求分析中一样，主要都是调用createRawCall方法，这在上面已经分析。然后会到OkHttpClient中调用的execute方法。因为是同步请求，最后在parseResponse中解析了请求返回的结果，回调给Android前端。</p>
+<p>OkHttpClient#execute<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Override public Response execute() throws IOException &#123;</span><br><span class="line">  synchronized (this) &#123;</span><br><span class="line">    if (executed) throw new IllegalStateException(&quot;Already Executed&quot;);</span><br><span class="line">    executed = true;</span><br><span class="line">  &#125;</span><br><span class="line">  captureCallStackTrace();</span><br><span class="line">  try &#123;</span><br><span class="line">    client.dispatcher().executed(this);</span><br><span class="line">    Response result = getResponseWithInterceptorChain();</span><br><span class="line">    if (result == null) throw new IOException(&quot;Canceled&quot;);</span><br><span class="line">    return result;</span><br><span class="line">  &#125; finally &#123;</span><br><span class="line">    client.dispatcher().finished(this);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第8行，进入源码是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/** Used by &#123;@code Call#execute&#125; to signal it is in-flight. */</span><br><span class="line">synchronized void executed(RealCall call) &#123;</span><br><span class="line">  runningSyncCalls.add(call);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将RealCall添加到runningSyncCalls.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/** Running synchronous calls. Includes canceled calls that haven&apos;t finished yet. */</span><br><span class="line"> private final Deque&lt;RealCall&gt; runningSyncCalls = new ArrayDeque&lt;&gt;();</span><br></pre></td></tr></table></figure>
+<p>在第9行，同样是调用了getResponseWithInterceptorChain方法得到请求的结果，这个在异步请求分析中已经讲过。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+	  
+		<!--MOB SHARE BEGIN-->
+ <button id="rewardButton" class="-mob-share-open" style="margin-right:5px;">
+    <span>分享</span>
+  </button>
+<div class="-mob-share-ui" style="display: none">
+    <ul class="-mob-share-list">
+        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+            <li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
+            <li class="-mob-share-qzone"><p>QQ空间</p></li>
+            <li class="-mob-share-qq"><p>QQ好友</p></li>
+            <li class="-mob-share-weixin"><p>微信</p></li>
+            <li class="-mob-share-douban"><p>豆瓣</p></li>
+            <li class="-mob-share-renren"><p>人人网</p></li>
+            <li class="-mob-share-kaixin"><p>开心网</p></li>
+            <li class="-mob-share-facebook"><p>Facebook</p></li>
+            <li class="-mob-share-twitter"><p>Twitter</p></li>
+            <li class="-mob-share-pocket"><p>Pocket</p></li>
+            <li class="-mob-share-google"><p>Google+</p></li>
+            <li class="-mob-share-youdao"><p>有道云笔记</p></li>
+    </ul>
+    <div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=230df6a994c78"></script>
+<!--MOB SHARE END-->
+      
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  
+  
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="长孙雨聪--七星上将 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="长孙雨聪--七星上将 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+	
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    长孙雨聪--七星上将
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://zhangsunyucong.top/2018/03/08/android-retrofit/" title="Android中的retrofit源码分析">http://zhangsunyucong.top/2018/03/08/android-retrofit/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/23/android-layout-inflater/" rel="next" title="Android中的布局加载器LayoutInflater">
+                <i class="fa fa-chevron-left"></i> Android中的布局加载器LayoutInflater
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/04/java-pattern-singleton/" rel="prev" title="23种设计模式之《单例模式》">
+                23种设计模式之《单例模式》 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  
+	  
+	  
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+			<a href="/" class="site-author-image" rel="start" style="border:none">
+              <img class="site-author-image" itemprop="image"
+                src="/images/myphoto.jpg"
+                alt="长孙雨聪--七星上将" />
+			</a>	
+            
+              <p class="site-author-name" itemprop="name">长孙雨聪--七星上将</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/zhangsunyucong?tab=repositories" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:969887864@qq.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.wanandroid.com/" title="鸿洋_" target="_blank">鸿洋_</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://luodw.cc/" title="罗道文" target="_blank">罗道文</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://litten.me/" title="Litten" target="_blank">Litten</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://luuman.github.io" title="luuman" target="_blank">luuman</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.barretlee.com" title="小胡子哥" target="_blank">小胡子哥</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.halyul.cc" title="halyul" target="_blank">halyul</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/mine_song/article/details/64121769" title="剑指" target="_blank">剑指</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.ithmz.com/" title="奶爸大哥" target="_blank">奶爸大哥</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ruanyifeng.com" title="阮一峰" target="_blank">阮一峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://0xcc0xcd.com" title="老罗" target="_blank">老罗</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wangyuquan.net/" title="top2" target="_blank">top2</a>
+                  </li>
+                
+              </ul>
+			   
+			   <div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+	window.setTimeout("show_date_time()", 1000);
+	BirthDay = new Date("11/24/2017 15:00:00");
+	today  =new Date();
+	timeold = (today.getTime()-BirthDay.getTime());
+	sectimeold = timeold/1000
+	secondsold = Math.floor(sectimeold);
+	msPerDay = 24*60*60*1000
+	e_daysold = timeold/msPerDay
+	daysold = Math.floor(e_daysold);
+	e_hrsold = (e_daysold-daysold)*24;
+	hrsold = setzero(Math.floor(e_hrsold));
+	e_minsold = (e_hrsold-hrsold)*60;
+	minsold = setzero(Math.floor((e_hrsold-hrsold)*60));
+	seconds = setzero(Math.floor((e_minsold-minsold)*60));
+	document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+	if (i<10)
+	{
+		i="0" + i
+	};
+	return i;
+}
+show_date_time();
+</script>
+
+			  
+            </div>
+          
+
+         
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码分析"><span class="nav-number">2.</span> <span class="nav-text">源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#异步请求"><span class="nav-number">2.1.</span> <span class="nav-text">异步请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同步请求"><span class="nav-number">2.2.</span> <span class="nav-text">同步请求</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">长孙雨聪--七星上将</span>
+  
+</div>
+
+Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytlJYAPJ';
+      var conf = '72c4d5b62ad9725c5f533c23a6f1097e';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("2YPqqc43cMkbPegNE3Auieo4-gzGzoHsz", "TVVsPYw3swS3SrByLqNtqlAL");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.3"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.3"></script>
+
+
+  
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

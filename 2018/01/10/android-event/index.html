@@ -56,6 +56,32 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
@@ -98,14 +124,14 @@
 <meta property="og:title" content="Android的MotionEvent事件分发机制">
 <meta property="og:url" content="http://zhangsunyucong.top/2018/01/10/android-event/index.html">
 <meta property="og:site_name" content="长孙雨聪--七星上将">
-<meta property="og:description" content="android事件的源头在哪里？当用户触摸屏幕或者按键等时，形成事件，事件经过linux底层Event节点捕获之后，一直传到android应用层。中间传递的过程不是本文的重点，我也不是很清楚（哈哈哈）。本文的重点是事件在应用层的分发机制。 事件在View树中的分发过程View树： 在Android中，事件的分发过程就是MotionEvent在view树分发的过程。默认是中从上而下，然后从下而上">
+<meta property="og:description" content="android事件的源头在哪里？当用户触摸屏幕或者按键等时，形成事件，事件经过linux底层Event节点捕获之后，一直传到android应用层。中间传递的过程不是本文的重点，我也不是很清楚（哈哈哈）。本文的重点是事件在应用层的分发机制。 事件在View树中的分发过程View树： 在Android中，事件的分发过程就是MotionEvent在view树分发的过程。默认是中从上而下，然后从下而上的">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/2018_1_10_touch_event_2.png">
 <meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/2018_1_10_touch_event_1.png">
-<meta property="og:updated_time" content="2018-01-12T06:03:01.102Z">
+<meta property="og:updated_time" content="2018-02-28T06:52:03.119Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android的MotionEvent事件分发机制">
-<meta name="twitter:description" content="android事件的源头在哪里？当用户触摸屏幕或者按键等时，形成事件，事件经过linux底层Event节点捕获之后，一直传到android应用层。中间传递的过程不是本文的重点，我也不是很清楚（哈哈哈）。本文的重点是事件在应用层的分发机制。 事件在View树中的分发过程View树： 在Android中，事件的分发过程就是MotionEvent在view树分发的过程。默认是中从上而下，然后从下而上">
+<meta name="twitter:description" content="android事件的源头在哪里？当用户触摸屏幕或者按键等时，形成事件，事件经过linux底层Event节点捕获之后，一直传到android应用层。中间传递的过程不是本文的重点，我也不是很清楚（哈哈哈）。本文的重点是事件在应用层的分发机制。 事件在View树中的分发过程View树： 在Android中，事件的分发过程就是MotionEvent在view树分发的过程。默认是中从上而下，然后从下而上的">
 <meta name="twitter:image" content="http://o8bym0zmt.bkt.clouddn.com/2018_1_10_touch_event_2.png">
 
 
@@ -360,7 +386,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-28T14:52:03+08:00">
+                2018-02-28
+              </time>
             
           </span>
 
@@ -415,7 +453,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,094字
+                  2,116字
                 </span>
               
 
@@ -456,7 +494,7 @@
         <script src="\assets\js\APlayer.min.js"> </script><hr>
 <h3 id="android事件的源头在哪里？"><a href="#android事件的源头在哪里？" class="headerlink" title="android事件的源头在哪里？"></a>android事件的源头在哪里？</h3><p>当用户触摸屏幕或者按键等时，形成事件，事件经过linux底层Event节点捕获之后，一直传到android应用层。中间传递的过程不是本文的重点，我也不是很清楚（哈哈哈）。本文的重点是事件在应用层的分发机制。</p>
 <h3 id="事件在View树中的分发过程"><a href="#事件在View树中的分发过程" class="headerlink" title="事件在View树中的分发过程"></a>事件在View树中的分发过程</h3><p>View树：<br><img src="http://o8bym0zmt.bkt.clouddn.com/2018_1_10_touch_event_2.png" alt="图片"></p>
-<p>在Android中，事件的分发过程就是MotionEvent在view树分发的过程。默认是中从上而下，然后从下而上的传递的，直到有view、viewgroup或者Activity处理事件为止。</p>
+<p>在Android中，事件的分发过程就是MotionEvent在view树分发的过程。默认是中从上而下，然后从下而上的传递的，直到有view、viewgroup或者Activity处理事件为止。<br><a id="more"></a></p>
 <p>为什么要先从上而下？是为了在默认情况下，屏幕上层叠的所有控件都有机会处理事件。这个阶段我们称为事件下发阶段。</p>
 <p>为什么要从下而上？是为了在从上而下分发时，事件没有控件处理时，再从下而上冒泡事件，是否有控件愿意处理事件。如果中间没有控件处理，事件就只能由Acitivity处理了。这个阶段我们称为事件的冒泡阶段。</p>
 <h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>事件序列：从用户手指触摸屏幕开始，经过滑动到手指离开屏幕。这个操作产生了一个dowm事件，一系列move事件，最后一个up事件结束。我们把这一个操作产生的事件称为一个事件序列。</p>
@@ -474,6 +512,7 @@
 <p>从上面可以看出，事件已经从Acitivity到PhoneWindow，再传到了DecorView。DecorView是一个继承FrameLayout的ViewGroup，从而事件进入了View树的传递。</p>
 <p>重写在Acitvity中的事件传递方法</p>
 <p>重写Activity#dispatchTouchEvent：<br>1、返回false，事件不分发，所有事件在Acitivity的分发函数中就中断（真的不见了），连Acitivity的事件处理函数都到达不了。<br>2、返回true，所有事件在Acitivity的分发函数中就中断，和false一样<br>3、返回父函数方法，事件就传给直接子view分发</p>
+<p>进一步的，DecorView是一个FrameLayout，也即是一个ViewGruop。</p>
 <p>（2）在ViewGruop中的源码分析：<br>ViewGruop#dispatchTouchEvent<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">final int action = ev.getAction();</span><br><span class="line">final int actionMasked = action &amp; MotionEvent.ACTION_MASK;</span><br><span class="line"></span><br><span class="line">// Handle an initial down.</span><br><span class="line">if (actionMasked == MotionEvent.ACTION_DOWN) &#123;</span><br><span class="line">    // Throw away all previous state when starting a new touch gesture.</span><br><span class="line">    // The framework may have dropped the up or cancel event for the previous gesture</span><br><span class="line">    // due to an app switch, ANR, or some other state change.</span><br><span class="line">    cancelAndClearTouchTargets(ev);</span><br><span class="line">    resetTouchState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Check for interception.</span><br><span class="line">final boolean intercepted;</span><br><span class="line">if (actionMasked == MotionEvent.ACTION_DOWN</span><br><span class="line">    || mFirstTouchTarget != null) &#123;</span><br><span class="line">        final boolean disallowIntercept = (mGroupFlags &amp; FLAG_DISALLOW_INTERCEPT) != 0;</span><br><span class="line">        if (!disallowIntercept) &#123;</span><br><span class="line">            intercepted = onInterceptTouchEvent(ev);</span><br><span class="line">            ev.setAction(action); // restore action in case it was changed</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            intercepted = false;</span><br><span class="line">        &#125;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    // There are no touch targets and this action is not an initial down</span><br><span class="line">    // so this view group continues to intercept touches.</span><br><span class="line">    intercepted = true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>在5-11行，是每个新的事件系列开始前，会重置事件相关的状态。这里我们关注两个地方。第一个是第17行的disallowIntercept标志，第二个是第19行调用了事件拦截函数，询问是否拦截事件。</p>
 <p>ViewGruop#onInterceptTouchEvent<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public boolean onInterceptTouchEvent(MotionEvent ev) &#123;</span><br><span class="line">        if (ev.isFromSource(InputDevice.SOURCE_MOUSE)</span><br><span class="line">                &amp;&amp; ev.getAction() == MotionEvent.ACTION_DOWN</span><br><span class="line">                &amp;&amp; ev.isButtonPressed(MotionEvent.BUTTON_PRIMARY)</span><br><span class="line">                &amp;&amp; isOnScrollbarThumb(ev.getX(), ev.getY())) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -484,8 +523,8 @@
 <p>（3）在View中的源码分析：<br>View#dispatchTouchEvent</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">if (onFilterTouchEventForSecurity(event)) &#123;</span><br><span class="line">    if ((mViewFlags &amp; ENABLED_MASK) == ENABLED &amp;&amp; handleScrollBarDragging(event)) &#123;</span><br><span class="line">        result = true;</span><br><span class="line">    &#125;</span><br><span class="line">    //noinspection SimplifiableIfStatement</span><br><span class="line">    ListenerInfo li = mListenerInfo;</span><br><span class="line">    if (li != null &amp;&amp; li.mOnTouchListener != null</span><br><span class="line">        &amp;&amp; (mViewFlags &amp; ENABLED_MASK) == ENABLED</span><br><span class="line">            &amp;&amp; li.mOnTouchListener.onTouch(this, event)) &#123;</span><br><span class="line">                result = true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (!result &amp;&amp; onTouchEvent(event)) &#123;</span><br><span class="line">        result = true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这里关注的地方是，第9行和第13行。第9行是当前view如果设置了onTouch事件，并且它返回了true，那它就直接将result设置为true，事件就消耗了，不会再继续传递下去，只到达onTouch。第13行，是事件处理函数。可以看出onTouch是优先于onTouchEvent的。</p>
-<p>View#dispatchTouchEvent</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">....</span><br><span class="line">final boolean clickable = ((viewFlags &amp; CLICKABLE) == CLICKABLE</span><br><span class="line">                || (viewFlags &amp; LONG_CLICKABLE) == LONG_CLICKABLE)</span><br><span class="line">                || (viewFlags &amp; CONTEXT_CLICKABLE) == CONTEXT_CLICKABLE;</span><br><span class="line">...                </span><br><span class="line"></span><br><span class="line">if (clickable || (viewFlags &amp; TOOLTIP) == TOOLTIP) &#123;</span><br><span class="line">    switch (action) &#123;</span><br><span class="line">        case MotionEvent.ACTION_UP:</span><br><span class="line">        mPrivateFlags3 &amp;= ~PFLAG3_FINGER_DOWN;</span><br><span class="line">        if ((viewFlags &amp; TOOLTIP) == TOOLTIP) &#123;</span><br><span class="line">            handleTooltipUp();</span><br><span class="line">        &#125;</span><br><span class="line">        if (!clickable) &#123;</span><br><span class="line">            removeTapCallback();</span><br><span class="line">            removeLongPressCallback();</span><br><span class="line">            mInContextButtonPress = false;</span><br><span class="line">            mHasPerformedLongPress = false;</span><br><span class="line">            mIgnoreNextUpEvent = false;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        boolean prepressed = (mPrivateFlags &amp; PFLAG_PREPRESSED) != 0;</span><br><span class="line">        if ((mPrivateFlags &amp; PFLAG_PRESSED) != 0 || prepressed) &#123;</span><br><span class="line">            // take focus if we don&apos;t have it already and we should in</span><br><span class="line">            // touch mode.</span><br><span class="line">            boolean focusTaken = false;</span><br><span class="line">            if (isFocusable() &amp;&amp; isFocusableInTouchMode() &amp;&amp; !isFocused()) &#123;</span><br><span class="line">                focusTaken = requestFocus();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (prepressed) &#123;</span><br><span class="line">                // The button is being released before we actually</span><br><span class="line">                // showed it as pressed.  Make it show the pressed</span><br><span class="line">                // state now (before scheduling the click) to ensure</span><br><span class="line">                // the user sees it.</span><br><span class="line">                setPressed(true, x, y);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (!mHasPerformedLongPress &amp;&amp; !mIgnoreNextUpEvent) &#123;</span><br><span class="line">                // This is a tap, so remove the longpress check</span><br><span class="line">                removeLongPressCallback();</span><br><span class="line"></span><br><span class="line">                // Only perform take click actions if we were in the pressed state</span><br><span class="line">                if (!focusTaken) &#123;</span><br><span class="line">                    // Use a Runnable and post this rather than calling</span><br><span class="line">                    // performClick directly. This lets other visual state</span><br><span class="line">                    // of the view update before click actions start.</span><br><span class="line">                    if (mPerformClick == null) &#123;</span><br><span class="line">                        mPerformClick = new PerformClick();</span><br><span class="line">                    &#125;</span><br><span class="line">                    if (!post(mPerformClick)) &#123;</span><br><span class="line">                        performClick();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                ...</span><br></pre></td></tr></table></figure>
+<p>View#onTouchEvent</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">....</span><br><span class="line">final boolean clickable = ((viewFlags &amp; CLICKABLE) == CLICKABLE</span><br><span class="line">                || (viewFlags &amp; LONG_CLICKABLE) == LONG_CLICKABLE)</span><br><span class="line">                || (viewFlags &amp; CONTEXT_CLICKABLE) == CONTEXT_CLICKABLE;</span><br><span class="line">...                </span><br><span class="line"></span><br><span class="line">if (clickable || (viewFlags &amp; TOOLTIP) == TOOLTIP) &#123;</span><br><span class="line">    switch (action) &#123;</span><br><span class="line">        case MotionEvent.ACTION_UP:</span><br><span class="line">        mPrivateFlags3 &amp;= ~PFLAG3_FINGER_DOWN;</span><br><span class="line">        if ((viewFlags &amp; TOOLTIP) == TOOLTIP) &#123;</span><br><span class="line">            handleTooltipUp();</span><br><span class="line">        &#125;</span><br><span class="line">        if (!clickable) &#123;</span><br><span class="line">            removeTapCallback();</span><br><span class="line">            removeLongPressCallback();</span><br><span class="line">            mInContextButtonPress = false;</span><br><span class="line">            mHasPerformedLongPress = false;</span><br><span class="line">            mIgnoreNextUpEvent = false;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        boolean prepressed = (mPrivateFlags &amp; PFLAG_PREPRESSED) != 0;</span><br><span class="line">        if ((mPrivateFlags &amp; PFLAG_PRESSED) != 0 || prepressed) &#123;</span><br><span class="line">            // take focus if we don&apos;t have it already and we should in</span><br><span class="line">            // touch mode.</span><br><span class="line">            boolean focusTaken = false;</span><br><span class="line">            if (isFocusable() &amp;&amp; isFocusableInTouchMode() &amp;&amp; !isFocused()) &#123;</span><br><span class="line">                focusTaken = requestFocus();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (prepressed) &#123;</span><br><span class="line">                // The button is being released before we actually</span><br><span class="line">                // showed it as pressed.  Make it show the pressed</span><br><span class="line">                // state now (before scheduling the click) to ensure</span><br><span class="line">                // the user sees it.</span><br><span class="line">                setPressed(true, x, y);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (!mHasPerformedLongPress &amp;&amp; !mIgnoreNextUpEvent) &#123;</span><br><span class="line">                // This is a tap, so remove the longpress check</span><br><span class="line">                removeLongPressCallback();</span><br><span class="line"></span><br><span class="line">                // Only perform take click actions if we were in the pressed state</span><br><span class="line">                if (!focusTaken) &#123;</span><br><span class="line">                    // Use a Runnable and post this rather than calling</span><br><span class="line">                    // performClick directly. This lets other visual state</span><br><span class="line">                    // of the view update before click actions start.</span><br><span class="line">                    if (mPerformClick == null) &#123;</span><br><span class="line">                        mPerformClick = new PerformClick();</span><br><span class="line">                    &#125;</span><br><span class="line">                    if (!post(mPerformClick)) &#123;</span><br><span class="line">                        performClick();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>view根据是否可以点击等等一系列判断什么的。这里关注up事件中的第42-53行，有performClick。</p>
 <p>View#performClick<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public boolean performClick() &#123;</span><br><span class="line">    final boolean result;</span><br><span class="line">    final ListenerInfo li = mListenerInfo;</span><br><span class="line">    if (li != null &amp;&amp; li.mOnClickListener != null) &#123;</span><br><span class="line">        playSoundEffect(SoundEffectConstants.CLICK);</span><br><span class="line">        li.mOnClickListener.onClick(this);</span><br><span class="line">        result = true;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        result = false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED);</span><br><span class="line"></span><br><span class="line">    notifyEnterOrExitForAutoFillIfNeeded(true);</span><br><span class="line"></span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>如果view设置了mOnClickListener，即点击事件，会调用view的点击事件。如果在父view中拦截了up事件，使up事件到达不了这里，会使view的点击事件失效。</p>
@@ -617,6 +656,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/01/15/view-meassure/" rel="prev" title="Androiod中View的工作原理">
+                Androiod中View的工作原理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -703,7 +746,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -716,7 +759,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -759,9 +802,13 @@
             <div class="links-of-blogroll motion-element links-of-blogroll-inline">
               <div class="links-of-blogroll-title">
                 <i class="fa  fa-fw fa-link"></i>
-                Links
+                友情链接
               </div>
               <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.wanandroid.com/" title="鸿洋_" target="_blank">鸿洋_</a>
+                  </li>
                 
                   <li class="links-of-blogroll-item">
                     <a href="http://luodw.cc/" title="罗道文" target="_blank">罗道文</a>
@@ -785,6 +832,22 @@
                 
                   <li class="links-of-blogroll-item">
                     <a href="http://blog.csdn.net/mine_song/article/details/64121769" title="剑指" target="_blank">剑指</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.ithmz.com/" title="奶爸大哥" target="_blank">奶爸大哥</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ruanyifeng.com" title="阮一峰" target="_blank">阮一峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://0xcc0xcd.com" title="老罗" target="_blank">老罗</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wangyuquan.net/" title="top2" target="_blank">top2</a>
                   </li>
                 
               </ul>
@@ -1521,13 +1584,39 @@ Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pag
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.3"></script>
+
 
   
   <script type="text/javascript" src="/js/src/exturl.js?v=5.1.3"></script>
 
 
+  
 </body>
 </html>
 <!-- 页面点击小红心 -->

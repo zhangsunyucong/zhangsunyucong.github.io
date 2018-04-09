@@ -56,6 +56,32 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
@@ -98,12 +124,12 @@
 <meta property="og:title" content="使用nginx负载均衡nodejs">
 <meta property="og:url" content="http://zhangsunyucong.top/2017/12/06/node-and-nginx/index.html">
 <meta property="og:site_name" content="长孙雨聪--七星上将">
-<meta property="og:description" content="前言这篇文章适合熟悉nodejs的同学观看。主要是关于如何使用nginx做反向代理和负载均衡nodejs的多个实例的配置流程，nodejs实例可以是分布在同一台主机上或者不同的主机上的多个实例。 主要内容有  在同一主机创建nodejs多个实例 详细讲解ngnix.conf文件的每项配置的作用  在同一主机创建nodejs多个实例我的nodejs环境：  window 7 64位 nodejs">
+<meta property="og:description" content="前言这篇文章适合熟悉nodejs的同学观看。主要是关于如何使用nginx做反向代理和负载均衡nodejs的多个实例的配置流程，nodejs实例可以是分布在同一台主机上或者不同的主机上的多个实例。 主要内容有  在同一主机创建nodejs多个实例 详细讲解ngnix.conf文件的每项配置的作用  在同一主机创建nodejs多个实例我的nodejs环境：  window 7 64位 nodejs v">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-12T06:03:01.107Z">
+<meta property="og:updated_time" content="2018-01-23T07:55:04.439Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用nginx负载均衡nodejs">
-<meta name="twitter:description" content="前言这篇文章适合熟悉nodejs的同学观看。主要是关于如何使用nginx做反向代理和负载均衡nodejs的多个实例的配置流程，nodejs实例可以是分布在同一台主机上或者不同的主机上的多个实例。 主要内容有  在同一主机创建nodejs多个实例 详细讲解ngnix.conf文件的每项配置的作用  在同一主机创建nodejs多个实例我的nodejs环境：  window 7 64位 nodejs">
+<meta name="twitter:description" content="前言这篇文章适合熟悉nodejs的同学观看。主要是关于如何使用nginx做反向代理和负载均衡nodejs的多个实例的配置流程，nodejs实例可以是分布在同一台主机上或者不同的主机上的多个实例。 主要内容有  在同一主机创建nodejs多个实例 详细讲解ngnix.conf文件的每项配置的作用  在同一主机创建nodejs多个实例我的nodejs环境：  window 7 64位 nodejs v">
 
 
 
@@ -357,7 +383,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-23T15:55:04+08:00">
+                2018-01-23
+              </time>
             
           </span>
 
@@ -460,7 +498,8 @@
 <ul>
 <li>window 7 64位</li>
 <li>nodejs v8.1.3</li>
-<li>webstorm 2017版</li>
+<li>webstorm 2017版<a id="more"></a>
+</li>
 </ul>
 <hr>
 <p>根目录/server.js文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line">&apos;use strict&apos;;</span><br><span class="line"></span><br><span class="line">var express = require(&apos;express&apos;);</span><br><span class="line">var timeout = require(&apos;connect-timeout&apos;);</span><br><span class="line">var path = require(&apos;path&apos;);</span><br><span class="line">var cookieParser = require(&apos;cookie-parser&apos;);</span><br><span class="line">var bodyParser = require(&apos;body-parser&apos;);</span><br><span class="line"></span><br><span class="line">var app = express();</span><br><span class="line"></span><br><span class="line">// 设置模板引擎,路径在根目录+public中</span><br><span class="line">app.set(&apos;views&apos;, path.join(__dirname, &apos;public&apos;));</span><br><span class="line">app.set(&apos;view engine&apos;, &apos;ejs&apos;);</span><br><span class="line"></span><br><span class="line">app.use(express.static(&apos;public&apos;));</span><br><span class="line"></span><br><span class="line">app.use(express.static(path.join(__dirname, &apos;public&apos;)));</span><br><span class="line"></span><br><span class="line">// 设置默认超时时间</span><br><span class="line">app.use(timeout(&apos;15s&apos;));</span><br><span class="line">//请求体</span><br><span class="line">app.use(bodyParser.json());</span><br><span class="line">app.use(bodyParser.urlencoded(&#123; extended: false &#125;));</span><br><span class="line">//cookie</span><br><span class="line">app.use(cookieParser());</span><br><span class="line">//注册HTTP消息头部信息</span><br><span class="line">app.use(</span><br><span class="line">    function(req, res, next) &#123;</span><br><span class="line">        res.set(</span><br><span class="line">            &#123;</span><br><span class="line">                &apos;Content-Type&apos;: &apos;text/html&apos;,</span><br><span class="line">                &apos;Access-Control-Allow-Origin&apos;: &apos;*&apos;,</span><br><span class="line">                &apos;Access-Control-Allow-Rememberme&apos;: true,</span><br><span class="line">                &apos;Access-Control-Allow-HttpOnly&apos;: false,</span><br><span class="line">                &apos;Access-Control-Allow-Methods&apos;: &apos;POST, GET, PUT, DELETE, OPTIONS&apos;,</span><br><span class="line">                &apos;Access-Control-Allow-Credentials&apos;: true, //false,</span><br><span class="line">                &apos;Access-Control-Max-Age&apos;: &apos;86400&apos;, // 24 hours</span><br><span class="line">                &apos;Access-Control-Allow-Headers&apos;: &apos;X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept&apos;</span><br><span class="line">            &#125;</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        //decodeURI(req.url)</span><br><span class="line">        console.log(&apos;%s %s&apos;, req.method, req.url);</span><br><span class="line">        next();</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">//首页</span><br><span class="line">app.get(&apos;/&apos;, function(req, res) &#123;</span><br><span class="line">    res.render(&apos;index1&apos;, &#123; currentTime: new Date() &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(function(req, res, next) &#123;</span><br><span class="line">    // 如果任何一个路由都没有返回响应，则抛出一个 404 异常给后续的异常处理器</span><br><span class="line">    if (!res.headersSent) &#123;</span><br><span class="line">        var err = new Error(&apos;Not Found&apos;);</span><br><span class="line">        err.status = 404;</span><br><span class="line">        next(err);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 错误处理</span><br><span class="line">app.use(function(err, req, res, next) &#123;</span><br><span class="line">    if (req.timedout &amp;&amp; req.headers.upgrade === &apos;websocket&apos;) &#123;</span><br><span class="line">        // 忽略 websocket 的超时</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var statusCode = err.status || 500;</span><br><span class="line">    if (statusCode === 500) &#123;</span><br><span class="line">        console.error(err.stack || err);</span><br><span class="line">    &#125;</span><br><span class="line">    if (req.timedout) &#123;</span><br><span class="line">        console.error(&apos;请求超时: url=%s, timeout=%d, 请确认方法执行耗时很长，或没有正确的 response 回调。&apos;, req.originalUrl, err.timeout);</span><br><span class="line">    &#125;</span><br><span class="line">    res.status(statusCode);</span><br><span class="line">    // 默认不输出异常详情</span><br><span class="line">    var error = &#123;&#125;;</span><br><span class="line">    if (app.get(&apos;env&apos;) === &apos;development&apos;) &#123;</span><br><span class="line">        // 如果是开发环境，则将异常堆栈输出到页面，方便开发调试</span><br><span class="line">        error = err;</span><br><span class="line">    &#125;</span><br><span class="line">    res.render(&apos;error&apos;, &#123;</span><br><span class="line">        message: err.message,</span><br><span class="line">        error: error</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">function catchGlobalError(err) &#123;</span><br><span class="line">    // 注册全局未捕获异常处理器</span><br><span class="line">    process.on(&apos;uncaughtException&apos;, function(err) &#123;</span><br><span class="line">        console.error(&apos;Caught exception:&apos;, err.stack);</span><br><span class="line">    &#125;);</span><br><span class="line">    process.on(&apos;unhandledRejection&apos;, function(reason, p) &#123;</span><br><span class="line">        console.error(&apos;Unhandled Rejection at: Promise &apos;, p, &apos; reason: &apos;, reason.stack);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//创建两个服务器实体</span><br><span class="line">var server = require(&apos;http&apos;).createServer(app);</span><br><span class="line">var server1 = require(&apos;http&apos;).createServer(app);</span><br><span class="line"></span><br><span class="line">//服务器监听端口</span><br><span class="line">var PORT = parseInt(process.env.PORT || 3000);</span><br><span class="line">var PORT1 = PORT + 1;</span><br><span class="line"></span><br><span class="line">server.listen(PORT, function (err) &#123;</span><br><span class="line">    console.log(&apos;Node app is running on port:&apos;, PORT);</span><br><span class="line">    catchGlobalError(err);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server1.listen(PORT1, function (err) &#123;</span><br><span class="line">    console.log(&apos;Node app is running on port:&apos;, PORT1);</span><br><span class="line">    catchGlobalError(err);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
@@ -694,7 +733,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -707,7 +746,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -750,9 +789,13 @@
             <div class="links-of-blogroll motion-element links-of-blogroll-inline">
               <div class="links-of-blogroll-title">
                 <i class="fa  fa-fw fa-link"></i>
-                Links
+                友情链接
               </div>
               <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.wanandroid.com/" title="鸿洋_" target="_blank">鸿洋_</a>
+                  </li>
                 
                   <li class="links-of-blogroll-item">
                     <a href="http://luodw.cc/" title="罗道文" target="_blank">罗道文</a>
@@ -776,6 +819,22 @@
                 
                   <li class="links-of-blogroll-item">
                     <a href="http://blog.csdn.net/mine_song/article/details/64121769" title="剑指" target="_blank">剑指</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.ithmz.com/" title="奶爸大哥" target="_blank">奶爸大哥</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ruanyifeng.com" title="阮一峰" target="_blank">阮一峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://0xcc0xcd.com" title="老罗" target="_blank">老罗</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wangyuquan.net/" title="top2" target="_blank">top2</a>
                   </li>
                 
               </ul>
@@ -1512,13 +1571,39 @@ Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pag
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.3"></script>
+
 
   
   <script type="text/javascript" src="/js/src/exturl.js?v=5.1.3"></script>
 
 
+  
 </body>
 </html>
 <!-- 页面点击小红心 -->

@@ -56,6 +56,32 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
@@ -98,12 +124,12 @@
 <meta property="og:title" content="android和nodejs搭建一个应用">
 <meta property="og:url" content="http://zhangsunyucong.top/2017/12/25/android-encryption/index.html">
 <meta property="og:site_name" content="长孙雨聪--七星上将">
-<meta property="og:description" content="背景为什么想写这一篇文章呢？做android的开发也有两年的时间了，就想把以前学到的一些东西记录下来。于是首先就想在github.com上开一个项目MVPDemo,将一些自己认为比较好的知识点都串联起来。 主要目的：1、初步认识和使用MVP、dagger2和rxJava22、使用对称和非对称加密加强前端与后台的安全机制3、前后台的socket交互实现 其中3、中的socket实现，我专门建了一">
+<meta property="og:description" content="背景为什么想写这一篇文章呢？做android的开发也有两年的时间了，就想把以前学到的一些东西记录下来。于是首先就想在github.com上开一个项目MVPDemo,将一些自己认为比较好的知识点都串联起来。 主要目的：1、初步认识和使用MVP、dagger2和rxJava22、使用对称和非对称加密加强前端与后台的安全机制3、前后台的socket交互实现 其中3、中的socket实现，我专门建了一个">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-12T06:03:01.104Z">
+<meta property="og:updated_time" content="2018-01-23T07:54:19.561Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="android和nodejs搭建一个应用">
-<meta name="twitter:description" content="背景为什么想写这一篇文章呢？做android的开发也有两年的时间了，就想把以前学到的一些东西记录下来。于是首先就想在github.com上开一个项目MVPDemo,将一些自己认为比较好的知识点都串联起来。 主要目的：1、初步认识和使用MVP、dagger2和rxJava22、使用对称和非对称加密加强前端与后台的安全机制3、前后台的socket交互实现 其中3、中的socket实现，我专门建了一">
+<meta name="twitter:description" content="背景为什么想写这一篇文章呢？做android的开发也有两年的时间了，就想把以前学到的一些东西记录下来。于是首先就想在github.com上开一个项目MVPDemo,将一些自己认为比较好的知识点都串联起来。 主要目的：1、初步认识和使用MVP、dagger2和rxJava22、使用对称和非对称加密加强前端与后台的安全机制3、前后台的socket交互实现 其中3、中的socket实现，我专门建了一个">
 
 
 
@@ -357,7 +383,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-23T15:54:19+08:00">
+                2018-01-23
+              </time>
             
           </span>
 
@@ -453,7 +491,7 @@
         <script src="\assets\js\APlayer.min.js"> </script><hr>
 <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>为什么想写这一篇文章呢？做android的开发也有两年的时间了，就想把以前学到的一些东西记录下来。于是首先就想在github.com上开一个项目<a href="https://github.com/zhangsunyucong/MVPDemo" target="_blank" rel="noopener">MVPDemo</a>,将一些自己认为比较好的知识点都串联起来。</p>
 <p>主要目的：<br>1、初步认识和使用MVP、dagger2和rxJava2<br>2、使用对称和非对称加密加强前端与后台的安全机制<br>3、前后台的socket交互实现</p>
-<p>其中3、中的socket实现，我专门建了一个github仓库<a href="https://github.com/zhangsunyucong/NodeTestDemo" target="_blank" rel="noopener">NodeTestDemo</a>，这个仓库不仅仅实现了前端的普通接口，还提供了一个socket服务。</p>
+<p>其中3、中的socket实现，我专门建了一个github仓库<a href="https://github.com/zhangsunyucong/NodeTestDemo" target="_blank" rel="noopener">NodeTestDemo</a>，这个仓库不仅仅实现了前端的普通接口，还提供了一个socket服务。<br><a id="more"></a></p>
 <h3 id="android端实现"><a href="#android端实现" class="headerlink" title="android端实现"></a>android端实现</h3><p>1、采用了MVP架构，使用dagger2对象依赖注入框架解耦MVP的各个组件<br>2、界面采用了autolayout进行兼容适配，UI尺寸标准是720*1080.页面效果仿微信。<br>3、rxjava2、rxlifecycle2，rxbinding2等Rx系列的初级使用<br>4、与后台服务器接口交互使用了retrofit2，交互的数据格式为json<br>5、自定义retrofit2的ConverterFactory和Interceptor实现统一加解密交互的数据流程<br>6、事件总线eventbus3、控件注入框架butterknife、GreenDao3对象关系映射数据库的使用<br>7、socket的前端简单实现<br>8、PDF文档库android-pdf-viewer的使用<br>9、使用jsoup解析csdn网站的html页面获取博主的博客信息<br>10、接入bugly。可以使用budly跟踪异常奔溃信息和bugly基于tinker的热修复。<br>11、接入腾讯X5内核浏览器服务代替原生的webview<br>12、页面路由Arouter的初步使用<br>13、app端出现异常，在杀死应用前，启动异常页面并允许用户点击重启<br>14、Cmake的使用。可以将敏感或者需要保密的数据使用jni保护，如第三方开发者平台的appid等</p>
 <h3 id="后台安全数据安全交互机制"><a href="#后台安全数据安全交互机制" class="headerlink" title="后台安全数据安全交互机制"></a>后台安全数据安全交互机制</h3><p>1、后台服务器使用了leancloud和nodejs搭建。<a href="https://github.com/zhangsunyucong/NodeTestDemo" target="_blank" rel="noopener">nodejs服务器源码</a><br>2、android端的数据加密流程：<br>（1）生产用RSA加解密的公钥和私钥，保存好。将公钥分配给前端。<br>（2）后台为android终端分配appid，同时后台也保存一份appid，应用每次启动时产生一个AES加密的appkey（key每次启动都是不同）<br>（3）将请求参数按参数名的字典顺序排序得到signString，然后在signString后追加appid，再使用appkey将字符串进行AES加密得到sign。<br>（4）将appkey经过RSA公钥加密后得到aesKey。再将aesKey（RSA加密）、sign和加密signString传给后台。<br>（5）后台使用RSA私钥解密aesKey得到appkey，使用appkey解密sign和signString加appi得到的两个字符串，将两个字符串验证对比。<br>（6）如果要求服务器只允许一定时间范围内的请求，可以添加时间戳作为接口签名的一部分，防止重放攻击。</p>
 
@@ -672,7 +710,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -685,7 +723,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -728,9 +766,13 @@
             <div class="links-of-blogroll motion-element links-of-blogroll-inline">
               <div class="links-of-blogroll-title">
                 <i class="fa  fa-fw fa-link"></i>
-                Links
+                友情链接
               </div>
               <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.wanandroid.com/" title="鸿洋_" target="_blank">鸿洋_</a>
+                  </li>
                 
                   <li class="links-of-blogroll-item">
                     <a href="http://luodw.cc/" title="罗道文" target="_blank">罗道文</a>
@@ -754,6 +796,22 @@
                 
                   <li class="links-of-blogroll-item">
                     <a href="http://blog.csdn.net/mine_song/article/details/64121769" title="剑指" target="_blank">剑指</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.ithmz.com/" title="奶爸大哥" target="_blank">奶爸大哥</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ruanyifeng.com" title="阮一峰" target="_blank">阮一峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://0xcc0xcd.com" title="老罗" target="_blank">老罗</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wangyuquan.net/" title="top2" target="_blank">top2</a>
                   </li>
                 
               </ul>
@@ -1490,13 +1548,39 @@ Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pag
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.3"></script>
+
 
   
   <script type="text/javascript" src="/js/src/exturl.js?v=5.1.3"></script>
 
 
+  
 </body>
 </html>
 <!-- 页面点击小红心 -->

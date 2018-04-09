@@ -10,5 +10,5 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 
-Sitemap: http://www.zhangsunyucong.top/baidusitemap.xml
-Sitemap: http://www.zhangsunyucong.top/sitemap.xml
+Sitemap: https://zhangsunyucong.top/baidusitemap.xml
+Sitemap: https://zhangsunyucong.top/sitemap.xml

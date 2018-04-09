@@ -56,6 +56,32 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
@@ -92,16 +118,16 @@
 
 
 
-<meta name="description" content="广西科技大学10级，Android工程师一枚。">
+<meta name="description" content="广西科技大学，Android工程师一枚。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="长孙雨聪--七星上将">
 <meta property="og:url" content="http://zhangsunyucong.top/index.html">
 <meta property="og:site_name" content="长孙雨聪--七星上将">
-<meta property="og:description" content="广西科技大学10级，Android工程师一枚。">
+<meta property="og:description" content="广西科技大学，Android工程师一枚。">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="长孙雨聪--七星上将">
-<meta name="twitter:description" content="广西科技大学10级，Android工程师一枚。">
+<meta name="twitter:description" content="广西科技大学，Android工程师一枚。">
 
 
 
@@ -320,7 +346,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2018/01/10/android-event/">
+    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2018/04/09/java-pattern-builder-factory-clone/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="长孙雨聪--七星上将">
@@ -339,7 +365,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/10/android-event/" itemprop="url">Android的MotionEvent事件分发机制</a></h2>
+                <a class="post-title-link" href="/2018/04/09/java-pattern-builder-factory-clone/" itemprop="url">23种设计模式之创建型模式</a></h2>
         
 
         <div class="post-meta">
@@ -351,13 +377,25 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T08:41:26+08:00">
-                2018-01-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-09T10:44:06+08:00">
+                2018-04-09
               </time>
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-09T15:31:44+08:00">
+                2018-04-09
+              </time>
             
           </span>
 
@@ -371,8 +409,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/01/10/android-event/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://zhangsunyucong.top/2018/01/10/android-event/" class="cy_cmt_count" data-xid="2018/01/10/android-event/" itemprop="commentsCount" ></span>
+                <a href="/2018/04/09/java-pattern-builder-factory-clone/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://zhangsunyucong.top/2018/04/09/java-pattern-builder-factory-clone/" class="cy_cmt_count" data-xid="2018/04/09/java-pattern-builder-factory-clone/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -380,7 +418,7 @@
 
           
           
-             <span id="/2018/01/10/android-event/" class="leancloud_visitors" data-flag-title="Android的MotionEvent事件分发机制">
+             <span id="/2018/04/09/java-pattern-builder-factory-clone/" class="leancloud_visitors" data-flag-title="23种设计模式之创建型模式">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -407,7 +445,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,094字
+                  1,908字
                 </span>
               
 
@@ -446,15 +484,16 @@
 
       
         
+          <hr>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文主要是介绍5种创建型模式中，除了单例模式外的其他创建型模式，包括建造者模式，工厂模式，抽象工厂模式，原型模式。</p>
+<p>1、建造者模式，可以将对象的表现和创建（实现）分离开来，根据不同的创建步骤可以产生不同的对象，而对象的创建也是一次性的，创建后的对象是不可变。<br>
+		            
+        
           
-           
-android事件的源头在哪里？当用户触摸屏幕或者按键等时，形成事件，事件经过linux底层Event节点捕获之后，一直传到android应用层。中间传递的过程不是本文的重点，我也不是很清楚（哈哈哈）。本文的重点是事件在应用层的分发机制。
-事件在View树中的分发过程View树：
-在Androi
-          ...
+		  
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/10/android-event/#more" rel="contents">
+            <a class="btn" href="/2018/04/09/java-pattern-builder-factory-clone/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -509,7 +548,7 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2017/12/28/huoying/">
+    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2018/04/08/android-gson-server/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="长孙雨聪--七星上将">
@@ -528,7 +567,7 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/28/huoying/" itemprop="url">《火影忍者》--鸣人和雏田</a></h2>
+                <a class="post-title-link" href="/2018/04/08/android-gson-server/" itemprop="url">在Android中解释服务器数据</a></h2>
         
 
         <div class="post-meta">
@@ -540,13 +579,25 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-28T15:45:26+08:00">
-                2017-12-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-08T15:52:23+08:00">
+                2018-04-08
               </time>
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-09T09:08:29+08:00">
+                2018-04-09
+              </time>
             
           </span>
 
@@ -560,8 +611,8 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/12/28/huoying/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://zhangsunyucong.top/2017/12/28/huoying/" class="cy_cmt_count" data-xid="2017/12/28/huoying/" itemprop="commentsCount" ></span>
+                <a href="/2018/04/08/android-gson-server/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://zhangsunyucong.top/2018/04/08/android-gson-server/" class="cy_cmt_count" data-xid="2018/04/08/android-gson-server/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -569,7 +620,7 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
 
           
           
-             <span id="/2017/12/28/huoying/" class="leancloud_visitors" data-flag-title="《火影忍者》--鸣人和雏田">
+             <span id="/2018/04/08/android-gson-server/" class="leancloud_visitors" data-flag-title="在Android中解释服务器数据">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -596,7 +647,7 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  622字
+                  1,254字
                 </span>
               
 
@@ -612,7 +663,7 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2分钟
+                  7分钟
                 </span>
               
             </div>
@@ -636,15 +687,16 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
       
         
           <hr>
-<p><img src="http://o8bym0zmt.bkt.clouddn.com/huoying_mingren_z.jpeg?imageView2/2/w/800" alt="鸣人和雏田"></p>
-<p>那个时候所有人只是把鸣人当做孤儿看待。他长相最多只能算一般，成绩吊车尾，缺家教，没才华，家世没有，血统没有，智商没有，然后还调皮爱恶作剧。<br>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在这一篇文章中，主要讲一下如何使用Gson解释服务器返回的具有固定格式的数据。</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>服务器：在本地使用nodejs的express框架建立的简单服务器。它返回了的数据如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var testArrayStr = &quot;&#123;\&quot;data\&quot;: [&#123;\&quot;cnName\&quot;: \&quot;jakewharton\&quot;,\&quot;age\&quot;: 13,\&quot;IsBoy\&quot;: true&#125;, &#123;\&quot;cnName\&quot;: \&quot;小红\&quot;,\&quot;age\&quot;: 24,\&quot;IsBoy\&quot;: false&#125;],\&quot;msg\&quot;: \&quot;\&quot;,\&quot;status\&quot;: 200&#125;&quot;;</span><br><span class="line"></span><br><span class="line">var testObjStr = &quot;&#123;\&quot;data\&quot;: &#123;\&quot;cnName\&quot;: \&quot;小红\&quot;,\&quot;age\&quot;: 24,\&quot;IsBoy\&quot;: false&#125;,\&quot;msg\&quot;: \&quot;\&quot;,\&quot;status\&quot;: 200&#125;&quot;;</span><br><span class="line"></span><br><span class="line">res.end(testObjStr);</span><br></pre></td></tr></table></figure>
 		            
         
           
 		  
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/28/huoying/#more" rel="contents">
+            <a class="btn" href="/2018/04/08/android-gson-server/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -699,7 +751,7 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2017/12/25/android-encryption/">
+    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2018/04/04/java-pattern-singleton/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="长孙雨聪--七星上将">
@@ -718,7 +770,7 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/25/android-encryption/" itemprop="url">android和nodejs搭建一个应用</a></h2>
+                <a class="post-title-link" href="/2018/04/04/java-pattern-singleton/" itemprop="url">23种设计模式之《单例模式》</a></h2>
         
 
         <div class="post-meta">
@@ -730,13 +782,25 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-25T14:47:12+08:00">
-                2017-12-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-04T08:38:20+08:00">
+                2018-04-04
               </time>
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-04T15:55:02+08:00">
+                2018-04-04
+              </time>
             
           </span>
 
@@ -750,8 +814,8 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/12/25/android-encryption/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://zhangsunyucong.top/2017/12/25/android-encryption/" class="cy_cmt_count" data-xid="2017/12/25/android-encryption/" itemprop="commentsCount" ></span>
+                <a href="/2018/04/04/java-pattern-singleton/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://zhangsunyucong.top/2018/04/04/java-pattern-singleton/" class="cy_cmt_count" data-xid="2018/04/04/java-pattern-singleton/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -759,7 +823,7 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
 
           
           
-             <span id="/2017/12/25/android-encryption/" class="leancloud_visitors" data-flag-title="android和nodejs搭建一个应用">
+             <span id="/2018/04/04/java-pattern-singleton/" class="leancloud_visitors" data-flag-title="23种设计模式之《单例模式》">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -786,7 +850,7 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  720字
+                  1,416字
                 </span>
               
 
@@ -802,7 +866,7 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3分钟
+                  6分钟
                 </span>
               
             </div>
@@ -825,773 +889,20 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
 
       
         
-          
-           
-背景为什么想写这一篇文章呢？做android的开发也有两年的时间了，就想把以前学到的一些东西记录下来。于是首先就想在github.com上开一个项目MVPDemo,将一些自己认为比较好的知识点都串联起来。
-主要目的：1、初步认识和使用MVP、dagger2和rxJava22、使用对称和非对称加密
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/25/android-encryption/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-	
-	<div>
-	  
-	</div>
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2017/12/22/binary-classify/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="长孙雨聪--七星上将">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/myphoto.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="长孙雨聪--七星上将">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/22/binary-classify/" itemprop="url">二进制和种类</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T09:20:13+08:00">
-                2017-12-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2017/12/22/binary-classify/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://zhangsunyucong.top/2017/12/22/binary-classify/" class="cy_cmt_count" data-xid="2017/12/22/binary-classify/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-             <span id="/2017/12/22/binary-classify/" class="leancloud_visitors" data-flag-title="二进制和种类">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  735字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-           
-前言话回我刚刚毕业来到深圳时，作为一个android菜鸟在一个大神波哥的指导下，学到了很多东西。其中，二进制和分类就是我印象最深的。想按自己理解记录一下。
-想一下，有这样的需求：一个物体有一个种类属性，它这个属性有很多相互独立可以相加的值，也就是它有很多种情况，而且一个物体可同时具有其中一个或者
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/22/binary-classify/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-	
-	<div>
-	  
-	</div>
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2017/12/12/about-history/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="长孙雨聪--七星上将">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/myphoto.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="长孙雨聪--七星上将">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/12/about-history/" itemprop="url">读《人类简史》和《未来简史》</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-12T11:31:48+08:00">
-                2017-12-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2017/12/12/about-history/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://zhangsunyucong.top/2017/12/12/about-history/" class="cy_cmt_count" data-xid="2017/12/12/about-history/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-             <span id="/2017/12/12/about-history/" class="leancloud_visitors" data-flag-title="读《人类简史》和《未来简史》">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  242字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-           
-读前提取论点
-人类因为自然的一次偶然的基础而出现。智人摆脱了基因的宿命，开始用语言交流，可以说故事了，慢慢产生了各种概念，如神，社会，国家，配偶，金钱等等。
-智慧的产生，源于人的反思和内心。
-现在人只是生活在自己编造的故事里，正是因为故事才赋予人以意义。
-从历史谈到现在，指出万物皆是算法，不同的
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/12/about-history/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-	
-	<div>
-	  
-	</div>
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2017/12/06/node-and-nginx/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="长孙雨聪--七星上将">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/myphoto.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="长孙雨聪--七星上将">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/06/node-and-nginx/" itemprop="url">使用nginx负载均衡nodejs</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-06T10:59:08+08:00">
-                2017-12-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2017/12/06/node-and-nginx/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://zhangsunyucong.top/2017/12/06/node-and-nginx/" class="cy_cmt_count" data-xid="2017/12/06/node-and-nginx/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-             <span id="/2017/12/06/node-and-nginx/" class="leancloud_visitors" data-flag-title="使用nginx负载均衡nodejs">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  5,436字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  24分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-           前言这篇文章适合熟悉nodejs的同学观看。主要是关于如何使用nginx做反向代理和负载均衡nodejs的多个实例的配置流程，nodejs实例可以是分布在同一台主机上或者不同的主机上的多个实例。
-主要内容有
-
-在同一主机创建nodejs多个实例
-详细讲解ngnix.conf文件的每项配置的作用
-
-
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/06/node-and-nginx/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-	
-	<div>
-	  
-	</div>
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2017/11/24/第一个tensorflow程序/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="长孙雨聪--七星上将">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/myphoto.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="长孙雨聪--七星上将">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/24/第一个tensorflow程序/" itemprop="url">第一个tensorflow程序</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-24T22:16:43+08:00">
-                2017-11-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2017/11/24/第一个tensorflow程序/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://zhangsunyucong.top/2017/11/24/第一个tensorflow程序/" class="cy_cmt_count" data-xid="2017/11/24/第一个tensorflow程序/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-             <span id="/2017/11/24/第一个tensorflow程序/" class="leancloud_visitors" data-flag-title="第一个tensorflow程序">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  620字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="http://o8bym0zmt.bkt.clouddn.com/alpha_go.png" alt="图片"><br>最近AlphaGo和AlphaZero的出现，预示着2017年成为人工智能元年，人工智能逐渐进入我们的生活和工作的方方面面，如在工作中，阿里巴巴双十一中，出现了“千人千面”智能推荐系统，鲁班AI设计师，小蜜机器人，IDC智能巡检机器人，还有京东的无人仓库等。这些都让我觉得人工智能越来越重要和越来越感兴趣，所以决定学习python和tensorflow。现在就以一个使用tensorflow构建一元线性模型开始我的人工智能学习吧。<br>
+          <hr>
+<h3 id="什么是单例模式"><a href="#什么是单例模式" class="headerlink" title="什么是单例模式"></a>什么是单例模式</h3><p>单例模式是23种设计模式中最简单和易用的模式。在某些情境下，如在一个上市公司中，有很多不同级别的员工，但是公司的CEO或者CTO都是只有一个的，CEO或者CTO在公司里就要求是一个单例。单例模式，就是某个类因实际情况的需要，要求在全局的范围内只能有唯一的实例对象，这个对象是常驻内存的，可以重复使用，降低重复创建对象的开销。</p>
+<h3 id="单例模式的特点"><a href="#单例模式的特点" class="headerlink" title="单例模式的特点"></a>单例模式的特点</h3><ul>
+<li>类的构造函数是私有的</li>
+<li>在类内部实例化对象，并通过静态方法向外提供实例化的对象</li>
+</ul>
+<p>下面主要讲解实现单例模式的方法以及它们的优缺点</p>
 		            
         
           
 		  
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/24/第一个tensorflow程序/#more" rel="contents">
+            <a class="btn" href="/2018/04/04/java-pattern-singleton/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1646,7 +957,7 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2017/11/24/第一篇博客/">
+    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2018/03/08/android-retrofit/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="长孙雨聪--七星上将">
@@ -1665,7 +976,7 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/24/第一篇博客/" itemprop="url">第一篇博客</a></h2>
+                <a class="post-title-link" href="/2018/03/08/android-retrofit/" itemprop="url">Android中的retrofit源码分析</a></h2>
         
 
         <div class="post-meta">
@@ -1677,13 +988,25 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-24T19:25:11+08:00">
-                2017-11-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-08T13:05:41+08:00">
+                2018-03-08
               </time>
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-09T14:36:51+08:00">
+                2018-04-09
+              </time>
             
           </span>
 
@@ -1697,8 +1020,8 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/11/24/第一篇博客/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://zhangsunyucong.top/2017/11/24/第一篇博客/" class="cy_cmt_count" data-xid="2017/11/24/第一篇博客/" itemprop="commentsCount" ></span>
+                <a href="/2018/03/08/android-retrofit/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://zhangsunyucong.top/2018/03/08/android-retrofit/" class="cy_cmt_count" data-xid="2018/03/08/android-retrofit/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -1706,7 +1029,7 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
 
           
           
-             <span id="/2017/11/24/第一篇博客/" class="leancloud_visitors" data-flag-title="第一篇博客">
+             <span id="/2018/03/08/android-retrofit/" class="leancloud_visitors" data-flag-title="Android中的retrofit源码分析">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1733,7 +1056,7 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  280字
+                  3,510字
                 </span>
               
 
@@ -1749,7 +1072,7 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  18分钟
                 </span>
               
             </div>
@@ -1772,13 +1095,830 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
 
       
         
+          <hr>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文基于的retrofit版本是：2.1.0，文章会从retrofit的使用逐渐进入它的源码进行分析。retrofit是一个基于okhttp封装的，具有RESTful风格的HTTP网络请求框架。也就是说，它只负责网络接口配置和调用的封装，实际底层调用的工作还是由okhttp完成的。可以使用它以注解的形式配置请求的地址，请求参数等，还可以添加自定义拦截器、网络拦截器和数据转换器等进行处理和扩展。</p>
+<h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3>
+		            
+        
           
-           我想了许久，我建立个人博客网站，第一篇文章应该写什么呢？自从毕业以来，我很久没有写过记录的文章了，加上自己的写作能力，呵呵我是一个在空闲时，总是善于回忆的人。所以我决定将一首高三时对我有深刻影响的词作为博客的第一篇文章。
-这首词，在我高三最迷茫自暴自弃的时候，让我重新找到努力的力量，我还可以忘记以
-          ...
+		  
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/24/第一篇博客/#more" rel="contents">
+            <a class="btn" href="/2018/03/08/android-retrofit/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+	
+	<div>
+	  
+	</div>
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2018/02/23/android-layout-inflater/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="长孙雨聪--七星上将">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myphoto.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="长孙雨聪--七星上将">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/23/android-layout-inflater/" itemprop="url">Android中的布局加载器LayoutInflater</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T17:08:04+08:00">
+                2018-02-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-23T17:25:55+08:00">
+                2018-02-23
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/02/23/android-layout-inflater/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://zhangsunyucong.top/2018/02/23/android-layout-inflater/" class="cy_cmt_count" data-xid="2018/02/23/android-layout-inflater/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2018/02/23/android-layout-inflater/" class="leancloud_visitors" data-flag-title="Android中的布局加载器LayoutInflater">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  657字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <hr>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>public View inflate(XmlPullParser parser, ViewGroup root, boolean attachToRoot)</p>
+<p>主要是从源码角度理解下面三段代码的区别：</p>
+<blockquote>
+<p>mInflater.inflate(R.layout.item, null);<br>mInflater.inflate(R.layout.item, parent ,false);<br>mInflater.inflate(R.layout.item, parent ,true);</p>
+</blockquote>
+<p>第一句：直接返回了布局，不正确处理布局参数<br>第二句：返回布局，并能正确处理了布局参数<br>第三句：返回布局，能正确处理了布局参数，并将布局添加到parent中</p>
+		            
+        
+          
+		  
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/23/android-layout-inflater/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+	
+	<div>
+	  
+	</div>
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2018/02/23/android-intentservice-handlerthread/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="长孙雨聪--七星上将">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myphoto.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="长孙雨聪--七星上将">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/23/android-intentservice-handlerthread/" itemprop="url">HandlerThread和IntentService</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T09:54:05+08:00">
+                2018-02-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-23T13:11:53+08:00">
+                2018-02-23
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/02/23/android-intentservice-handlerthread/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://zhangsunyucong.top/2018/02/23/android-intentservice-handlerthread/" class="cy_cmt_count" data-xid="2018/02/23/android-intentservice-handlerthread/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2018/02/23/android-intentservice-handlerthread/" class="leancloud_visitors" data-flag-title="HandlerThread和IntentService">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  995字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <hr>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在这一篇文章中，会看HandlerThread和IntentService的源码。为什么一起讲它们呢？在Android中有一条思路，就是从java的线程，到Android中的消息机制，到将java线程和消息机制结合就是HandlerThread，而IntentService就是在HandlerThread基础上再与service结合在一起。</p>
+<p>关于Android中的异步的东西，还有AsyncTask，AsyncTask是对java中的线程池的再次封装。进一步，可以联想到Loader.</p>
+		            
+        
+          
+		  
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/23/android-intentservice-handlerthread/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+	
+	<div>
+	  
+	</div>
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2018/02/07/android-animation-matrix/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="长孙雨聪--七星上将">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myphoto.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="长孙雨聪--七星上将">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/07/android-animation-matrix/" itemprop="url">从矩阵来看Android中的一些动画变换</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-07T14:40:22+08:00">
+                2018-02-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-08T10:19:57+08:00">
+                2018-02-08
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/02/07/android-animation-matrix/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://zhangsunyucong.top/2018/02/07/android-animation-matrix/" class="cy_cmt_count" data-xid="2018/02/07/android-animation-matrix/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2018/02/07/android-animation-matrix/" class="leancloud_visitors" data-flag-title="从矩阵来看Android中的一些动画变换">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  882字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <hr>
+<h3 id="开头"><a href="#开头" class="headerlink" title="开头"></a>开头</h3><p>这篇博客，是参考了<a href="http://www.cnblogs.com/qiengo/archive/2012/06/30/2570874.html" target="_blank" rel="noopener">文章：Android Matrix</a>，这篇文章有具体的分析过程和android实例。我只是参考和根据自己的理解写的。</p>
+<p>在Android中，我们可以从数学的角度来看颜色和动画的变换。这里会从矩阵变换的角度来理解平移，旋转，缩放，对称的变换。</p>
+<p>这些变换的完成实际上，是操作一个3X3的矩阵的。而这四种基本变换与操作和这个矩阵有什么样的关系呢？下面会分析。<br>
+		            
+        
+          
+		  
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/07/android-animation-matrix/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+	
+	<div>
+	  
+	</div>
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2018/02/06/android-simple-draw-and-path/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="长孙雨聪--七星上将">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myphoto.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="长孙雨聪--七星上将">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/06/android-simple-draw-and-path/" itemprop="url">Android中绘制简单几何图形和路径Path</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-06T13:56:29+08:00">
+                2018-02-06
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-06T18:09:20+08:00">
+                2018-02-06
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/02/06/android-simple-draw-and-path/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://zhangsunyucong.top/2018/02/06/android-simple-draw-and-path/" class="cy_cmt_count" data-xid="2018/02/06/android-simple-draw-and-path/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2018/02/06/android-simple-draw-and-path/" class="leancloud_visitors" data-flag-title="Android中绘制简单几何图形和路径Path">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,952字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  15分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <hr>
+<p><img src="http://o8bym0zmt.bkt.clouddn.com/android_draw_17.png" alt="图片"></p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>马上就到2018年过年了，然后我又刚好有兴致，就来玩玩Android中的简单几何图形的绘制和使用Path类来绘制路径。</p>
+<h3 id="Path和Canvas"><a href="#Path和Canvas" class="headerlink" title="Path和Canvas"></a>Path和Canvas</h3><p>在Android中，和我们平时画图一样是有画笔和画布的，Path是画笔，Canvas是画布。与画的样式属性有关，如大小或者颜色等，是由Path来完成的；
+		            
+        
+          
+		  
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/06/android-simple-draw-and-path/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1823,6 +1963,10 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1874,7 +2018,7 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1887,7 +2031,7 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1930,9 +2074,13 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
             <div class="links-of-blogroll motion-element links-of-blogroll-inline">
               <div class="links-of-blogroll-title">
                 <i class="fa  fa-fw fa-link"></i>
-                Links
+                友情链接
               </div>
               <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.wanandroid.com/" title="鸿洋_" target="_blank">鸿洋_</a>
+                  </li>
                 
                   <li class="links-of-blogroll-item">
                     <a href="http://luodw.cc/" title="罗道文" target="_blank">罗道文</a>
@@ -1956,6 +2104,22 @@ android事件的源头在哪里？当用户触摸屏幕或者按键等时，形�
                 
                   <li class="links-of-blogroll-item">
                     <a href="http://blog.csdn.net/mine_song/article/details/64121769" title="剑指" target="_blank">剑指</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.ithmz.com/" title="奶爸大哥" target="_blank">奶爸大哥</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ruanyifeng.com" title="阮一峰" target="_blank">阮一峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://0xcc0xcd.com" title="老罗" target="_blank">老罗</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wangyuquan.net/" title="top2" target="_blank">top2</a>
                   </li>
                 
               </ul>
@@ -2661,13 +2825,39 @@ Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pag
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.3"></script>
+
 
   
   <script type="text/javascript" src="/js/src/exturl.js?v=5.1.3"></script>
 
 
+  
 </body>
 </html>
 <!-- 页面点击小红心 -->

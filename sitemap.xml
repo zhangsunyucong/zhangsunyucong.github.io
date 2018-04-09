@@ -2,23 +2,163 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://zhangsunyucong.top/2017/12/12/about-history/</loc>
+    <loc>http://zhangsunyucong.top/2018/04/09/java-pattern-builder-factory-clone/</loc>
     
-    <lastmod>2018-01-12T06:03:01.109Z</lastmod>
+    <lastmod>2018-04-09T07:31:44.729Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/2018/03/08/android-retrofit/</loc>
+    
+    <lastmod>2018-04-09T06:36:51.447Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/2018/04/08/android-gson-server/</loc>
+    
+    <lastmod>2018-04-09T01:08:29.328Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/2018/04/04/java-pattern-singleton/</loc>
+    
+    <lastmod>2018-04-04T07:55:02.987Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/about/index.html</loc>
+    
+    <lastmod>2018-03-02T09:27:28.972Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/2018/01/10/android-event/</loc>
+    
+    <lastmod>2018-02-28T06:52:03.119Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/2018/02/23/android-layout-inflater/</loc>
+    
+    <lastmod>2018-02-23T09:25:55.894Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/2018/02/23/android-intentservice-handlerthread/</loc>
+    
+    <lastmod>2018-02-23T05:11:53.008Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/2018/02/07/android-animation-matrix/</loc>
+    
+    <lastmod>2018-02-08T02:19:57.085Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/2018/01/18/android-wave-view/</loc>
+    
+    <lastmod>2018-02-06T10:09:38.768Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/2018/02/06/android-simple-draw-and-path/</loc>
+    
+    <lastmod>2018-02-06T10:09:20.067Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/2018/02/02/node-async-promise/</loc>
+    
+    <lastmod>2018-02-02T09:03:03.573Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/2018/01/31/android-activity-start-up/</loc>
+    
+    <lastmod>2018-02-01T03:27:31.552Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/2018/02/01/android-handler/</loc>
+    
+    <lastmod>2018-02-01T02:24:03.204Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://zhangsunyucong.top/2017/11/24/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</loc>
     
-    <lastmod>2018-01-12T06:03:01.108Z</lastmod>
+    <lastmod>2018-01-30T07:24:06.264Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/2018/01/25/android-view-positon-and-scroll/</loc>
+    
+    <lastmod>2018-01-30T07:15:58.592Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/rusume/index.html</loc>
+    
+    <lastmod>2018-01-30T06:42:46.081Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://zhangsunyucong.top/2017/12/06/node-and-nginx/</loc>
     
-    <lastmod>2018-01-12T06:03:01.107Z</lastmod>
+    <lastmod>2018-01-23T07:55:04.439Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/2017/12/22/binary-classify/</loc>
+    
+    <lastmod>2018-01-23T07:54:40.854Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/2017/12/25/android-encryption/</loc>
+    
+    <lastmod>2018-01-23T07:54:19.561Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/2018/01/15/view-meassure/</loc>
+    
+    <lastmod>2018-01-23T07:52:31.908Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/2017/12/12/about-history/</loc>
+    
+    <lastmod>2018-01-23T07:51:35.465Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/music/index.html</loc>
+    
+    <lastmod>2018-01-23T07:47:29.930Z</lastmod>
     
   </url>
   
@@ -30,20 +170,6 @@
   </url>
   
   <url>
-    <loc>http://zhangsunyucong.top/2017/12/22/binary-classify/</loc>
-    
-    <lastmod>2018-01-12T06:03:01.105Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://zhangsunyucong.top/2017/12/25/android-encryption/</loc>
-    
-    <lastmod>2018-01-12T06:03:01.104Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://zhangsunyucong.top/2017/12/28/huoying/</loc>
     
     <lastmod>2018-01-12T06:03:01.104Z</lastmod>
@@ -51,30 +177,9 @@
   </url>
   
   <url>
-    <loc>http://zhangsunyucong.top/2018/01/10/android-event/</loc>
-    
-    <lastmod>2018-01-12T06:03:01.102Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://zhangsunyucong.top/tags/index.html</loc>
     
     <lastmod>2018-01-09T09:35:02.387Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://zhangsunyucong.top/about/index.html</loc>
-    
-    <lastmod>2018-01-09T09:35:02.386Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://zhangsunyucong.top/music/index.html</loc>
-    
-    <lastmod>2018-01-09T09:35:02.386Z</lastmod>
     
   </url>
   
