@@ -105,7 +105,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="android," />
 
 
 
@@ -118,17 +118,21 @@
 
 
 
-<meta name="description" content="前言在这一篇文章中，主要讲一下如何使用Gson解释服务器返回的具有固定格式的数据。 分析服务器：在本地使用nodejs的express框架建立的简单服务器。它返回了的数据如下： 12345var testArrayStr = &amp;quot;&amp;#123;\&amp;quot;data\&amp;quot;:">
+<meta name="description" content="开篇之前从矩阵的角度分析了平移，旋转，缩放，对称的变换，文章在从矩阵来看Android中的一些动画变换。 在android中，图片的对象主要是bitmap，它是由点阵和颜色值组成的。1、点阵是一个图片宽*图片高的矩阵，矩阵中的每一个元素对应着图片的一个像素。根据点阵可以计算出图片占用的内存大小。">
+<meta name="keywords" content="android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在Android中解释服务器数据">
-<meta property="og:url" content="http://zhangsunyucong.top/2018/04/08/android-gson-server/index.html">
+<meta property="og:title" content="从矩阵来看颜色变换">
+<meta property="og:url" content="http://zhangsunyucong.top/2018/04/18/android-color-matrix/index.html">
 <meta property="og:site_name" content="长孙雨聪--七星上将">
-<meta property="og:description" content="前言在这一篇文章中，主要讲一下如何使用Gson解释服务器返回的具有固定格式的数据。 分析服务器：在本地使用nodejs的express框架建立的简单服务器。它返回了的数据如下： 12345var testArrayStr = &amp;quot;&amp;#123;\&amp;quot;data\&amp;quot;: [&amp;#123;\&amp;quot;cnName\&amp;quot;: \&amp;quot;jakewharton\&amp;quot;">
+<meta property="og:description" content="开篇之前从矩阵的角度分析了平移，旋转，缩放，对称的变换，文章在从矩阵来看Android中的一些动画变换。 在android中，图片的对象主要是bitmap，它是由点阵和颜色值组成的。1、点阵是一个图片宽*图片高的矩阵，矩阵中的每一个元素对应着图片的一个像素。根据点阵可以计算出图片占用的内存大小。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-09T01:08:29.328Z">
+<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/android_color_matrix.png">
+<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/android_color_matrix_methods.png">
+<meta property="og:updated_time" content="2018-04-27T02:48:57.932Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在Android中解释服务器数据">
-<meta name="twitter:description" content="前言在这一篇文章中，主要讲一下如何使用Gson解释服务器返回的具有固定格式的数据。 分析服务器：在本地使用nodejs的express框架建立的简单服务器。它返回了的数据如下： 12345var testArrayStr = &amp;quot;&amp;#123;\&amp;quot;data\&amp;quot;: [&amp;#123;\&amp;quot;cnName\&amp;quot;: \&amp;quot;jakewharton\&amp;quot;">
+<meta name="twitter:title" content="从矩阵来看颜色变换">
+<meta name="twitter:description" content="开篇之前从矩阵的角度分析了平移，旋转，缩放，对称的变换，文章在从矩阵来看Android中的一些动画变换。 在android中，图片的对象主要是bitmap，它是由点阵和颜色值组成的。1、点阵是一个图片宽*图片高的矩阵，矩阵中的每一个元素对应着图片的一个像素。根据点阵可以计算出图片占用的内存大小。">
+<meta name="twitter:image" content="http://o8bym0zmt.bkt.clouddn.com/android_color_matrix.png">
 
 
 
@@ -158,13 +162,13 @@
 
 
 
-  <link rel="canonical" href="http://zhangsunyucong.top/2018/04/08/android-gson-server/"/>
+  <link rel="canonical" href="http://zhangsunyucong.top/2018/04/18/android-color-matrix/"/>
 
 
 
 
 
-  <title>在Android中解释服务器数据 | 长孙雨聪--七星上将</title>
+  <title>从矩阵来看颜色变换 | 长孙雨聪--七星上将</title>
   
 
 
@@ -347,7 +351,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2018/04/08/android-gson-server/">
+    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2018/04/18/android-color-matrix/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="长孙雨聪--七星上将">
@@ -364,7 +368,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">在Android中解释服务器数据</h2>
+          <h2 class="post-title" itemprop="name headline">从矩阵来看颜色变换</h2>
         
 
         <div class="post-meta">
@@ -376,8 +380,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-08T15:52:23+08:00">
-                2018-04-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-18T16:49:03+08:00">
+                2018-04-18
               </time>
             
 
@@ -392,8 +396,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-09T09:08:29+08:00">
-                2018-04-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-27T10:48:57+08:00">
+                2018-04-27
               </time>
             
           </span>
@@ -408,8 +412,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/04/08/android-gson-server/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/04/08/android-gson-server/" itemprop="commentsCount"></span>
+                <a href="/2018/04/18/android-color-matrix/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/04/18/android-color-matrix/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -417,7 +421,7 @@
 
           
           
-             <span id="/2018/04/08/android-gson-server/" class="leancloud_visitors" data-flag-title="在Android中解释服务器数据">
+             <span id="/2018/04/18/android-color-matrix/" class="leancloud_visitors" data-flag-title="从矩阵来看颜色变换">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -449,7 +453,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,254字
+                  775字
                 </span>
               
 
@@ -465,7 +469,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  7分钟
+                  3分钟
                 </span>
               
             </div>
@@ -488,39 +492,25 @@
 
       
         <script src="\assets\js\APlayer.min.js"> </script><hr>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在这一篇文章中，主要讲一下如何使用Gson解释服务器返回的具有固定格式的数据。</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>服务器：在本地使用nodejs的express框架建立的简单服务器。它返回了的数据如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var testArrayStr = &quot;&#123;\&quot;data\&quot;: [&#123;\&quot;cnName\&quot;: \&quot;jakewharton\&quot;,\&quot;age\&quot;: 13,\&quot;IsBoy\&quot;: true&#125;, &#123;\&quot;cnName\&quot;: \&quot;小红\&quot;,\&quot;age\&quot;: 24,\&quot;IsBoy\&quot;: false&#125;],\&quot;msg\&quot;: \&quot;\&quot;,\&quot;status\&quot;: 200&#125;&quot;;</span><br><span class="line"></span><br><span class="line">var testObjStr = &quot;&#123;\&quot;data\&quot;: &#123;\&quot;cnName\&quot;: \&quot;小红\&quot;,\&quot;age\&quot;: 24,\&quot;IsBoy\&quot;: false&#125;,\&quot;msg\&quot;: \&quot;\&quot;,\&quot;status\&quot;: 200&#125;&quot;;</span><br><span class="line"></span><br><span class="line">res.end(testObjStr);</span><br></pre></td></tr></table></figure>
- <a id="more"></a>
-<p>我们可以和服务器约定返回的格式模版如下，他们的主要区别是data，可以是对象或者对象的数组形式。</p>
-<p>定义解释data为对象的模板：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class BaseObjectResult&lt;T&gt; &#123;</span><br><span class="line">    public T data;</span><br><span class="line">    public String msg;</span><br><span class="line">    public int status;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>定义解释data为数组的模版：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class BaseArrayResult&lt;T&gt; &#123;</span><br><span class="line">    public List&lt;T&gt; data;</span><br><span class="line">    public String msg;</span><br><span class="line">    public int status;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>实体对象：<br>TestData.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class TestData &#123;</span><br><span class="line">    public String cnName;</span><br><span class="line">    public int age;</span><br><span class="line">    public boolean IsBoy;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;testData:&quot; +</span><br><span class="line">                &quot;cnName=&quot; + this.cnName + &quot; &quot; +</span><br><span class="line">                &quot;age=&quot; + this.age + &quot; &quot; +</span><br><span class="line">                &quot;IsBogy=&quot; + this.IsBoy;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="使用retrofit和gson解释"><a href="#使用retrofit和gson解释" class="headerlink" title="使用retrofit和gson解释"></a>使用retrofit和gson解释</h4><p>自定义Converter.Factory</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public class DecodeConverterFactory extends Converter.Factory &#123;</span><br><span class="line"></span><br><span class="line">    public static DecodeConverterFactory create() &#123;</span><br><span class="line">        return create(new Gson());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static DecodeConverterFactory create(Gson gson) &#123;</span><br><span class="line">        return new DecodeConverterFactory(gson);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private final Gson gson;</span><br><span class="line"></span><br><span class="line">    private DecodeConverterFactory(Gson gson) &#123;</span><br><span class="line">        if (gson == null) throw new NullPointerException(&quot;gson == null&quot;);</span><br><span class="line">        this.gson = gson;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Converter&lt;ResponseBody, ?&gt; responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) &#123;</span><br><span class="line">        TypeAdapter&lt;?&gt; adapter = gson.getAdapter(TypeToken.get(type));</span><br><span class="line">        return new CustomResponseBodyConverter&lt;&gt;(adapter, type);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Converter&lt;?, RequestBody&gt; requestBodyConverter(Type type, Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) &#123;</span><br><span class="line">        TypeAdapter&lt;?&gt; adapter = gson.getAdapter(TypeToken.get(type));</span><br><span class="line">        return new DecodeRequestBodyConverter&lt;&gt;(gson, adapter);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>CustomResponseBodyConverter.java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class CustomResponseBodyConverter&lt;T&gt; implements Converter&lt;ResponseBody, T&gt; &#123;</span><br><span class="line">    private final TypeAdapter&lt;T&gt; adapter;</span><br><span class="line">    private Type mType;</span><br><span class="line"></span><br><span class="line">    public CustomResponseBodyConverter(TypeAdapter&lt;T&gt; adapter, Type type) &#123;</span><br><span class="line">        this.adapter = adapter;</span><br><span class="line">        this.mType = type;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public T convert(ResponseBody value) throws IOException &#123;</span><br><span class="line">        //解密字符串</span><br><span class="line">        if(mType == String.class) &#123;</span><br><span class="line">            return (T) value.string();</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>DecodeRequestBodyConverter.java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class DecodeRequestBodyConverter&lt;T&gt; implements Converter&lt;T, RequestBody&gt; &#123;</span><br><span class="line"></span><br><span class="line">    private static final MediaType MEDIA_TYPE = MediaType.parse(&quot;application/json; charset=UTF-8&quot;);</span><br><span class="line">    private static final Charset UTF_8 = Charset.forName(&quot;UTF-8&quot;);</span><br><span class="line"></span><br><span class="line">    private final Gson gson;</span><br><span class="line">    private final TypeAdapter&lt;T&gt; adapter;</span><br><span class="line">    DecodeRequestBodyConverter(Gson gson,TypeAdapter&lt;T&gt; adapter)&#123;</span><br><span class="line">        this.gson = gson;</span><br><span class="line">        this.adapter = adapter;</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public RequestBody convert(T value) throws IOException &#123;</span><br><span class="line">        Buffer buffer = new Buffer(); //value.toString()</span><br><span class="line">        Writer writer = new OutputStreamWriter(buffer.outputStream(),UTF_8);</span><br><span class="line">        JsonWriter jsonWriter = gson.newJsonWriter(writer);</span><br><span class="line">        adapter.write(jsonWriter,value);</span><br><span class="line">        jsonWriter.flush();</span><br><span class="line">        return RequestBody.create(MEDIA_TYPE,buffer.readByteString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>开始使用：</p>
-<p>TestDataApi.java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface TestDataApi &#123;</span><br><span class="line">    @GET(&quot;/&quot;)</span><br><span class="line">    Call&lt;BaseObjectResult&lt;TestData&gt;&gt; getArrayData();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="当data为对象时："><a href="#当data为对象时：" class="headerlink" title="当data为对象时："></a>当data为对象时：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Retrofit retrofit = new Retrofit.Builder()</span><br><span class="line">        .baseUrl(&quot;http://192.168.20.168:3000&quot;)</span><br><span class="line">        .addConverterFactory(DecodeConverterFactory.create())</span><br><span class="line">        .addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">        .build();</span><br><span class="line"></span><br><span class="line">TestDataApi testDataApi = retrofit.create(TestDataApi.class);</span><br><span class="line">Call&lt;BaseObjectResult&lt;TestData&gt;&gt; resultCall = testDataApi.getArrayData();</span><br><span class="line">resultCall.enqueue(new Callback&lt;BaseObjectResult&lt;TestData&gt;&gt;() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void onResponse(Call&lt;BaseObjectResult&lt;TestData&gt;&gt; call, Response&lt;BaseObjectResult&lt;TestData&gt;&gt; response) &#123;</span><br><span class="line">        if(response.isSuccessful()) &#123;</span><br><span class="line">            if(response.body() != null) &#123;</span><br><span class="line">                TestData testData = response.body().data;</span><br><span class="line">                Log.d(&quot;hyj&quot;, &quot;msg=&quot; +  response.body().msg + &quot;  &quot;</span><br><span class="line">                        + &quot;status=&quot; + response.body().status + &quot;  &quot;</span><br><span class="line">                        + testData.toString());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onFailure(Call&lt;BaseObjectResult&lt;TestData&gt;&gt; call, Throwable t) &#123;</span><br><span class="line">        ToastUtil.showShort(mContext, t.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>输出的结果是：</p>
-<blockquote>
-<p>04-08 16:04:56.053 31894-31894/com.zhangsunyucong.chanxa.testproject D/hyj: msg=  status=200  testData:cnName=小红 age=24 IsBogy=false</p>
-</blockquote>
-<h5 id="当data为数组时："><a href="#当data为数组时：" class="headerlink" title="当data为数组时："></a>当data为数组时：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">Retrofit retrofit = new Retrofit.Builder()</span><br><span class="line">                .baseUrl(&quot;http://192.168.20.168:3000&quot;)</span><br><span class="line">                .addConverterFactory(DecodeConverterFactory.create())</span><br><span class="line">                .addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">                .build();</span><br><span class="line"></span><br><span class="line">        TestDataApi testDataApi = retrofit.create(TestDataApi.class);</span><br><span class="line">        Call&lt;BaseArrayResult&lt;TestData&gt;&gt; resultCall = testDataApi.getArrayData();</span><br><span class="line">        resultCall.enqueue(new Callback&lt;BaseArrayResult&lt;TestData&gt;&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onResponse(Call&lt;BaseArrayResult&lt;TestData&gt;&gt; call, Response&lt;BaseArrayResult&lt;TestData&gt;&gt; response) &#123;</span><br><span class="line">                if(response.isSuccessful()) &#123;</span><br><span class="line">                    if(response.body() != null) &#123;</span><br><span class="line">                        List&lt;TestData&gt; testData = response.body().data;</span><br><span class="line">                        if(testData != null) &#123;</span><br><span class="line">                            for(int i = 0; i &lt; testData.size(); i++) &#123;</span><br><span class="line">                                Log.d(&quot;hyj&quot;, &quot;msg=&quot; +  response.body().msg + &quot;  &quot;</span><br><span class="line">                                        + &quot;status=&quot; + response.body().status + &quot;  &quot;</span><br><span class="line">                                        + testData.get(i).toString());</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void onFailure(Call&lt;BaseArrayResult&lt;TestData&gt;&gt; call, Throwable t) &#123;</span><br><span class="line">                ToastUtil.showShort(mContext, t.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
-<p>输出的结果是：</p>
-<blockquote>
-<p>04-08 16:11:44.703 32440-32440/com.zhangsunyucong.chanxa.testproject D/hyj: msg=  status=200  testData:cnName=jakewharton age=13 IsBogy=true<br>04-08 16:11:44.703 32440-32440/com.zhangsunyucong.chanxa.testproject D/hyj: msg=  status=200  testData:cnName=小红 age=24 IsBogy=false</p>
-</blockquote>
-<h4 id="手动解释"><a href="#手动解释" class="headerlink" title="手动解释"></a>手动解释</h4><p>关键的代码是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">private ParameterizedType type(final Class raw, final Type... args) &#123;</span><br><span class="line">    return new ParameterizedType() &#123;</span><br><span class="line">        public Type getRawType() &#123;</span><br><span class="line">            return raw;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public Type[] getActualTypeArguments() &#123;</span><br><span class="line">            return args;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public Type getOwnerType() &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当data返回的是对象时：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">TestDataApi testDataApi = retrofit.create(TestDataApi.class);</span><br><span class="line">        Call&lt;String&gt; resultCall = testDataApi.getArrayData();</span><br><span class="line">        resultCall.enqueue(new Callback&lt;String&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onResponse(Call&lt;String&gt; call, Response&lt;String&gt; response) &#123;</span><br><span class="line">                if(response.isSuccessful()) &#123;</span><br><span class="line">                    if(response.body() != null) &#123;</span><br><span class="line">                        String testDataStr = response.body();</span><br><span class="line">                        Gson gson = new Gson();</span><br><span class="line"></span><br><span class="line">                        BaseObjectResult&lt;TestData&gt; testData = gson.fromJson(testDataStr,</span><br><span class="line">                                type(BaseObjectResult.class, TestData.class));</span><br><span class="line"></span><br><span class="line">                        Log.d(&quot;hyj&quot;, &quot;msg=&quot; +  testData.msg + &quot;  &quot;</span><br><span class="line">                                + &quot;status=&quot; + testData.status + &quot;  &quot;</span><br><span class="line">                                + testData.data.toString());</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void onFailure(Call&lt;String&gt; call, Throwable t) &#123;</span><br><span class="line">                ToastUtil.showShort(mContext, t.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure></p>
-<p>当返回的data是数组时：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">TestDataApi testDataApi = retrofit.create(TestDataApi.class);</span><br><span class="line">        Call&lt;String&gt; resultCall = testDataApi.getArrayData();</span><br><span class="line">        resultCall.enqueue(new Callback&lt;String&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onResponse(Call&lt;String&gt; call, Response&lt;String&gt; response) &#123;</span><br><span class="line">                if(response.isSuccessful()) &#123;</span><br><span class="line">                    if(response.body() != null) &#123;</span><br><span class="line">                        String testDataStr = response.body();</span><br><span class="line">                        Gson gson = new Gson();</span><br><span class="line"></span><br><span class="line">                        BaseArrayResult&lt;TestData&gt; testData = gson.fromJson(testDataStr,</span><br><span class="line">                                type(BaseArrayResult.class, TestData.class));</span><br><span class="line"></span><br><span class="line">                        if(testData != null &amp;&amp; testData.data != null) &#123;</span><br><span class="line">                            for(int i = 0; i &lt; testData.data.size(); i++) &#123;</span><br><span class="line">                                Log.d(&quot;hyj&quot;, &quot;msg=&quot; +  testData.msg + &quot;  &quot;</span><br><span class="line">                                        + &quot;status=&quot; + testData.status + &quot;  &quot;</span><br><span class="line">                                        + testData.data.get(i).toString());</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void onFailure(Call&lt;String&gt; call, Throwable t) &#123;</span><br><span class="line">                ToastUtil.showShort(mContext, t.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure></p>
-<p>它们返回的结果和第一种方法的返回结果是一样的。</p>
+<h3 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h3><p>之前从矩阵的角度分析了平移，旋转，缩放，对称的变换，文章在<a href="https://zhangsunyucong.top/2018/02/07/android-animation-matrix/">从矩阵来看Android中的一些动画变换</a>。</p>
+<p>在android中，图片的对象主要是bitmap，它是由点阵和颜色值组成的。<br>1、点阵是一个图片宽*图片高的矩阵，矩阵中的每一个元素对应着图片的一个像素。根据点阵可以计算出图片占用的内存大小。</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ALPHA_8：  每个像素占用1byte内存</span><br><span class="line">ARGB_4444: 每个像素占用2byte内存</span><br><span class="line">ARGB_8888: 每个像素占用4byte内存</span><br><span class="line">RGB_565:   每个像素占用2byte内存</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">图片占用内存 = 图片高度显示像素 * 图片宽度显示像素 * 每个像素占用的内存大小</span><br><span class="line"></span><br><span class="line">显示像素 = 图片实际像素 * 手机density / 图片density </span><br><span class="line"></span><br><span class="line">假设有一张长宽为800*600、通道为ARGB_8888的图片，那么它占的内存为：</span><br><span class="line">800*600*4byte = 1875KB = 1.83M</span><br></pre></td></tr></table></figure>
+<p>2、颜色值，是由三原色和透明度决定的，即ARGB，分别对应着四个颜色通道，每个通道用8byte定义，所以一个颜色值就是一个int整型，可以表示256x256x256种颜色值。</p>
+<p>在android中和颜色有关的几个常量：ARGB_8888、ARGB_4444、RGB_565。<br>ARGB_8888，是图片的透明度、R、G、B的每个颜色值占8bit，可以表示256x256x256种颜色，也就是可以表示最多的颜色值，图片质量也是最好的。</p>
+<p>ARGB_4444，是图片的透明度、R、G、B的每个颜色值占4bit，可以表示16x16x16种颜色，相对ARGB_8888，它节省了空间，却失去了很多色彩。</p>
+<p>RGB_565，它只有R、G、B三个颜色通道，没有透明度通道，可以表达32x64x32种颜色。</p>
+<p>四个颜色通道是由一个4x5的变换矩阵控制的。</p>
+<h3 id="颜色矩阵变换"><a href="#颜色矩阵变换" class="headerlink" title="颜色矩阵变换"></a>颜色矩阵变换</h3><p><img src="http://o8bym0zmt.bkt.clouddn.com/android_color_matrix.png" alt="推导"></p>
+<p>所以，可以知道，红色通道由第一行控制。<br>绿色通道由第二行控制。<br>蓝色通道由第三行控制。<br>透明度通道由第四行控制。<br>另外的，第五列是每个通道的偏移量。注意倍数和相加的影响，每个通道最后的值不应该大于256.</p>
+<p>在android中，有一个和颜色矩阵相关的android.graphics.Matrix类，该类中有与颜色变换相关的方法。</p>
+<p><img src="http://o8bym0zmt.bkt.clouddn.com/android_color_matrix_methods.png" alt="方法"></p>
+<p>关于Matrix方法的使用这里就不详细讲了。</p>
+<p>实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public static Bitmap testBitmap(Bitmap bitmap)</span><br><span class="line">&#123;</span><br><span class="line">       Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),</span><br><span class="line">               bitmap.getHeight(), Config.RGB_565);</span><br><span class="line"></span><br><span class="line">       Canvas canvas = new Canvas(output);</span><br><span class="line"></span><br><span class="line">       Paint paint = new Paint();        </span><br><span class="line">       ColorMatrix cm = new ColorMatrix();</span><br><span class="line">       float[] array = &#123;1,0,0,0,100,</span><br><span class="line">               0,1,0,0,100,</span><br><span class="line">               0,0,1,0,0,</span><br><span class="line">               0,0,0,1,0&#125;;</span><br><span class="line">       cm.set(array);</span><br><span class="line">       paint.setColorFilter(new ColorMatrixColorFilter(cm));</span><br><span class="line"></span><br><span class="line">       canvas.drawBitmap(bitmap, 0, 0, paint);</span><br><span class="line">       return output;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="JNI图片压缩"><a href="#JNI图片压缩" class="headerlink" title="JNI图片压缩"></a>JNI图片压缩</h3><p>在上面提到过一张图片占用多大内存的计算，现在我们的手机拍出来的照片占的内存越来越大，所以在开发的过程中，我们就很有必要对图片压缩后再上传。而比较好的压缩方法是JNI压缩。</p>
+<p><a href="https://github.com/zhangsunyucong/JniCompressImage.git" target="_blank" rel="noopener">github地址</a></p>
 
       
     </div>
@@ -609,7 +599,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://zhangsunyucong.top/2018/04/08/android-gson-server/" title="在Android中解释服务器数据">http://zhangsunyucong.top/2018/04/08/android-gson-server/</a>
+    <a href="http://zhangsunyucong.top/2018/04/18/android-color-matrix/" title="从矩阵来看颜色变换">http://zhangsunyucong.top/2018/04/18/android-color-matrix/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -622,6 +612,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag"><i class="fa fa-tag"></i> android</a>
+          
+        </div>
+      
 
       
       
@@ -631,8 +627,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/04/java-pattern-singleton/" rel="next" title="23种设计模式之《单例模式》">
-                <i class="fa fa-chevron-left"></i> 23种设计模式之《单例模式》
+              <a href="/2018/04/10/java-pattern-structure/" rel="next" title="23种设计模式之结构型设计模式">
+                <i class="fa fa-chevron-left"></i> 23种设计模式之结构型设计模式
               </a>
             
           </div>
@@ -640,10 +636,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/09/java-pattern-builder-factory-clone/" rel="prev" title="23种设计模式之创建型模式">
-                23种设计模式之创建型模式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -913,7 +905,7 @@ show_date_time();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用retrofit和gson解释"><span class="nav-number">2.1.</span> <span class="nav-text">使用retrofit和gson解释</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#当data为对象时："><span class="nav-number">2.1.1.</span> <span class="nav-text">当data为对象时：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#当data为数组时："><span class="nav-number">2.1.2.</span> <span class="nav-text">当data为数组时：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#手动解释"><span class="nav-number">2.2.</span> <span class="nav-text">手动解释</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#开篇"><span class="nav-number">1.</span> <span class="nav-text">开篇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#颜色矩阵变换"><span class="nav-number">2.</span> <span class="nav-text">颜色矩阵变换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JNI图片压缩"><span class="nav-number">3.</span> <span class="nav-text">JNI图片压缩</span></a></li></ol></div>
             
 
           </div>

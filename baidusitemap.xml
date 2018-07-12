@@ -3,6 +3,75 @@
 
 
     
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2018/04/04/java-pattern-singleton/</loc>
+    <lastmod>2018-05-08T05:37:24.746Z</lastmod>
+    <data>
+        <display>
+        <title>23种设计模式之《单例模式》</title>
+        <pubTime>2018-04-04T00:38:20.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2018/04/18/android-color-matrix/</loc>
+    <lastmod>2018-04-27T02:48:57.932Z</lastmod>
+    <data>
+        <display>
+        <title>从矩阵来看颜色变换</title>
+        <pubTime>2018-04-18T08:49:03.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2017/12/25/android-encryption/</loc>
+    <lastmod>2018-04-19T08:36:34.733Z</lastmod>
+    <data>
+        <display>
+        <title>android和nodejs搭建一个应用</title>
+        <pubTime>2017-12-25T06:47:12.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2018/04/10/java-pattern-structure/</loc>
+    <lastmod>2018-04-10T07:39:49.145Z</lastmod>
+    <data>
+        <display>
+        <title>23种设计模式之结构型设计模式</title>
+        <pubTime>2018-04-10T03:00:35.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
   <url>
     <loc>http://zhangsunyucong.top/2018/04/09/java-pattern-builder-factory-clone/</loc>
     <lastmod>2018-04-09T07:31:44.729Z</lastmod>
@@ -51,24 +120,6 @@
     </data>
     </url>
 
-    
-  <url>
-    <loc>http://zhangsunyucong.top/2018/04/04/java-pattern-singleton/</loc>
-    <lastmod>2018-04-04T07:55:02.987Z</lastmod>
-    <data>
-        <display>
-        <title>23种设计模式之《单例模式》</title>
-        <pubTime>2018-04-04T00:38:20.000Z</pubTime>
-        
-        <tag>java</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
     
   <url>
     <loc>http://zhangsunyucong.top/2018/01/10/android-event/</loc>
@@ -284,23 +335,6 @@
         <pubTime>2017-12-22T01:20:13.000Z</pubTime>
         
         <tag>基础知识</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://zhangsunyucong.top/2017/12/25/android-encryption/</loc>
-    <lastmod>2018-01-23T07:54:19.561Z</lastmod>
-    <data>
-        <display>
-        <title>android和nodejs搭建一个应用</title>
-        <pubTime>2017-12-25T06:47:12.000Z</pubTime>
-        
-        <tag>android</tag>
          
          
            

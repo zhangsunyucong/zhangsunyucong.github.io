@@ -126,7 +126,7 @@
 <meta property="og:site_name" content="长孙雨聪--七星上将">
 <meta property="og:description" content="什么是单例模式单例模式是23种设计模式中最简单和易用的模式。在某些情境下，如在一个上市公司中，有很多不同级别的员工，但是公司的CEO或者CTO都是只有一个的，CEO或者CTO在公司里就要求是一个单例。单例模式，就是某个类因实际情况的需要，要求在全局的范围内只能有唯一的实例对象，这个对象是常驻内存的，可以重复使用，降低重复创建对象的开销。 单例模式的特点 类的构造函数是私有的 在类内部实例化对象，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-04T07:55:02.987Z">
+<meta property="og:updated_time" content="2018-05-08T05:37:24.746Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="23种设计模式之《单例模式》">
 <meta name="twitter:description" content="什么是单例模式单例模式是23种设计模式中最简单和易用的模式。在某些情境下，如在一个上市公司中，有很多不同级别的员工，但是公司的CEO或者CTO都是只有一个的，CEO或者CTO在公司里就要求是一个单例。单例模式，就是某个类因实际情况的需要，要求在全局的范围内只能有唯一的实例对象，这个对象是常驻内存的，可以重复使用，降低重复创建对象的开销。 单例模式的特点 类的构造函数是私有的 在类内部实例化对象，">
@@ -201,7 +201,7 @@
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">坚持不懈，必有回响。</h1>
+        <h1 class="site-subtitle" itemprop="description">相信现在是因为相信未来</h1>
       
   </div>
 
@@ -393,8 +393,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-04T15:55:02+08:00">
-                2018-04-04
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-08T13:37:24+08:00">
+                2018-05-08
               </time>
             
           </span>
@@ -450,7 +450,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,416字
+                  1,415字
                 </span>
               
 
@@ -512,7 +512,7 @@
 <p>所以，当有多个线程同时访问getInstance静态方法时，多个其他的线程只能等待，这时只有一个线程能够访问getInstance方法，等这个线程释放后其他线程才能访问。这样就会影响速度和效率。</p>
 <p>为了提高懒汉模式的速度和效率，可以减小锁的粒度和次数。</p>
 <p>双重校验锁法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class SingletonDemo &#123;</span><br><span class="line"></span><br><span class="line">    private static SingletonDemo mSingletonDemo;</span><br><span class="line"></span><br><span class="line">    private SingletonDemo() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    public static synchronized SingletonDemo getInstance() &#123;</span><br><span class="line">        if(mSingletonDemo == null) &#123;</span><br><span class="line">            synchronized (SingletonDemo.class) &#123;</span><br><span class="line">                if(mSingletonDemo == null) &#123;</span><br><span class="line">                    mSingletonDemo = new SingletonDemo();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return mSingletonDemo;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class SingletonDemo &#123;</span><br><span class="line"></span><br><span class="line">    private static SingletonDemo mSingletonDemo;</span><br><span class="line"></span><br><span class="line">    private SingletonDemo() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    public static SingletonDemo getInstance() &#123;</span><br><span class="line">        if(mSingletonDemo == null) &#123;</span><br><span class="line">            synchronized (SingletonDemo.class) &#123;</span><br><span class="line">                if(mSingletonDemo == null) &#123;</span><br><span class="line">                    mSingletonDemo = new SingletonDemo();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return mSingletonDemo;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>从上面可以看到，只有在第一次访问时才会锁定和创建类的对象，之后的访问都是直接使用已经创建好的对象，这样减少锁定的次数和范围，以达到提高单例模式的效率。</p>
 <p>但是，对象的实例化，并不是一个原子性操作。即第11行代码处，它可以分成下面三个步骤：<br>1、new SingletonDemo()，为SingletonDemo实例分配内存<br>2、调用SingletonDemo的构造器，完成初始化工作<br>3、将mSingletonDemo指向分配的内存空间</p>
 <p>由于java处理器可以乱序执行，即无法保证2和3的执行顺序。这对双重校验锁法实现的单例模式有什么影响呢？<br>当第一个线程访问getInstance方法时，会锁定临界区（第9行到第13行代码），它实例化对象的顺序是1=&gt;3=&gt;2，而在这时如果有第二个线程来访问getInstance方法，由于第一个线程在处理器中执行完了3未执行2，第二个线程会马上得到实例对象，因为第一个线程的3已经执行完即mSingletonDemo已经不为空。当第二个线程使用没有初始化的对象时就会出现问题。</p>
@@ -740,7 +740,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -805,7 +805,7 @@
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="http://luodw.cc/" title="罗道文" target="_blank">罗道文</a>
+                    <a href="http://www.gcssloop.com/" title="机动车" target="_blank">机动车</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
@@ -842,6 +842,34 @@
                 
                   <li class="links-of-blogroll-item">
                     <a href="http://wangyuquan.net/" title="top2" target="_blank">top2</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://chenghouwen.com" title="程厚文" target="_blank">程厚文</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://hukai.me/" title="胡凯" target="_blank">胡凯</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://job.alibaba.com" title="阿里社招" target="_blank">阿里社招</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://lao.si" title="孙老四" target="_blank">孙老四</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://xulei.tech/" title="android徐蕾" target="_blank">android徐蕾</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.androidperformance.com" title="Gracker_Gao" target="_blank">Gracker_Gao</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://weishu.me/" title="Weishu's Notes" target="_blank">Weishu's Notes</a>
                   </li>
                 
               </ul>
