@@ -3,6 +3,40 @@
 
 
     
+  <url>
+    <loc>http://zhangsunyucong.top/2018/03/08/android-retrofit/</loc>
+    <lastmod>2018-07-25T10:03:48.313Z</lastmod>
+    <data>
+        <display>
+        <title>Android中的retrofit源码分析</title>
+        <pubTime>2018-03-08T05:05:41.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2018/01/15/view-meassure/</loc>
+    <lastmod>2018-07-13T07:08:26.272Z</lastmod>
+    <data>
+        <display>
+        <title>Androiod中View的工作原理</title>
+        <pubTime>2018-01-15T07:14:46.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://zhangsunyucong.top/2018/04/04/java-pattern-singleton/</loc>
@@ -81,23 +115,6 @@
         <pubTime>2018-04-09T02:44:06.000Z</pubTime>
         
         <tag>java</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://zhangsunyucong.top/2018/03/08/android-retrofit/</loc>
-    <lastmod>2018-04-09T06:36:51.447Z</lastmod>
-    <data>
-        <display>
-        <title>Android中的retrofit源码分析</title>
-        <pubTime>2018-03-08T05:05:41.000Z</pubTime>
-        
-        <tag>Android</tag>
          
          
            
@@ -335,23 +352,6 @@
         <pubTime>2017-12-22T01:20:13.000Z</pubTime>
         
         <tag>基础知识</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://zhangsunyucong.top/2018/01/15/view-meassure/</loc>
-    <lastmod>2018-01-23T07:52:31.908Z</lastmod>
-    <data>
-        <display>
-        <title>Androiod中View的工作原理</title>
-        <pubTime>2018-01-15T07:14:46.000Z</pubTime>
-        
-        <tag>android</tag>
          
          
            

@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zhangsunyucong.top/2018/03/08/android-retrofit/</loc>
+    
+    <lastmod>2018-07-25T10:03:48.313Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/2018/01/15/view-meassure/</loc>
+    
+    <lastmod>2018-07-13T07:08:26.272Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://zhangsunyucong.top/about/index.html</loc>
     
     <lastmod>2018-07-12T09:54:51.560Z</lastmod>
@@ -40,13 +54,6 @@
     <loc>http://zhangsunyucong.top/2018/04/09/java-pattern-builder-factory-clone/</loc>
     
     <lastmod>2018-04-09T07:31:44.729Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://zhangsunyucong.top/2018/03/08/android-retrofit/</loc>
-    
-    <lastmod>2018-04-09T06:36:51.447Z</lastmod>
     
   </url>
   
@@ -152,13 +159,6 @@
     <loc>http://zhangsunyucong.top/2017/12/22/binary-classify/</loc>
     
     <lastmod>2018-01-23T07:54:40.854Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://zhangsunyucong.top/2018/01/15/view-meassure/</loc>
-    
-    <lastmod>2018-01-23T07:52:31.908Z</lastmod>
     
   </url>
   
