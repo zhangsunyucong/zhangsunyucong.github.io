@@ -246,12 +246,12 @@
 
     
   <url>
-    <loc>http://zhangsunyucong.top/2018/02/23/android-intentservice-handlerthread/</loc>
+    <loc>http://zhangsunyucong.top/2018/02/23/android-layout-inflater/</loc>
     <lastmod>2018-11-05T09:33:14.981Z</lastmod>
     <data>
         <display>
-        <title>HandlerThread和IntentService</title>
-        <pubTime>2018-02-23T01:54:05.000Z</pubTime>
+        <title>Android中的布局加载器LayoutInflater</title>
+        <pubTime>2018-02-23T09:08:04.000Z</pubTime>
         
         <tag>android</tag>
          
@@ -263,12 +263,12 @@
 
     
   <url>
-    <loc>http://zhangsunyucong.top/2018/02/23/android-layout-inflater/</loc>
+    <loc>http://zhangsunyucong.top/2018/02/23/android-intentservice-handlerthread/</loc>
     <lastmod>2018-11-05T09:33:14.981Z</lastmod>
     <data>
         <display>
-        <title>Android中的布局加载器LayoutInflater</title>
-        <pubTime>2018-02-23T09:08:04.000Z</pubTime>
+        <title>HandlerThread和IntentService</title>
+        <pubTime>2018-02-23T01:54:05.000Z</pubTime>
         
         <tag>android</tag>
          
