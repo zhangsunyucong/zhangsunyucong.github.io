@@ -3,297 +3,13 @@
 
 
     
-  <url>
-    <loc>http://zhangsunyucong.top/2018/03/08/android-retrofit/</loc>
-    <lastmod>2018-07-25T10:03:48.313Z</lastmod>
-    <data>
-        <display>
-        <title>Android中的retrofit源码分析</title>
-        <pubTime>2018-03-08T05:05:41.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://zhangsunyucong.top/2018/01/15/view-meassure/</loc>
-    <lastmod>2018-07-13T07:08:26.272Z</lastmod>
-    <data>
-        <display>
-        <title>Androiod中View的工作原理</title>
-        <pubTime>2018-01-15T07:14:46.000Z</pubTime>
-        
-        <tag>android</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
     
     
-  <url>
-    <loc>http://zhangsunyucong.top/2018/04/04/java-pattern-singleton/</loc>
-    <lastmod>2018-05-08T05:37:24.746Z</lastmod>
-    <data>
-        <display>
-        <title>23种设计模式之《单例模式》</title>
-        <pubTime>2018-04-04T00:38:20.000Z</pubTime>
-        
-        <tag>java</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
     
-  <url>
-    <loc>http://zhangsunyucong.top/2018/04/18/android-color-matrix/</loc>
-    <lastmod>2018-04-27T02:48:57.932Z</lastmod>
-    <data>
-        <display>
-        <title>从矩阵来看颜色变换</title>
-        <pubTime>2018-04-18T08:49:03.000Z</pubTime>
-        
-        <tag>android</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://zhangsunyucong.top/2017/12/25/android-encryption/</loc>
-    <lastmod>2018-04-19T08:36:34.733Z</lastmod>
-    <data>
-        <display>
-        <title>android和nodejs搭建一个应用</title>
-        <pubTime>2017-12-25T06:47:12.000Z</pubTime>
-        
-        <tag>android</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://zhangsunyucong.top/2018/04/10/java-pattern-structure/</loc>
-    <lastmod>2018-04-10T07:39:49.145Z</lastmod>
-    <data>
-        <display>
-        <title>23种设计模式之结构型设计模式</title>
-        <pubTime>2018-04-10T03:00:35.000Z</pubTime>
-        
-        <tag>java</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://zhangsunyucong.top/2018/04/09/java-pattern-builder-factory-clone/</loc>
-    <lastmod>2018-04-09T07:31:44.729Z</lastmod>
-    <data>
-        <display>
-        <title>23种设计模式之创建型模式</title>
-        <pubTime>2018-04-09T02:44:06.000Z</pubTime>
-        
-        <tag>java</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://zhangsunyucong.top/2018/04/08/android-gson-server/</loc>
-    <lastmod>2018-04-09T01:08:29.328Z</lastmod>
-    <data>
-        <display>
-        <title>在Android中解释服务器数据</title>
-        <pubTime>2018-04-08T07:52:23.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://zhangsunyucong.top/2018/01/10/android-event/</loc>
-    <lastmod>2018-02-28T06:52:03.119Z</lastmod>
-    <data>
-        <display>
-        <title>Android的MotionEvent事件分发机制</title>
-        <pubTime>2018-01-10T00:41:26.000Z</pubTime>
-        
-        <tag>android</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://zhangsunyucong.top/2018/02/23/android-layout-inflater/</loc>
-    <lastmod>2018-02-23T09:25:55.894Z</lastmod>
-    <data>
-        <display>
-        <title>Android中的布局加载器LayoutInflater</title>
-        <pubTime>2018-02-23T09:08:04.000Z</pubTime>
-        
-        <tag>android</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://zhangsunyucong.top/2018/02/23/android-intentservice-handlerthread/</loc>
-    <lastmod>2018-02-23T05:11:53.008Z</lastmod>
-    <data>
-        <display>
-        <title>HandlerThread和IntentService</title>
-        <pubTime>2018-02-23T01:54:05.000Z</pubTime>
-        
-        <tag>android</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://zhangsunyucong.top/2018/02/07/android-animation-matrix/</loc>
-    <lastmod>2018-02-08T02:19:57.085Z</lastmod>
-    <data>
-        <display>
-        <title>从矩阵来看Android中的一些动画变换</title>
-        <pubTime>2018-02-07T06:40:22.000Z</pubTime>
-        
-        <tag>android</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://zhangsunyucong.top/2018/01/18/android-wave-view/</loc>
-    <lastmod>2018-02-06T10:09:38.768Z</lastmod>
-    <data>
-        <display>
-        <title>自定义波纹WaveView</title>
-        <pubTime>2018-01-18T07:48:15.000Z</pubTime>
-        
-        <tag>android</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://zhangsunyucong.top/2018/02/06/android-simple-draw-and-path/</loc>
-    <lastmod>2018-02-06T10:09:20.067Z</lastmod>
-    <data>
-        <display>
-        <title>Android中绘制简单几何图形和路径Path</title>
-        <pubTime>2018-02-06T05:56:29.000Z</pubTime>
-        
-        <tag>android</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://zhangsunyucong.top/2018/02/02/node-async-promise/</loc>
-    <lastmod>2018-02-02T09:03:03.573Z</lastmod>
-    <data>
-        <display>
-        <title>初始Promise/A+规范</title>
-        <pubTime>2018-02-02T02:19:32.000Z</pubTime>
-        
-        <tag>node.js</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://zhangsunyucong.top/2018/01/31/android-activity-start-up/</loc>
-    <lastmod>2018-02-01T03:27:31.552Z</lastmod>
-    <data>
-        <display>
-        <title>Android中Activity的启动流程</title>
-        <pubTime>2018-01-31T05:08:09.000Z</pubTime>
-        
-        <tag>android</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://zhangsunyucong.top/2018/02/01/android-handler/</loc>
-    <lastmod>2018-02-01T02:24:03.204Z</lastmod>
-    <data>
-        <display>
-        <title>Android中的消息机制</title>
-        <pubTime>2018-02-01T00:36:36.000Z</pubTime>
-        
-        <tag>android</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://zhangsunyucong.top/2017/11/24/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2018-01-30T07:24:06.264Z</lastmod>
+    <lastmod>2018-11-05T09:33:14.999Z</lastmod>
     <data>
         <display>
         <title>第一篇博客</title>
@@ -309,78 +25,8 @@
 
     
   <url>
-    <loc>http://zhangsunyucong.top/2018/01/25/android-view-positon-and-scroll/</loc>
-    <lastmod>2018-01-30T07:15:58.592Z</lastmod>
-    <data>
-        <display>
-        <title>Android中view的位置坐标和view的滑动</title>
-        <pubTime>2018-01-25T01:57:38.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-    
-  <url>
-    <loc>http://zhangsunyucong.top/2017/12/06/node-and-nginx/</loc>
-    <lastmod>2018-01-23T07:55:04.439Z</lastmod>
-    <data>
-        <display>
-        <title>使用nginx负载均衡nodejs</title>
-        <pubTime>2017-12-06T02:59:08.000Z</pubTime>
-        
-        <tag>nodejs</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://zhangsunyucong.top/2017/12/22/binary-classify/</loc>
-    <lastmod>2018-01-23T07:54:40.854Z</lastmod>
-    <data>
-        <display>
-        <title>二进制和种类</title>
-        <pubTime>2017-12-22T01:20:13.000Z</pubTime>
-        
-        <tag>基础知识</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://zhangsunyucong.top/2017/12/12/about-history/</loc>
-    <lastmod>2018-01-23T07:51:35.465Z</lastmod>
-    <data>
-        <display>
-        <title>读《人类简史》和《未来简史》</title>
-        <pubTime>2017-12-12T03:31:48.000Z</pubTime>
-        
-        <tag>阅读</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-    
-  <url>
     <loc>http://zhangsunyucong.top/2017/11/24/%E7%AC%AC%E4%B8%80%E4%B8%AAtensorflow%E7%A8%8B%E5%BA%8F/</loc>
-    <lastmod>2018-01-12T06:03:01.106Z</lastmod>
+    <lastmod>2018-11-05T09:33:14.998Z</lastmod>
     <data>
         <display>
         <title>第一个tensorflow程序</title>
@@ -396,8 +42,110 @@
 
     
   <url>
+    <loc>http://zhangsunyucong.top/2018/01/15/view-meassure/</loc>
+    <lastmod>2018-11-05T09:33:14.996Z</lastmod>
+    <data>
+        <display>
+        <title>Androiod中View的工作原理</title>
+        <pubTime>2018-01-15T07:14:46.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2018/02/02/node-async-promise/</loc>
+    <lastmod>2018-11-05T09:33:14.995Z</lastmod>
+    <data>
+        <display>
+        <title>初始Promise/A+规范</title>
+        <pubTime>2018-02-02T02:19:32.000Z</pubTime>
+        
+        <tag>node.js</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2017/12/06/node-and-nginx/</loc>
+    <lastmod>2018-11-05T09:33:14.993Z</lastmod>
+    <data>
+        <display>
+        <title>使用nginx负载均衡nodejs</title>
+        <pubTime>2017-12-06T02:59:08.000Z</pubTime>
+        
+        <tag>nodejs</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2018/04/10/java-pattern-structure/</loc>
+    <lastmod>2018-11-05T09:33:14.993Z</lastmod>
+    <data>
+        <display>
+        <title>23种设计模式之结构型设计模式</title>
+        <pubTime>2018-04-10T03:00:35.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2018/04/04/java-pattern-singleton/</loc>
+    <lastmod>2018-11-05T09:33:14.990Z</lastmod>
+    <data>
+        <display>
+        <title>23种设计模式之《单例模式》</title>
+        <pubTime>2018-04-04T00:38:20.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2018/04/09/java-pattern-builder-factory-clone/</loc>
+    <lastmod>2018-11-05T09:33:14.989Z</lastmod>
+    <data>
+        <display>
+        <title>23种设计模式之创建型模式</title>
+        <pubTime>2018-04-09T02:44:06.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://zhangsunyucong.top/2017/12/28/huoying/</loc>
-    <lastmod>2018-01-12T06:03:01.104Z</lastmod>
+    <lastmod>2018-11-05T09:33:14.988Z</lastmod>
     <data>
         <display>
         <title>《火影忍者》--鸣人和雏田</title>
@@ -412,4 +160,256 @@
     </url>
 
     
+  <url>
+    <loc>http://zhangsunyucong.top/2017/12/22/binary-classify/</loc>
+    <lastmod>2018-11-05T09:33:14.987Z</lastmod>
+    <data>
+        <display>
+        <title>二进制和种类</title>
+        <pubTime>2017-12-22T01:20:13.000Z</pubTime>
+        
+        <tag>基础知识</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2018/01/18/android-wave-view/</loc>
+    <lastmod>2018-11-05T09:33:14.986Z</lastmod>
+    <data>
+        <display>
+        <title>自定义波纹WaveView</title>
+        <pubTime>2018-01-18T07:48:15.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2018/01/25/android-view-positon-and-scroll/</loc>
+    <lastmod>2018-11-05T09:33:14.986Z</lastmod>
+    <data>
+        <display>
+        <title>Android中view的位置坐标和view的滑动</title>
+        <pubTime>2018-01-25T01:57:38.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2018/02/06/android-simple-draw-and-path/</loc>
+    <lastmod>2018-11-05T09:33:14.984Z</lastmod>
+    <data>
+        <display>
+        <title>Android中绘制简单几何图形和路径Path</title>
+        <pubTime>2018-02-06T05:56:29.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2018/03/08/android-retrofit/</loc>
+    <lastmod>2018-11-05T09:33:14.982Z</lastmod>
+    <data>
+        <display>
+        <title>Android中的retrofit源码分析</title>
+        <pubTime>2018-03-08T05:05:41.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2018/02/23/android-intentservice-handlerthread/</loc>
+    <lastmod>2018-11-05T09:33:14.981Z</lastmod>
+    <data>
+        <display>
+        <title>HandlerThread和IntentService</title>
+        <pubTime>2018-02-23T01:54:05.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2018/02/23/android-layout-inflater/</loc>
+    <lastmod>2018-11-05T09:33:14.981Z</lastmod>
+    <data>
+        <display>
+        <title>Android中的布局加载器LayoutInflater</title>
+        <pubTime>2018-02-23T09:08:04.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2018/02/01/android-handler/</loc>
+    <lastmod>2018-11-05T09:33:14.979Z</lastmod>
+    <data>
+        <display>
+        <title>Android中的消息机制</title>
+        <pubTime>2018-02-01T00:36:36.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2018/04/08/android-gson-server/</loc>
+    <lastmod>2018-11-05T09:33:14.977Z</lastmod>
+    <data>
+        <display>
+        <title>在Android中解释服务器数据</title>
+        <pubTime>2018-04-08T07:52:23.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2018/01/10/android-event/</loc>
+    <lastmod>2018-11-05T09:33:14.976Z</lastmod>
+    <data>
+        <display>
+        <title>Android的MotionEvent事件分发机制</title>
+        <pubTime>2018-01-10T00:41:26.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2017/12/25/android-encryption/</loc>
+    <lastmod>2018-11-05T09:33:14.974Z</lastmod>
+    <data>
+        <display>
+        <title>android和nodejs搭建一个应用</title>
+        <pubTime>2017-12-25T06:47:12.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2018/04/18/android-color-matrix/</loc>
+    <lastmod>2018-11-05T09:33:14.972Z</lastmod>
+    <data>
+        <display>
+        <title>从矩阵来看颜色变换</title>
+        <pubTime>2018-04-18T08:49:03.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2018/02/07/android-animation-matrix/</loc>
+    <lastmod>2018-11-05T09:33:14.971Z</lastmod>
+    <data>
+        <display>
+        <title>从矩阵来看Android中的一些动画变换</title>
+        <pubTime>2018-02-07T06:40:22.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2018/01/31/android-activity-start-up/</loc>
+    <lastmod>2018-11-05T09:33:14.969Z</lastmod>
+    <data>
+        <display>
+        <title>Android中Activity的启动流程</title>
+        <pubTime>2018-01-31T05:08:09.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2017/12/12/about-history/</loc>
+    <lastmod>2018-11-05T09:33:14.967Z</lastmod>
+    <data>
+        <display>
+        <title>读《人类简史》和《未来简史》</title>
+        <pubTime>2017-12-12T03:31:48.000Z</pubTime>
+        
+        <tag>阅读</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
 </urlset>
