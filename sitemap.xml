@@ -9,14 +9,14 @@
   </url>
   
   <url>
-    <loc>http://zhangsunyucong.top/rusume/index.html</loc>
+    <loc>http://zhangsunyucong.top/tags/index.html</loc>
     
     <lastmod>2019-03-24T02:42:31.482Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhangsunyucong.top/tags/index.html</loc>
+    <loc>http://zhangsunyucong.top/rusume/index.html</loc>
     
     <lastmod>2019-03-24T02:42:31.482Z</lastmod>
     
@@ -100,13 +100,6 @@
   </url>
   
   <url>
-    <loc>http://zhangsunyucong.top/2018/01/18/android-wave-view/</loc>
-    
-    <lastmod>2019-03-24T02:42:31.474Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://zhangsunyucong.top/2018/01/25/android-view-positon-and-scroll/</loc>
     
     <lastmod>2019-03-24T02:42:31.474Z</lastmod>
@@ -114,14 +107,21 @@
   </url>
   
   <url>
-    <loc>http://zhangsunyucong.top/2018/02/06/android-simple-draw-and-path/</loc>
+    <loc>http://zhangsunyucong.top/2018/01/18/android-wave-view/</loc>
+    
+    <lastmod>2019-03-24T02:42:31.474Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/2018/03/08/android-retrofit/</loc>
     
     <lastmod>2019-03-24T02:42:31.473Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhangsunyucong.top/2018/03/08/android-retrofit/</loc>
+    <loc>http://zhangsunyucong.top/2018/02/06/android-simple-draw-and-path/</loc>
     
     <lastmod>2019-03-24T02:42:31.473Z</lastmod>
     
@@ -142,13 +142,6 @@
   </url>
   
   <url>
-    <loc>http://zhangsunyucong.top/2018/04/08/android-gson-server/</loc>
-    
-    <lastmod>2019-03-24T02:42:31.471Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://zhangsunyucong.top/2018/02/01/android-handler/</loc>
     
     <lastmod>2019-03-24T02:42:31.471Z</lastmod>
@@ -156,14 +149,21 @@
   </url>
   
   <url>
-    <loc>http://zhangsunyucong.top/2017/12/25/android-encryption/</loc>
+    <loc>http://zhangsunyucong.top/2018/04/08/android-gson-server/</loc>
+    
+    <lastmod>2019-03-24T02:42:31.471Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/2018/01/10/android-event/</loc>
     
     <lastmod>2019-03-24T02:42:31.470Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhangsunyucong.top/2018/01/10/android-event/</loc>
+    <loc>http://zhangsunyucong.top/2017/12/25/android-encryption/</loc>
     
     <lastmod>2019-03-24T02:42:31.470Z</lastmod>
     

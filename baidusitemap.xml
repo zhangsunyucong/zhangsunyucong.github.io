@@ -178,23 +178,6 @@
 
     
   <url>
-    <loc>http://zhangsunyucong.top/2018/01/18/android-wave-view/</loc>
-    <lastmod>2019-03-24T02:42:31.474Z</lastmod>
-    <data>
-        <display>
-        <title>自定义波纹WaveView</title>
-        <pubTime>2018-01-18T07:48:15.000Z</pubTime>
-        
-        <tag>android</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://zhangsunyucong.top/2018/01/25/android-view-positon-and-scroll/</loc>
     <lastmod>2019-03-24T02:42:31.474Z</lastmod>
     <data>
@@ -212,12 +195,12 @@
 
     
   <url>
-    <loc>http://zhangsunyucong.top/2018/02/06/android-simple-draw-and-path/</loc>
-    <lastmod>2019-03-24T02:42:31.473Z</lastmod>
+    <loc>http://zhangsunyucong.top/2018/01/18/android-wave-view/</loc>
+    <lastmod>2019-03-24T02:42:31.474Z</lastmod>
     <data>
         <display>
-        <title>Android中绘制简单几何图形和路径Path</title>
-        <pubTime>2018-02-06T05:56:29.000Z</pubTime>
+        <title>自定义波纹WaveView</title>
+        <pubTime>2018-01-18T07:48:15.000Z</pubTime>
         
         <tag>android</tag>
          
@@ -237,6 +220,23 @@
         <pubTime>2018-03-08T05:05:41.000Z</pubTime>
         
         <tag>Android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2018/02/06/android-simple-draw-and-path/</loc>
+    <lastmod>2019-03-24T02:42:31.473Z</lastmod>
+    <data>
+        <display>
+        <title>Android中绘制简单几何图形和路径Path</title>
+        <pubTime>2018-02-06T05:56:29.000Z</pubTime>
+        
+        <tag>android</tag>
          
          
            
@@ -280,21 +280,6 @@
 
     
   <url>
-    <loc>http://zhangsunyucong.top/2018/04/08/android-gson-server/</loc>
-    <lastmod>2019-03-24T02:42:31.471Z</lastmod>
-    <data>
-        <display>
-        <title>在Android中解释服务器数据</title>
-        <pubTime>2018-04-08T07:52:23.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://zhangsunyucong.top/2018/02/01/android-handler/</loc>
     <lastmod>2019-03-24T02:42:31.471Z</lastmod>
     <data>
@@ -312,15 +297,13 @@
 
     
   <url>
-    <loc>http://zhangsunyucong.top/2017/12/25/android-encryption/</loc>
-    <lastmod>2019-03-24T02:42:31.470Z</lastmod>
+    <loc>http://zhangsunyucong.top/2018/04/08/android-gson-server/</loc>
+    <lastmod>2019-03-24T02:42:31.471Z</lastmod>
     <data>
         <display>
-        <title>android和nodejs搭建一个应用</title>
-        <pubTime>2017-12-25T06:47:12.000Z</pubTime>
+        <title>在Android中解释服务器数据</title>
+        <pubTime>2018-04-08T07:52:23.000Z</pubTime>
         
-        <tag>android</tag>
-         
          
            
         </display>
@@ -335,6 +318,23 @@
         <display>
         <title>Android的MotionEvent事件分发机制</title>
         <pubTime>2018-01-10T00:41:26.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://zhangsunyucong.top/2017/12/25/android-encryption/</loc>
+    <lastmod>2019-03-24T02:42:31.470Z</lastmod>
+    <data>
+        <display>
+        <title>android和nodejs搭建一个应用</title>
+        <pubTime>2017-12-25T06:47:12.000Z</pubTime>
         
         <tag>android</tag>
          
