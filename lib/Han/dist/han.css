@@ -1104,7 +1104,6 @@ h-ruby.romanization rt,
 ruby [annotation] rt,
 h-ruby [annotation] rt {
   -ms-font-feature-settings: "liga";
-  -webkit-font-feature-settings: "liga";
   font-feature-settings: "liga";
 }
 html,
@@ -1122,7 +1121,6 @@ pre,
 article blockquote i,
 article blockquote var {
   -ms-font-feature-settings: "liga", "locl" 0;
-  -webkit-font-feature-settings: "liga", "locl" 0;
   font-feature-settings: "liga", "locl" 0;
 }
 .no-unicoderange h-char.bd-cop:lang(zh-Hant),

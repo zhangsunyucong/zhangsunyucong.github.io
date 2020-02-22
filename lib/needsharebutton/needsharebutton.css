@@ -31,8 +31,7 @@
 
   font-size: 16px;
   transition: .3s;
-  -webkit-transform: scale(.1);
-          transform: scale(.1);
+  transform: scale(.1);
   text-align: center;
   white-space: normal;
 
@@ -43,9 +42,7 @@
 }
 .need-share-button-opened .need-share-button_dropdown {
   visibility: visible;
-
-  -webkit-transform: scale(1);
-          transform: scale(1);
+  transform: scale(1);
 
   opacity: 1;
 }
