@@ -6,7 +6,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -135,13 +135,13 @@
 <meta property="og:site_name" content="长孙雨聪--七星上将">
 <meta property="og:description" content="开篇之前从矩阵的角度分析了平移，旋转，缩放，对称的变换，文章在从矩阵来看Android中的一些动画变换。 在android中，图片的对象主要是bitmap，它是由点阵和颜色值组成的。1、点阵是一个图片宽*图片高的矩阵，矩阵中的每一个元素对应着图片的一个像素。根据点阵可以计算出图片占用的内存大小。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/android_color_matrix.png">
-<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/android_color_matrix_methods.png">
-<meta property="og:updated_time" content="2019-03-24T02:42:31.469Z">
+<meta property="og:image" content="http://lc-2YPqqc43.cn-n1.lcfile.com/b06767699e9203117a1f/color_matrix_1.webp">
+<meta property="og:image" content="http://lc-2YPqqc43.cn-n1.lcfile.com/5a5e614c6e9b8f62fc98/color_matrix_2.webp">
+<meta property="og:updated_time" content="2020-02-22T12:07:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从矩阵来看颜色变换">
 <meta name="twitter:description" content="开篇之前从矩阵的角度分析了平移，旋转，缩放，对称的变换，文章在从矩阵来看Android中的一些动画变换。 在android中，图片的对象主要是bitmap，它是由点阵和颜色值组成的。1、点阵是一个图片宽*图片高的矩阵，矩阵中的每一个元素对应着图片的一个像素。根据点阵可以计算出图片占用的内存大小。">
-<meta name="twitter:image" content="http://o8bym0zmt.bkt.clouddn.com/android_color_matrix.png">
+<meta name="twitter:image" content="http://lc-2YPqqc43.cn-n1.lcfile.com/b06767699e9203117a1f/color_matrix_1.webp">
 
 
 
@@ -403,8 +403,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-24T10:42:31+08:00">
-                2019-03-24
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-22T20:07:56+08:00">
+                2020-02-22
               </time>
             
           </span>
@@ -412,6 +412,17 @@
           
 
           
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/04/18/android-color-matrix/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/04/18/android-color-matrix/" itemprop="commentsCount"></span>
+                </a>
+              
             
           
 
@@ -473,7 +484,7 @@
 
           
 
-        </div>
+        </span></div>
       </header>
     
 
@@ -498,10 +509,10 @@
 <p>ARGB_4444，是图片的透明度、R、G、B的每个颜色值占4bit，可以表示16x16x16种颜色，相对ARGB_8888，它节省了空间，却失去了很多色彩。</p>
 <p>RGB_565，它只有R、G、B三个颜色通道，没有透明度通道，可以表达32x64x32种颜色。</p>
 <p>四个颜色通道是由一个4x5的变换矩阵控制的。</p>
-<h3 id="颜色矩阵变换"><a href="#颜色矩阵变换" class="headerlink" title="颜色矩阵变换"></a>颜色矩阵变换</h3><p><img src="http://o8bym0zmt.bkt.clouddn.com/android_color_matrix.png" alt="推导"></p>
+<h3 id="颜色矩阵变换"><a href="#颜色矩阵变换" class="headerlink" title="颜色矩阵变换"></a>颜色矩阵变换</h3><p><img src="http://lc-2YPqqc43.cn-n1.lcfile.com/b06767699e9203117a1f/color_matrix_1.webp" alt="推导"></p>
 <p>所以，可以知道，红色通道由第一行控制。<br>绿色通道由第二行控制。<br>蓝色通道由第三行控制。<br>透明度通道由第四行控制。<br>另外的，第五列是每个通道的偏移量。注意倍数和相加的影响，每个通道最后的值不应该大于256.</p>
 <p>在android中，有一个和颜色矩阵相关的android.graphics.Matrix类，该类中有与颜色变换相关的方法。</p>
-<p><img src="http://o8bym0zmt.bkt.clouddn.com/android_color_matrix_methods.png" alt="方法"></p>
+<p><img src="http://lc-2YPqqc43.cn-n1.lcfile.com/5a5e614c6e9b8f62fc98/color_matrix_2.webp" alt="方法"></p>
 <p>关于Matrix方法的使用这里就不详细讲了。</p>
 <p>实例：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public static Bitmap testBitmap(Bitmap bitmap)</span><br><span class="line">&#123;</span><br><span class="line">       Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),</span><br><span class="line">               bitmap.getHeight(), Config.RGB_565);</span><br><span class="line"></span><br><span class="line">       Canvas canvas = new Canvas(output);</span><br><span class="line"></span><br><span class="line">       Paint paint = new Paint();        </span><br><span class="line">       ColorMatrix cm = new ColorMatrix();</span><br><span class="line">       float[] array = &#123;1,0,0,0,100,</span><br><span class="line">               0,1,0,0,100,</span><br><span class="line">               0,0,1,0,0,</span><br><span class="line">               0,0,0,1,0&#125;;</span><br><span class="line">       cm.set(array);</span><br><span class="line">       paint.setColorFilter(new ColorMatrixColorFilter(cm));</span><br><span class="line"></span><br><span class="line">       canvas.drawBitmap(bitmap, 0, 0, paint);</span><br><span class="line">       return output;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
@@ -907,20 +918,11 @@ show_date_time();
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">长孙雨聪--七星上将</span>
-  
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
-    </span>
-    
-      <span class="post-meta-item-text">Site words total count&#58;</span>
-    
-    <span title="Site words total count">42.7k</span>
   
 </div>
 
@@ -1101,6 +1103,21 @@ Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pag
 
 
 
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytlJYAPJ';
+      var conf = '72c4d5b62ad9725c5f533c23a6f1097e';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
 
 
 
@@ -1598,7 +1615,7 @@ Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pag
 
 
   
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>
 <!-- 页面点击小红心 -->
 <script type="text/javascript" src="/js/src/love.js"></script>
