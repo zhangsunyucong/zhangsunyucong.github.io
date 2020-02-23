@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://zhangsunyucong.top/2018/02/06/android-simple-draw-and-path/</loc>
+    <loc>http://zhangsunyucong.top/2018/01/18/android-wave-view/</loc>
     
-    <lastmod>2020-02-22T13:40:13.063Z</lastmod>
+    <lastmod>2020-02-23T05:09:39.885Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhangsunyucong.top/2018/01/18/android-wave-view/</loc>
+    <loc>http://zhangsunyucong.top/2018/02/02/node-async-promise/</loc>
     
-    <lastmod>2020-02-22T13:18:59.181Z</lastmod>
+    <lastmod>2020-02-23T04:49:51.341Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangsunyucong.top/2018/02/06/android-simple-draw-and-path/</loc>
+    
+    <lastmod>2020-02-22T13:40:13.063Z</lastmod>
     
   </url>
   
@@ -96,13 +103,6 @@
     <loc>http://zhangsunyucong.top/about/index.html</loc>
     
     <lastmod>2020-02-22T09:42:52.726Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://zhangsunyucong.top/2018/02/02/node-async-promise/</loc>
-    
-    <lastmod>2020-02-22T09:42:52.725Z</lastmod>
     
   </url>
   
