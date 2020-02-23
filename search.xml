@@ -1128,35 +1128,4 @@
         <tag>tensorflow</tag>
       </tags>
   </entry>
-  <entry>
-    <title>第一篇博客</title>
-    <url>/2017/11/24/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><p>我想了许久，我建立个人博客网站，第一篇文章应该写什么呢？<br>自从毕业以来，我很久没有写过记录的文章了，加上自己的写作能力，呵呵<br>我是一个在空闲时，总是善于回忆的人。所以我决定将一首高三时对我有深刻影响的词作为博客的第一篇文章。<br><a id="more"></a></p>
-<p>这首词，在我高三最迷茫自暴自弃的时候，让我重新找到努力的力量，我还可以忘记以前的一切，可以重新开始。无论你之前是如何的失败和消沉，如果你有不计自己的损失，还可以让你的心和脑再次专注，只要坚持挺住，那结果必有回响。</p>
-<blockquote>
-</blockquote>
-<p>如果你能倾毕生心血,<br>去冒险进行孤注一掷.<br>失败后一切从头再来,<br>而绝口不提你的损失.<br>如果你曾经消沉许多,<br>还能使你的心脑重又专注.<br>坚持哪怕你一无所有,<br>惟剩一种意志在命令,挺住!</p>
-<p>此词<br>    与大家共勉</p>
-<div id="aplayer0" class="aplayer" style="margin-bottom: 20px;"></div>
-		<script>
-			var ap = new APlayer({
-				element: document.getElementById("aplayer0"),
-				narrow: false,
-				autoplay: false,
-				showlrc: 0,
-				music: {
-					title: "够钟",
-					author: "周柏豪",
-					url: "http://o8bym0zmt.bkt.clouddn.com/%E5%91%A8%E6%9F%8F%E8%B1%AA%20-%20%E5%A4%9F%E9%92%9F.mp3",
-					pic: "",
-				}
-			});
-			window.aplayers || (window.aplayers = []);
-			window.aplayers.push(ap);
-		</script>
-]]></content>
-      <tags>
-        <tag>生活</tag>
-      </tags>
-  </entry>
 </search>
