@@ -1,182 +1,48 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
+<html lang="zh-CN">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#222">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
 
-	<meta name="baidu-site-verification" content="IwHYiEzBBM">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
+<link rel="stylesheet" href="/css/main.css">
 
 
-  
-  
-    
-    
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhangsunyucong.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-  <script>
-  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
-  daovoice('init', {
-      app_id: "fe66c712"
-    });
-  daovoice('update');
-  </script>
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-  <meta name="baidu-site-verification" content="true">
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="android,">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="长孙雨聪--七星上将" type="application/atom+xml">
-
-
-
-
-
-
-<meta name="description" content="前言 Android中的消息机制是指线程之间的通信机制。我们都知道，如果我们在UI主线程中做耗时的操作而无法及时处理时，程序会弹出ANR全名Application Not Responding, 也就是”应用无响应”的对话框。  首先来一张图，从整体上来看一下android消息机制。   Handler：用于发送消息和处理消息MessageQueue: 一个先进先出的消息队列Looper：循环者">
-<meta name="keywords" content="android">
+    <meta name="description" content="前言 Android中的消息机制是指线程之间的通信机制。我们都知道，如果我们在UI主线程中做耗时的操作而无法及时处理时，程序会弹出ANR全名Application Not Responding, 也就是”应用无响应”的对话框。  首先来一张图，从整体上来看一下android消息机制。   Handler：用于发送消息和处理消息MessageQueue: 一个先进先出的消息队列Looper：循环者">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android中的消息机制">
 <meta property="og:url" content="http://zhangsunyucong.top/2018/02/01/android-handler/index.html">
 <meta property="og:site_name" content="长孙雨聪--七星上将">
 <meta property="og:description" content="前言 Android中的消息机制是指线程之间的通信机制。我们都知道，如果我们在UI主线程中做耗时的操作而无法及时处理时，程序会弹出ANR全名Application Not Responding, 也就是”应用无响应”的对话框。  首先来一张图，从整体上来看一下android消息机制。   Handler：用于发送消息和处理消息MessageQueue: 一个先进先出的消息队列Looper：循环者">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://lc-2YPqqc43.cn-n1.lcfile.com/510f83afb499ea0ae228/%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6.webp">
-<meta property="og:updated_time" content="2020-02-22T12:12:11.014Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://lc-2ypqqc43.cn-n1.lcfile.com/510f83afb499ea0ae228/%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6.webp">
+<meta property="article:published_time" content="2018-02-01T00:36:36.000Z">
+<meta property="article:modified_time" content="2020-02-22T12:12:12.000Z">
+<meta property="article:author" content="长孙雨聪--七星上将">
+<meta property="article:tag" content="android">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android中的消息机制">
-<meta name="twitter:description" content="前言 Android中的消息机制是指线程之间的通信机制。我们都知道，如果我们在UI主线程中做耗时的操作而无法及时处理时，程序会弹出ANR全名Application Not Responding, 也就是”应用无响应”的对话框。  首先来一张图，从整体上来看一下android消息机制。   Handler：用于发送消息和处理消息MessageQueue: 一个先进先出的消息队列Looper：循环者">
-<meta name="twitter:image" content="http://lc-2YPqqc43.cn-n1.lcfile.com/510f83afb499ea0ae228/%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6.webp">
+<meta name="twitter:image" content="http://lc-2ypqqc43.cn-n1.lcfile.com/510f83afb499ea0ae228/%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6.webp">
+
+
+<link rel="canonical" href="http://zhangsunyucong.top/2018/02/01/android-handler/">
 
 
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '5.1.3',
-    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://zhangsunyucong.top/2018/02/01/android-handler/","path":"2018/02/01/android-handler/","title":"Android中的消息机制"}</script>
 
-
-
-  <link rel="canonical" href="http://zhangsunyucong.top/2018/02/01/android-handler/">
-
-
-
-
-
-  <title>Android中的消息机制 | 长孙雨聪--七星上将</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Android中的消息机制 | 长孙雨聪--七星上将</title>
   
 
 
@@ -186,688 +52,125 @@
 
 
 
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="长孙雨聪--七星上将" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-	
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">长孙雨聪--七星上将</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <h1 class="site-subtitle" itemprop="description">相信现在是因为相信未来</h1>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">长孙雨聪--七星上将</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">相信现在是因为相信未来</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
   </div>
 </div>
+
+
 
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-music">
-          <a href="/music/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-music"></i> <br>
-            
-            音乐
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-github">
-          <a href="https://github.com/zhangsunyucong?tab=repositories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-github"></i> <br>
-            
-            Github
-          </a>
-        </li>
-      
-
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
-            
-            搜索
-          </a>
-        </li>
-      
-    </ul>
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-music"><a href="/music/" rel="section"><i class="music fa-fw"></i>音乐</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-github"><a href="https://github.com/zhangsunyucong?tab=repositories" rel="section" target="_blank"><i class="github fa-fw"></i>Github</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
 </nav>
 
 
 
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-  
-     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2018/02/01/android-handler/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="长孙雨聪--七星上将">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/myphoto.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="长孙雨聪--七星上将">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">Android中的消息机制</h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T08:36:36+08:00">
-                2018-02-01
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-02-22T20:12:11+08:00">
-                2020-02-22
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/02/01/android-handler/" class="leancloud_visitors" data-flag-title="Android中的消息机制">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,647字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  8分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <script src="\assets\js\APlayer.min.js"> </script><hr>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p> Android中的消息机制是指线程之间的通信机制。我们都知道，如果我们在UI主线程中做耗时的操作而无法及时处理时，程序会弹出ANR全名Application Not Responding, 也就是”应用无响应”的对话框。</p>
-<p> 首先来一张图，从整体上来看一下android消息机制。</p>
-<p> <img src="http://lc-2YPqqc43.cn-n1.lcfile.com/510f83afb499ea0ae228/%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6.webp" alt="view继承关系"></p>
-<p>Handler：用于发送消息和处理消息<br>MessageQueue: 一个先进先出的消息队列<br>Looper：循环者，它不断的循环的遍历查询消息队列</p>
- <a id="more"></a>
-<p>Looper中会创建一个消息队列，并进入消息循环，不断的从消息队列中取出消息，然后分发消息给对应的消息处理函数，如果消息队列为空，它会进入阻塞等待，直到有新的消息到来，然后被唤醒。</p>
-<h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><h4 id="Looper"><a href="#Looper" class="headerlink" title="Looper"></a>Looper</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> private static void prepare(boolean quitAllowed) &#123;</span><br><span class="line">    if (sThreadLocal.get() != null) &#123;</span><br><span class="line">        throw new RuntimeException(&quot;Only one Looper may be created per thread&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    sThreadLocal.set(new Looper(quitAllowed));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这就是Looper的创建函数，它创建了一个Looper实例并放到ThreadLocal中。<br>ThreadLocal是一个线程共享和线程安全的，ThreadLocal变量在不同的线程中有不同的副本。</p>
-<p>这里，首先检查线程是否有Looper，如果已经有，就报”Only one Looper may be created per thread”异常。也就是说一个线程只能有一个Looper，不能重复创建。</p>
-<p>进入Looper的构造函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">private Looper(boolean quitAllowed) &#123;</span><br><span class="line">    mQueue = new MessageQueue(quitAllowed);</span><br><span class="line">    mThread = Thread.currentThread();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Looper的构造函数中主要是创建了一个消息队列，和赋值当前线程变量。</p>
-<p>开启消息循环</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">public static void loop() &#123;</span><br><span class="line">    //取出循环者</span><br><span class="line">    final Looper me = myLooper();</span><br><span class="line">    //开始循环之前，必须先创建循环者</span><br><span class="line">    if (me == null) &#123;</span><br><span class="line">        throw new RuntimeException(&quot;No Looper; Looper.prepare() wasn&apos;t called on this thread.&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    //从循环者中取出消息队列</span><br><span class="line">    final MessageQueue queue = me.mQueue;</span><br><span class="line"></span><br><span class="line">    // Make sure the identity of this thread is that of the local process,</span><br><span class="line">    // and keep track of what that identity token actually is.</span><br><span class="line">    Binder.clearCallingIdentity();</span><br><span class="line">    final long ident = Binder.clearCallingIdentity();</span><br><span class="line">    //进入循环，不断的从消息队列中取出消息，如果没有消息会进入阻塞状态</span><br><span class="line">    for (;;) &#123;</span><br><span class="line">        Message msg = queue.next(); // might block</span><br><span class="line">        if (msg == null) &#123;</span><br><span class="line">            // No message indicates that the message queue is quitting.</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // This must be in a local variable, in case a UI event sets the logger</span><br><span class="line">        final Printer logging = me.mLogging;</span><br><span class="line">        if (logging != null) &#123;</span><br><span class="line">            logging.println(&quot;&gt;&gt;&gt;&gt;&gt; Dispatching to &quot; + msg.target + &quot; &quot; +</span><br><span class="line">                    msg.callback + &quot;: &quot; + msg.what);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        final long slowDispatchThresholdMs = me.mSlowDispatchThresholdMs;</span><br><span class="line"></span><br><span class="line">        final long traceTag = me.mTraceTag;</span><br><span class="line">        if (traceTag != 0 &amp;&amp; Trace.isTagEnabled(traceTag)) &#123;</span><br><span class="line">            Trace.traceBegin(traceTag, msg.target.getTraceName(msg));</span><br><span class="line">        &#125;</span><br><span class="line">        final long start = (slowDispatchThresholdMs == 0) ? 0 : SystemClock.uptimeMillis();</span><br><span class="line">        final long end;</span><br><span class="line">        try &#123;</span><br><span class="line">            //将消息分发给对应的handler处理</span><br><span class="line">            msg.target.dispatchMessage(msg);</span><br><span class="line">            end = (slowDispatchThresholdMs == 0) ? 0 : SystemClock.uptimeMillis();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            if (traceTag != 0) &#123;</span><br><span class="line">                Trace.traceEnd(traceTag);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (slowDispatchThresholdMs &gt; 0) &#123;</span><br><span class="line">            final long time = end - start;</span><br><span class="line">            if (time &gt; slowDispatchThresholdMs) &#123;</span><br><span class="line">                Slog.w(TAG, &quot;Dispatch took &quot; + time + &quot;ms on &quot;</span><br><span class="line">                        + Thread.currentThread().getName() + &quot;, h=&quot; +</span><br><span class="line">                        msg.target + &quot; cb=&quot; + msg.callback + &quot; msg=&quot; + msg.what);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (logging != null) &#123;</span><br><span class="line">            logging.println(&quot;&lt;&lt;&lt;&lt;&lt; Finished to &quot; + msg.target + &quot; &quot; + msg.callback);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // Make sure that during the course of dispatching the</span><br><span class="line">        // identity of the thread wasn&apos;t corrupted.</span><br><span class="line">        final long newIdent = Binder.clearCallingIdentity();</span><br><span class="line">        if (ident != newIdent) &#123;</span><br><span class="line">            Log.wtf(TAG, &quot;Thread identity changed from 0x&quot;</span><br><span class="line">                    + Long.toHexString(ident) + &quot; to 0x&quot;</span><br><span class="line">                    + Long.toHexString(newIdent) + &quot; while dispatching to &quot;</span><br><span class="line">                    + msg.target.getClass().getName() + &quot; &quot;</span><br><span class="line">                    + msg.callback + &quot; what=&quot; + msg.what);</span><br><span class="line">        &#125;</span><br><span class="line">        //释放资源</span><br><span class="line">        msg.recycleUnchecked();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Looper#loop方法的工作，在代码中已经进行注释说明。</p>
-<p>Looper#loop中会将消息分发给对应的handler处理。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msg.target.dispatchMessage(msg);</span><br></pre></td></tr></table></figure>
-<p>现在我们进入handler。</p>
-<h4 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Handler handler = new Handler(Looper.myLooper());</span><br></pre></td></tr></table></figure>
-<p>首先看Handler的构造函数，可以知道Handler是怎么和Looper取得关联的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public Handler(Looper looper, Callback callback, boolean async) </span><br><span class="line">&#123;</span><br><span class="line">    mLooper = looper;</span><br><span class="line">    mQueue = looper.mQueue;</span><br><span class="line">    mCallback = callback;</span><br><span class="line">    mAsynchronous = async;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>主要为Handler的四个变量赋值，其中确定了Handler是和哪一个Looper关联，和Handler发送消息到对应的哪个消息队列。可以知道，一个Handler只有一个Looper和对应的MessageQueue。而不同的Handler可以共享同一个Looper和MessageQueue，这就看你在初始化Handler时与哪个Looper关联了。</p>
-<p>Handler无参数的构造函数是和哪个Looper关联呢？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public Handler() &#123;</span><br><span class="line">    this(null, false);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public Handler(Callback callback, boolean async) &#123;</span><br><span class="line">    if (FIND_POTENTIAL_LEAKS) &#123;</span><br><span class="line">        final Class&lt;? extends Handler&gt; klass = getClass();</span><br><span class="line">        if ((klass.isAnonymousClass() || klass.isMemberClass() || klass.isLocalClass()) &amp;&amp;</span><br><span class="line">                (klass.getModifiers() &amp; Modifier.STATIC) == 0) &#123;</span><br><span class="line">            Log.w(TAG, &quot;The following Handler class should be static or leaks might occur: &quot; +</span><br><span class="line">                klass.getCanonicalName());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //取出当前线程的循环者</span><br><span class="line">    mLooper = Looper.myLooper();</span><br><span class="line">    if (mLooper == null) &#123;</span><br><span class="line">        throw new RuntimeException(</span><br><span class="line">            &quot;Can&apos;t create handler inside thread that has not called Looper.prepare()&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    mQueue = mLooper.mQueue;</span><br><span class="line">    mCallback = callback;</span><br><span class="line">    mAsynchronous = async;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Handler无参数的构造函数仍然主要是为那四个变量赋值。它会首先取出当前线程的消息循环者，如果线程没有循环者，会报一个异常。</p>
-<p>发送消息到循环队列</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public final boolean sendMessage(Message msg)</span><br><span class="line">&#123;</span><br><span class="line">    return sendMessageDelayed(msg, 0);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">public final boolean sendMessageDelayed(Message msg, long delayMillis)</span><br><span class="line">&#123;</span><br><span class="line">    if (delayMillis &lt; 0) &#123;</span><br><span class="line">        delayMillis = 0;</span><br><span class="line">    &#125;</span><br><span class="line">    return sendMessageAtTime(msg, SystemClock.uptimeMillis() + delayMillis);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">public boolean sendMessageAtTime(Message msg, long uptimeMillis) &#123;</span><br><span class="line">    MessageQueue queue = mQueue;</span><br><span class="line">    if (queue == null) &#123;</span><br><span class="line">        RuntimeException e = new RuntimeException(</span><br><span class="line">            this + &quot; sendMessageAtTime() called with no mQueue&quot;);</span><br><span class="line">        Log.w(&quot;Looper&quot;, e.getMessage(), e);</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    return enqueueMessage(queue, msg, uptimeMillis);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>sendMessage中会调用sendMessageDelayed，sendMessageDelayed再调用sendMessageAtTime，最后会调用enqueueMessage将消息入队。post开头的方法是调用相应send开头的方法的。</p>
-<p>进入Handler#enqueueMessage<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private boolean enqueueMessage(MessageQueue queue, Message msg, long uptimeMillis) &#123;</span><br><span class="line">    msg.target = this;</span><br><span class="line">    if (mAsynchronous) &#123;</span><br><span class="line">        msg.setAsynchronous(true);</span><br><span class="line">    &#125;</span><br><span class="line">    return queue.enqueueMessage(msg, uptimeMillis);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在分析Looper#loop时，其中有将消息的分发给相应的Handler处理的逻辑，而正是在第2行代码时，它们取得联系的。然后将消息放入Handler关联的Looper中的消息队列。</p>
-<p>在MessageQueue#enqueueMessage中，消息入队时，如果消息队列是阻塞休眠状态，会唤醒消息队列。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if (p == null || when == 0 || when &lt; p.when) &#123;</span><br><span class="line">    // New head, wake up the event queue if blocked.</span><br><span class="line">    msg.next = p;</span><br><span class="line">    mMessages = msg;</span><br><span class="line">    needWake = mBlocked;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在Looper#loop中，会将消息分发给对应的Handler处理函数dispatchMessage处理</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msg.target.dispatchMessage(msg);</span><br></pre></td></tr></table></figure>
-<p>进入Handler#dispatchMessage</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public void dispatchMessage(Message msg) &#123;</span><br><span class="line">    if (msg.callback != null) &#123;</span><br><span class="line">        handleCallback(msg);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        if (mCallback != null) &#123;</span><br><span class="line">            if (mCallback.handleMessage(msg)) &#123;</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        handleMessage(msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>java.lang.Callback<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Runnable &#123;</span><br><span class="line">    public abstract void run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>Handler#Callback<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Callback &#123;</span><br><span class="line">    public boolean handleMessage(Message msg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>优先调用Message的callback接口，如果Handler有Callback，调用Callback，否则会调用handleMessage方法。</p>
-<p>Handler#handleMessage</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public void handleMessage(Message msg) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这是一个空方法，具体的消息逻辑由我们自己定义。</p>
-<p>到此，这个流程已经解释完毕</p>
-<h3 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h3><p>在非UI线程中只要找好时机也是可以更新UI的。这个会在源码再分析。</p>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-	  
-		<!--MOB SHARE BEGIN-->
- <button id="rewardButton" class="-mob-share-open" style="margin-right:5px;">
-    <span>分享</span>
-  </button>
-<div class="-mob-share-ui" style="display: none">
-    <ul class="-mob-share-list">
-        <li class="-mob-share-weibo"><p>新浪微博</p></li>
-            <li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
-            <li class="-mob-share-qzone"><p>QQ空间</p></li>
-            <li class="-mob-share-qq"><p>QQ好友</p></li>
-            <li class="-mob-share-weixin"><p>微信</p></li>
-            <li class="-mob-share-douban"><p>豆瓣</p></li>
-            <li class="-mob-share-renren"><p>人人网</p></li>
-            <li class="-mob-share-kaixin"><p>开心网</p></li>
-            <li class="-mob-share-facebook"><p>Facebook</p></li>
-            <li class="-mob-share-twitter"><p>Twitter</p></li>
-            <li class="-mob-share-pocket"><p>Pocket</p></li>
-            <li class="-mob-share-google"><p>Google+</p></li>
-            <li class="-mob-share-youdao"><p>有道云笔记</p></li>
-    </ul>
-    <div class="-mob-share-close">取消</div>
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
 </div>
-<div class="-mob-share-ui-bg"></div>
-<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=230df6a994c78"></script>
-<!--MOB SHARE END-->
-      
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  
-  
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.png" alt="长孙雨聪--七星上将 微信支付">
-        <p>微信支付</p>
-      </div>
-    
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.png" alt="长孙雨聪--七星上将 支付宝">
-        <p>支付宝</p>
-      </div>
-    
-
-    
-
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
   </div>
 </div>
 
-      </div>
-    
-	
-	<div>
-	  
-		<div>
-    
-        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
-    
-</div>
-	  
-	</div>
-
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    长孙雨聪--七星上将
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://zhangsunyucong.top/2018/02/01/android-handler/" title="Android中的消息机制">http://zhangsunyucong.top/2018/02/01/android-handler/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-
-      </div>
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/android/" rel="tag"><i class="fa fa-tag"></i> android</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/01/31/android-activity-start-up/" rel="next" title="Android中Activity的启动流程">
-                <i class="fa fa-chevron-left"></i> Android中Activity的启动流程
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/02/node-async-promise/" rel="prev" title="初始Promise/A+规范">
-                初始Promise/A+规范 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-  
-	  
-	  
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
-      <div id="SOHUCS"></div>
     </div>
+  </div>
 
-  
-
-
-
-        </div>
+</header>
         
-          
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
+  <aside class="sidebar">
 
-  <aside id="sidebar" class="sidebar">
-    
-      <div id="sidebar-dimmer"></div>
-    
-    <div class="sidebar-inner">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
 
-      
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Looper"><span class="nav-number">2.1.</span> <span class="nav-text">Looper</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Handler"><span class="nav-number">2.2.</span> <span class="nav-text">Handler</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E8%AF%9D"><span class="nav-number">3.</span> <span class="nav-text">后话</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">长孙雨聪--七星上将</p>
+  <div class="site-description" itemprop="description">广西科技大学，Android工程师一枚。</div>
+  
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+         
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-			<a href="/" class="site-author-image" rel="start" style="border:none">
-              <img class="site-author-image" itemprop="image" src="/images/myphoto.jpg" alt="长孙雨聪--七星上将">
-			</a>	
-            
-              <p class="site-author-name" itemprop="name">长孙雨聪--七星上将</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">24</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
-
-          <div class="links-of-author motion-element">
-            
-              
-                <span class="links-of-author-item">
-                  <a href="https://github.com/zhangsunyucong?tab=repositories" target="_blank" title="GitHub">
-                    
-                      <i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="mailto:969887864@qq.com" target="_blank" title="E-Mail">
-                    
-                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                </span>
-              
-            
-          </div>
-
-          
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                友情链接
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.wanandroid.com/" title="鸿洋_" target="_blank">鸿洋_</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.gcssloop.com/" title="机动车" target="_blank">机动车</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://litten.me/" title="Litten" target="_blank">Litten</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://luuman.github.io" title="luuman" target="_blank">luuman</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.barretlee.com" title="小胡子哥" target="_blank">小胡子哥</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://blog.halyul.cc" title="halyul" target="_blank">halyul</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://blog.csdn.net/mine_song/article/details/64121769" title="剑指" target="_blank">剑指</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.ithmz.com/" title="奶爸大哥" target="_blank">奶爸大哥</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.ruanyifeng.com" title="阮一峰" target="_blank">阮一峰</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://0xcc0xcd.com" title="老罗" target="_blank">老罗</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://wangyuquan.net/" title="top2" target="_blank">top2</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://chenghouwen.com" title="程厚文" target="_blank">程厚文</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://hukai.me/" title="胡凯" target="_blank">胡凯</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://job.alibaba.com" title="阿里社招" target="_blank">阿里社招</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://lao.si" title="孙老四" target="_blank">孙老四</a>
-                  </li>
-                
-              </ul>
-			   
-			   <div id="days"></div>
-
+  <div id="days"></div>
+</script>
 <script language="javascript">
 function show_date_time(){
 	window.setTimeout("show_date_time()", 1000);
@@ -896,727 +199,272 @@ function setzero(i){
 show_date_time();
 </script>
 
-			  
-            </div>
-          
+</div>
 
-         
         </div>
-      </section>
+      </div>
+    </div>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://www.wanandroid.com/" title="http:&#x2F;&#x2F;www.wanandroid.com&#x2F;" rel="noopener" target="_blank">鸿洋_</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://www.gcssloop.com/" title="http:&#x2F;&#x2F;www.gcssloop.com&#x2F;" rel="noopener" target="_blank">机动车</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://www.ruanyifeng.com/" title="http:&#x2F;&#x2F;www.ruanyifeng.com" rel="noopener" target="_blank">阮一峰</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://0xcc0xcd.com/" title="http:&#x2F;&#x2F;0xcc0xcd.com" rel="noopener" target="_blank">老罗</a>
+            </li>
+        </ul>
 
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码分析"><span class="nav-number">2.</span> <span class="nav-text">源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Looper"><span class="nav-number">2.1.</span> <span class="nav-text">Looper</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Handler"><span class="nav-number">2.2.</span> <span class="nav-text">Handler</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后话"><span class="nav-number">3.</span> <span class="nav-text">后话</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
+  
+      </div>
     </div>
   </aside>
 
 
-        
-      </div>
-    </main>
+    </div>
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2020</span>
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2018/02/01/android-handler/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="长孙雨聪--七星上将">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="长孙雨聪--七星上将">
+      <meta itemprop="description" content="广西科技大学，Android工程师一枚。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Android中的消息机制 | 长孙雨聪--七星上将">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Android中的消息机制
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-02-01 08:36:36" itemprop="dateCreated datePublished" datetime="2018-02-01T08:36:36+08:00">2018-02-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2020-02-22 20:12:12" itemprop="dateModified" datetime="2020-02-22T20:12:12+08:00">2020-02-22</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <hr>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p> Android中的消息机制是指线程之间的通信机制。我们都知道，如果我们在UI主线程中做耗时的操作而无法及时处理时，程序会弹出ANR全名Application Not Responding, 也就是”应用无响应”的对话框。</p>
+<p> 首先来一张图，从整体上来看一下android消息机制。</p>
+<p> <img src="http://lc-2ypqqc43.cn-n1.lcfile.com/510f83afb499ea0ae228/%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6.webp" alt="view继承关系"></p>
+<p>Handler：用于发送消息和处理消息<br>MessageQueue: 一个先进先出的消息队列<br>Looper：循环者，它不断的循环的遍历查询消息队列</p>
+ <span id="more"></span>
+
+<p>Looper中会创建一个消息队列，并进入消息循环，不断的从消息队列中取出消息，然后分发消息给对应的消息处理函数，如果消息队列为空，它会进入阻塞等待，直到有新的消息到来，然后被唤醒。</p>
+<h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><h4 id="Looper"><a href="#Looper" class="headerlink" title="Looper"></a>Looper</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> private static void prepare(boolean quitAllowed) &#123;</span><br><span class="line">    if (sThreadLocal.get() != null) &#123;</span><br><span class="line">        throw new RuntimeException(&quot;Only one Looper may be created per thread&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    sThreadLocal.set(new Looper(quitAllowed));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这就是Looper的创建函数，它创建了一个Looper实例并放到ThreadLocal中。<br>ThreadLocal是一个线程共享和线程安全的，ThreadLocal变量在不同的线程中有不同的副本。</p>
+<p>这里，首先检查线程是否有Looper，如果已经有，就报”Only one Looper may be created per thread”异常。也就是说一个线程只能有一个Looper，不能重复创建。</p>
+<p>进入Looper的构造函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">private Looper(boolean quitAllowed) &#123;</span><br><span class="line">    mQueue = new MessageQueue(quitAllowed);</span><br><span class="line">    mThread = Thread.currentThread();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Looper的构造函数中主要是创建了一个消息队列，和赋值当前线程变量。</p>
+<p>开启消息循环</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">public static void loop() &#123;</span><br><span class="line">    //取出循环者</span><br><span class="line">    final Looper me = myLooper();</span><br><span class="line">    //开始循环之前，必须先创建循环者</span><br><span class="line">    if (me == null) &#123;</span><br><span class="line">        throw new RuntimeException(&quot;No Looper; Looper.prepare() wasn&#x27;t called on this thread.&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    //从循环者中取出消息队列</span><br><span class="line">    final MessageQueue queue = me.mQueue;</span><br><span class="line"></span><br><span class="line">    // Make sure the identity of this thread is that of the local process,</span><br><span class="line">    // and keep track of what that identity token actually is.</span><br><span class="line">    Binder.clearCallingIdentity();</span><br><span class="line">    final long ident = Binder.clearCallingIdentity();</span><br><span class="line">    //进入循环，不断的从消息队列中取出消息，如果没有消息会进入阻塞状态</span><br><span class="line">    for (;;) &#123;</span><br><span class="line">        Message msg = queue.next(); // might block</span><br><span class="line">        if (msg == null) &#123;</span><br><span class="line">            // No message indicates that the message queue is quitting.</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // This must be in a local variable, in case a UI event sets the logger</span><br><span class="line">        final Printer logging = me.mLogging;</span><br><span class="line">        if (logging != null) &#123;</span><br><span class="line">            logging.println(&quot;&gt;&gt;&gt;&gt;&gt; Dispatching to &quot; + msg.target + &quot; &quot; +</span><br><span class="line">                    msg.callback + &quot;: &quot; + msg.what);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        final long slowDispatchThresholdMs = me.mSlowDispatchThresholdMs;</span><br><span class="line"></span><br><span class="line">        final long traceTag = me.mTraceTag;</span><br><span class="line">        if (traceTag != 0 &amp;&amp; Trace.isTagEnabled(traceTag)) &#123;</span><br><span class="line">            Trace.traceBegin(traceTag, msg.target.getTraceName(msg));</span><br><span class="line">        &#125;</span><br><span class="line">        final long start = (slowDispatchThresholdMs == 0) ? 0 : SystemClock.uptimeMillis();</span><br><span class="line">        final long end;</span><br><span class="line">        try &#123;</span><br><span class="line">            //将消息分发给对应的handler处理</span><br><span class="line">            msg.target.dispatchMessage(msg);</span><br><span class="line">            end = (slowDispatchThresholdMs == 0) ? 0 : SystemClock.uptimeMillis();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            if (traceTag != 0) &#123;</span><br><span class="line">                Trace.traceEnd(traceTag);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (slowDispatchThresholdMs &gt; 0) &#123;</span><br><span class="line">            final long time = end - start;</span><br><span class="line">            if (time &gt; slowDispatchThresholdMs) &#123;</span><br><span class="line">                Slog.w(TAG, &quot;Dispatch took &quot; + time + &quot;ms on &quot;</span><br><span class="line">                        + Thread.currentThread().getName() + &quot;, h=&quot; +</span><br><span class="line">                        msg.target + &quot; cb=&quot; + msg.callback + &quot; msg=&quot; + msg.what);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (logging != null) &#123;</span><br><span class="line">            logging.println(&quot;&lt;&lt;&lt;&lt;&lt; Finished to &quot; + msg.target + &quot; &quot; + msg.callback);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // Make sure that during the course of dispatching the</span><br><span class="line">        // identity of the thread wasn&#x27;t corrupted.</span><br><span class="line">        final long newIdent = Binder.clearCallingIdentity();</span><br><span class="line">        if (ident != newIdent) &#123;</span><br><span class="line">            Log.wtf(TAG, &quot;Thread identity changed from 0x&quot;</span><br><span class="line">                    + Long.toHexString(ident) + &quot; to 0x&quot;</span><br><span class="line">                    + Long.toHexString(newIdent) + &quot; while dispatching to &quot;</span><br><span class="line">                    + msg.target.getClass().getName() + &quot; &quot;</span><br><span class="line">                    + msg.callback + &quot; what=&quot; + msg.what);</span><br><span class="line">        &#125;</span><br><span class="line">        //释放资源</span><br><span class="line">        msg.recycleUnchecked();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Looper#loop方法的工作，在代码中已经进行注释说明。</p>
+<p>Looper#loop中会将消息分发给对应的handler处理。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msg.target.dispatchMessage(msg);</span><br></pre></td></tr></table></figure>
+
+<p>现在我们进入handler。</p>
+<h4 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Handler handler = new Handler(Looper.myLooper());</span><br></pre></td></tr></table></figure>
+
+<p>首先看Handler的构造函数，可以知道Handler是怎么和Looper取得关联的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public Handler(Looper looper, Callback callback, boolean async) </span><br><span class="line">&#123;</span><br><span class="line">    mLooper = looper;</span><br><span class="line">    mQueue = looper.mQueue;</span><br><span class="line">    mCallback = callback;</span><br><span class="line">    mAsynchronous = async;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>主要为Handler的四个变量赋值，其中确定了Handler是和哪一个Looper关联，和Handler发送消息到对应的哪个消息队列。可以知道，一个Handler只有一个Looper和对应的MessageQueue。而不同的Handler可以共享同一个Looper和MessageQueue，这就看你在初始化Handler时与哪个Looper关联了。</p>
+<p>Handler无参数的构造函数是和哪个Looper关联呢？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public Handler() &#123;</span><br><span class="line">    this(null, false);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public Handler(Callback callback, boolean async) &#123;</span><br><span class="line">    if (FIND_POTENTIAL_LEAKS) &#123;</span><br><span class="line">        final Class&lt;? extends Handler&gt; klass = getClass();</span><br><span class="line">        if ((klass.isAnonymousClass() || klass.isMemberClass() || klass.isLocalClass()) &amp;&amp;</span><br><span class="line">                (klass.getModifiers() &amp; Modifier.STATIC) == 0) &#123;</span><br><span class="line">            Log.w(TAG, &quot;The following Handler class should be static or leaks might occur: &quot; +</span><br><span class="line">                klass.getCanonicalName());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //取出当前线程的循环者</span><br><span class="line">    mLooper = Looper.myLooper();</span><br><span class="line">    if (mLooper == null) &#123;</span><br><span class="line">        throw new RuntimeException(</span><br><span class="line">            &quot;Can&#x27;t create handler inside thread that has not called Looper.prepare()&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    mQueue = mLooper.mQueue;</span><br><span class="line">    mCallback = callback;</span><br><span class="line">    mAsynchronous = async;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Handler无参数的构造函数仍然主要是为那四个变量赋值。它会首先取出当前线程的消息循环者，如果线程没有循环者，会报一个异常。</p>
+<p>发送消息到循环队列</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public final boolean sendMessage(Message msg)</span><br><span class="line">&#123;</span><br><span class="line">    return sendMessageDelayed(msg, 0);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">public final boolean sendMessageDelayed(Message msg, long delayMillis)</span><br><span class="line">&#123;</span><br><span class="line">    if (delayMillis &lt; 0) &#123;</span><br><span class="line">        delayMillis = 0;</span><br><span class="line">    &#125;</span><br><span class="line">    return sendMessageAtTime(msg, SystemClock.uptimeMillis() + delayMillis);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">public boolean sendMessageAtTime(Message msg, long uptimeMillis) &#123;</span><br><span class="line">    MessageQueue queue = mQueue;</span><br><span class="line">    if (queue == null) &#123;</span><br><span class="line">        RuntimeException e = new RuntimeException(</span><br><span class="line">            this + &quot; sendMessageAtTime() called with no mQueue&quot;);</span><br><span class="line">        Log.w(&quot;Looper&quot;, e.getMessage(), e);</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    return enqueueMessage(queue, msg, uptimeMillis);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>sendMessage中会调用sendMessageDelayed，sendMessageDelayed再调用sendMessageAtTime，最后会调用enqueueMessage将消息入队。post开头的方法是调用相应send开头的方法的。</p>
+<p>进入Handler#enqueueMessage</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private boolean enqueueMessage(MessageQueue queue, Message msg, long uptimeMillis) &#123;</span><br><span class="line">    msg.target = this;</span><br><span class="line">    if (mAsynchronous) &#123;</span><br><span class="line">        msg.setAsynchronous(true);</span><br><span class="line">    &#125;</span><br><span class="line">    return queue.enqueueMessage(msg, uptimeMillis);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在分析Looper#loop时，其中有将消息的分发给相应的Handler处理的逻辑，而正是在第2行代码时，它们取得联系的。然后将消息放入Handler关联的Looper中的消息队列。</p>
+<p>在MessageQueue#enqueueMessage中，消息入队时，如果消息队列是阻塞休眠状态，会唤醒消息队列。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if (p == null || when == 0 || when &lt; p.when) &#123;</span><br><span class="line">    // New head, wake up the event queue if blocked.</span><br><span class="line">    msg.next = p;</span><br><span class="line">    mMessages = msg;</span><br><span class="line">    needWake = mBlocked;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在Looper#loop中，会将消息分发给对应的Handler处理函数dispatchMessage处理</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msg.target.dispatchMessage(msg);</span><br></pre></td></tr></table></figure>
+
+<p>进入Handler#dispatchMessage</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public void dispatchMessage(Message msg) &#123;</span><br><span class="line">    if (msg.callback != null) &#123;</span><br><span class="line">        handleCallback(msg);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        if (mCallback != null) &#123;</span><br><span class="line">            if (mCallback.handleMessage(msg)) &#123;</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        handleMessage(msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>java.lang.Callback</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Runnable &#123;</span><br><span class="line">    public abstract void run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Handler#Callback</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Callback &#123;</span><br><span class="line">    public boolean handleMessage(Message msg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>优先调用Message的callback接口，如果Handler有Callback，调用Callback，否则会调用handleMessage方法。</p>
+<p>Handler#handleMessage</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public void handleMessage(Message msg) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是一个空方法，具体的消息逻辑由我们自己定义。</p>
+<p>到此，这个流程已经解释完毕</p>
+<h3 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h3><p>在非UI线程中只要找好时机也是可以更新UI的。这个会在源码再分析。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/android/" rel="tag"># android</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/01/31/android-activity-start-up/" rel="prev" title="Android中Activity的启动流程">
+                  <i class="fa fa-chevron-left"></i> Android中Activity的启动流程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/02/02/node-async-promise/" rel="next" title="初始Promise/A+规范">
+                  初始Promise/A+规范 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">长孙雨聪--七星上将</span>
-  
 </div>
-
-Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
-
-
-
-
-        
 <div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv">
-      <i class="fa fa-user"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
     </span>
-  
-
-  
-    <span class="site-pv">
-      <i class="fa fa-eye"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
     </span>
-  
 </div>
 
+    </div>
+  </footer>
 
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
   </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
 
 
 
 
 
   
-  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":"trfalseue","github_id":"zhangsunyucong","repo":null,"client_id":"685353436ce7e2edc4ea","client_secret":"5f01cf660d6953403f0f7d5af0ba4759ce6cea9b","admin_user":null,"distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"839e115c622a763d5c47412138c16771"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
 
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("2YPqqc43cMkbPegNE3Auieo4-gzGzoHsz", "TVVsPYw3swS3SrByLqNtqlAL");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-  
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.3"></script>
-  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.3"></script>
-
-
-  
-  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.3"></script>
-
-
-  
 </body>
 </html>
-<!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/src/love.js"></script>

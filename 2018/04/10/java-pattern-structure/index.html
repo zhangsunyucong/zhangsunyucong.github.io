@@ -1,180 +1,46 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
+<html lang="zh-CN">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#222">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
 
-	<meta name="baidu-site-verification" content="IwHYiEzBBM">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
+<link rel="stylesheet" href="/css/main.css">
 
 
-  
-  
-    
-    
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhangsunyucong.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-  <script>
-  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
-  daovoice('init', {
-      app_id: "fe66c712"
-    });
-  daovoice('update');
-  </script>
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-  <meta name="baidu-site-verification" content="true">
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="java,">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="长孙雨聪--七星上将" type="application/atom+xml">
-
-
-
-
-
-
-<meta name="description" content="前言本篇文章主要讲23种设计模式中的7种结构型设计模式，包括适配器模式，装饰者模式，代理模式，外观模式，桥接模式，组合模式，享元模式。 适配器模式适配器模式是将一个类的方法接口转换成客户端期望的接口表示。我们可以约定，把客户端期望的接口叫做目标Targetable，被转换的类叫source。适配器模式可以分为：类的适配器模式，对象的适配器，接口的适配器。">
-<meta name="keywords" content="java">
+    <meta name="description" content="前言本篇文章主要讲23种设计模式中的7种结构型设计模式，包括适配器模式，装饰者模式，代理模式，外观模式，桥接模式，组合模式，享元模式。 适配器模式适配器模式是将一个类的方法接口转换成客户端期望的接口表示。我们可以约定，把客户端期望的接口叫做目标Targetable，被转换的类叫source。适配器模式可以分为：类的适配器模式，对象的适配器，接口的适配器。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="23种设计模式之结构型设计模式">
 <meta property="og:url" content="http://zhangsunyucong.top/2018/04/10/java-pattern-structure/index.html">
 <meta property="og:site_name" content="长孙雨聪--七星上将">
 <meta property="og:description" content="前言本篇文章主要讲23种设计模式中的7种结构型设计模式，包括适配器模式，装饰者模式，代理模式，外观模式，桥接模式，组合模式，享元模式。 适配器模式适配器模式是将一个类的方法接口转换成客户端期望的接口表示。我们可以约定，把客户端期望的接口叫做目标Targetable，被转换的类叫source。适配器模式可以分为：类的适配器模式，对象的适配器，接口的适配器。">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-22T09:42:52.724Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-04-10T03:00:35.000Z">
+<meta property="article:modified_time" content="2020-02-22T09:42:54.000Z">
+<meta property="article:author" content="长孙雨聪--七星上将">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="23种设计模式之结构型设计模式">
-<meta name="twitter:description" content="前言本篇文章主要讲23种设计模式中的7种结构型设计模式，包括适配器模式，装饰者模式，代理模式，外观模式，桥接模式，组合模式，享元模式。 适配器模式适配器模式是将一个类的方法接口转换成客户端期望的接口表示。我们可以约定，把客户端期望的接口叫做目标Targetable，被转换的类叫source。适配器模式可以分为：类的适配器模式，对象的适配器，接口的适配器。">
+
+
+<link rel="canonical" href="http://zhangsunyucong.top/2018/04/10/java-pattern-structure/">
 
 
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '5.1.3',
-    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://zhangsunyucong.top/2018/04/10/java-pattern-structure/","path":"2018/04/10/java-pattern-structure/","title":"23种设计模式之结构型设计模式"}</script>
 
-
-
-  <link rel="canonical" href="http://zhangsunyucong.top/2018/04/10/java-pattern-structure/">
-
-
-
-
-
-  <title>23种设计模式之结构型设计模式 | 长孙雨聪--七星上将</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>23种设计模式之结构型设计模式 | 长孙雨聪--七星上将</title>
   
 
 
@@ -184,710 +50,125 @@
 
 
 
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="长孙雨聪--七星上将" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-	
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">长孙雨聪--七星上将</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <h1 class="site-subtitle" itemprop="description">相信现在是因为相信未来</h1>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">长孙雨聪--七星上将</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">相信现在是因为相信未来</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
   </div>
 </div>
+
+
 
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-music">
-          <a href="/music/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-music"></i> <br>
-            
-            音乐
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-github">
-          <a href="https://github.com/zhangsunyucong?tab=repositories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-github"></i> <br>
-            
-            Github
-          </a>
-        </li>
-      
-
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
-            
-            搜索
-          </a>
-        </li>
-      
-    </ul>
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-music"><a href="/music/" rel="section"><i class="music fa-fw"></i>音乐</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-github"><a href="https://github.com/zhangsunyucong?tab=repositories" rel="section" target="_blank"><i class="github fa-fw"></i>Github</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
 </nav>
 
 
 
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-  
-     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2018/04/10/java-pattern-structure/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="长孙雨聪--七星上将">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/myphoto.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="长孙雨聪--七星上将">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">23种设计模式之结构型设计模式</h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T11:00:35+08:00">
-                2018-04-10
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-02-22T17:42:52+08:00">
-                2020-02-22
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/04/10/java-pattern-structure/" class="leancloud_visitors" data-flag-title="23种设计模式之结构型设计模式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2,148字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  10分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <script src="\assets\js\APlayer.min.js"> </script><hr>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本篇文章主要讲23种设计模式中的7种结构型设计模式，包括适配器模式，装饰者模式，代理模式，外观模式，桥接模式，组合模式，享元模式。</p>
-<h3 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h3><p>适配器模式是将一个类的方法接口转换成客户端期望的接口表示。我们可以约定，把客户端期望的接口叫做目标Targetable，被转换的类叫source。适配器模式可以分为：类的适配器模式，对象的适配器，接口的适配器。</p>
-<a id="more"></a>
-<h4 id="类的适配器模式"><a href="#类的适配器模式" class="headerlink" title="类的适配器模式"></a>类的适配器模式</h4><p>已有的被转换的类：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class SourceClass &#123;</span><br><span class="line"></span><br><span class="line">    public void method1() &#123;</span><br><span class="line">        System.out.print(&quot;Hi, I am a method in sourceClass&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>期望的目标：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface Targetable &#123;</span><br><span class="line">    void method1();</span><br><span class="line">    void method2();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>实现目标，进行适配</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class AdapterClass extends SourceClass implements Targetable &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void method2() &#123;</span><br><span class="line">        System.out.print(&quot;Hi All, I am a method in adapterClass&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样子就将SourceClass按照意愿Targetable适配转换成了AdapterClass，AdapterClass具有了SourceClass的所有的功能，同时也达到了扩展SourceClass。由于类的适配器模式是通过继承实现的，它具有了继承的优缺点。关于缺点，比如通过AdapterClass对象可以调用属于SourceClass而在Targetable接口中没有的方法。</p>
-<h4 id="对象的适配器模式"><a href="#对象的适配器模式" class="headerlink" title="对象的适配器模式"></a>对象的适配器模式</h4><p>对象的适配器模式，就是将原来类的对象转换为目标接口的对象。对象适配器模式没有继承被转换类，而是持有被转换类的对象。这可以避免继承被带来的副作用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class AdapterObjectClass implements Targetable&#123;</span><br><span class="line"></span><br><span class="line">    private SourceClass mSourceClass;</span><br><span class="line"></span><br><span class="line">    public AdapterObjectClass(SourceClass mSourceClass) &#123;</span><br><span class="line">        this.mSourceClass = mSourceClass;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void method2() &#123;</span><br><span class="line">        System.out.print(&quot;hi all, i am a method in AdapterObjectClass&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void method1() &#123;</span><br><span class="line">        mSourceClass.method1();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="接口的适配器模式"><a href="#接口的适配器模式" class="headerlink" title="接口的适配器模式"></a>接口的适配器模式</h4><p>当一个接口有很多的抽象方法时，当我们写这个接口的实现类，必须实现该接口的全部方法。而有时候接口中并不是所有的抽象方法都是我们必须的，而我们只需要实现其中的某一些方法。为了解决这个问题，我们可以使用接口的适配器模式，引入一个抽象类，这个抽象类提供了接口所有抽象方法的空实现。我们可以继承这个抽象类，并只重写我们需要的方法即可。</p>
-<p>比如，在上面我们只要Targetable的method2方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public abstract class AdapterInterfaceClass implements Targetable&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void method1() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void method2() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class AdapterWraper extends AdapterInterfaceClass &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void method1() &#123;</span><br><span class="line">        System.out.print(&quot;hi all, I am a method in AdapterWraper class&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h3><p>装饰者模式的核心思想是，装饰者和被装饰者实现同一个接口，将被装饰者注入装饰者中，可以在装饰者中扩展被装饰者。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Person &#123;</span><br><span class="line">    void eat();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>被装饰者：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class Man implements Person &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void eat() &#123;</span><br><span class="line">        System.out.print(&quot;There is a man who is eating&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>装饰者：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class ManDecorator implements Person &#123;</span><br><span class="line"></span><br><span class="line">    private Person mPerson;</span><br><span class="line"></span><br><span class="line">    public ManDecorator(Person person) &#123;</span><br><span class="line">        mPerson = person;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void eat() &#123;</span><br><span class="line">        mPerson.eat();</span><br><span class="line">        drinkWater();</span><br><span class="line">        System.out.print(&quot;I finish my lunch&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void drinkWater() &#123;</span><br><span class="line">        System.out.print(&quot;Man is drinking water&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Man man = new Man();</span><br><span class="line">ManDecorator manDecorator = new ManDecorator(man);</span><br><span class="line">manDecorator.eat();</span><br></pre></td></tr></table></figure></p>
-<p>输出的结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">There is a man who is eating</span><br><span class="line">Man is drinking water</span><br><span class="line">I finish my lunch</span><br></pre></td></tr></table></figure>
-<h3 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h3><p>注意区别代理模式和动态代理。</p>
-<p>生活中代理的例子。比如如果你要租房子，你可能不知道该地区的房子信息，这时你可以找一个熟悉的人来帮忙，这个帮你的人就是代理；又比如，打官司时，我们可能并不精通法律知识，这时我们可以找一个代理律师来帮我们。等等。。对于，代理的工作可以抽象为一个接口。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface WorkInterface &#123;</span><br><span class="line">    void rentHouse();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>一个房东：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class LandLady implements WorkInterface &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void rentHouse() &#123;</span><br><span class="line">        System.out.print(&quot;您好！我是房东。我这里有房子出租！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>代理房东的代理类：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class Proxy implements WorkInterface &#123;</span><br><span class="line"></span><br><span class="line">    private LandLady mLandLady;</span><br><span class="line"></span><br><span class="line">    public Proxy() &#123;</span><br><span class="line">        mLandLady = new LandLady();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void rentHouse() &#123;</span><br><span class="line">        mLandLady.rentHouse();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>租客去找代理租房子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WorkInterface proxy = new Proxy();</span><br><span class="line">proxy.rentHouse();</span><br></pre></td></tr></table></figure>
-<h3 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h3><p>在医院里的前台接待员就是一个外观模式的体现。由于病人来到医院可能对医院内部和流程并不熟悉，那么可以由熟悉这些的接待员来帮病人来完成这些事情。</p>
-<p>部门1</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class ModuleA &#123;</span><br><span class="line"></span><br><span class="line">    //提供给外部调用的方法</span><br><span class="line">    public void a1() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    //内部完成工作的实现</span><br><span class="line">    private void a2() &#123;&#125;</span><br><span class="line">    private void a3() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>部门2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class ModuleB &#123;</span><br><span class="line"></span><br><span class="line">    //提供给外部调用的方法</span><br><span class="line">    public void b1() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    //内部完成工作的实现</span><br><span class="line">    private void b2() &#123;&#125;</span><br><span class="line">    private void b3() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>部门3<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class ModuleC &#123;</span><br><span class="line"></span><br><span class="line">    //提供给外部调用的方法</span><br><span class="line">    public void c1() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    //内部完成工作的实现</span><br><span class="line">    private void c2() &#123;&#125;</span><br><span class="line">    private void c3() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>外观类:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class ModuleFacade &#123;</span><br><span class="line"></span><br><span class="line">    private ModuleA mModuleA = new ModuleA();</span><br><span class="line">    private ModuleB mMBModuleB = new ModuleB();</span><br><span class="line">    private ModuleC mMCModuleC = new ModuleC();</span><br><span class="line"></span><br><span class="line">    public void a1() &#123;</span><br><span class="line">        mModuleA.a1();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void b1() &#123;</span><br><span class="line">        mMBModuleB.b1();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void c1() &#123;</span><br><span class="line">        mMCModuleC.c1();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当我们需要ModuleA，ModuleB， ModuleC的功能时，我们并不直接和他们打交道，也不需要了解部门的功能是如何实现的，而我们只需要去找外观类沟通即可。</p>
-<p>外观模式的关键点是整合。</p>
-<h3 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h3><p>桥接模式，提供一个解耦或者连接抽象化和实现化的一个桥梁，使得二者可以独立变化。</p>
-<p>一个接口作为桥，一个抽象类持有桥。桥和抽象类两者可以独立变化。</p>
-<p>桥：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Qiao &#123;</span><br><span class="line">    void toArea();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>抽象类：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public abstract class FromArea &#123;</span><br><span class="line">    public Qiao qiao;</span><br><span class="line">    abstract public void fromArea();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>QiaoC.java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class QiaoC implements Qiao &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void toArea() &#123;</span><br><span class="line">        System.out.print(&quot;I want to go Area C&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>QiaoD.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class QiaoD implements Qiao &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void toArea() &#123;</span><br><span class="line">        System.out.print(&quot;I want to go Area D&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>FromAreaA.java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class FromAreaA extends FromArea &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void fromArea() &#123;</span><br><span class="line">        System.out.print(&quot;I come from area A&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>FromAreaB.java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class FromAreaB extends FromArea &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void fromArea() &#123;</span><br><span class="line">        System.out.print(&quot;I come from area B&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">FromAreaA fromAreaA = new FromAreaA();</span><br><span class="line">QiaoC qiaoC = new QiaoC();</span><br><span class="line">fromAreaA.qiao = qiaoC;</span><br><span class="line"></span><br><span class="line">fromAreaA.fromArea();</span><br><span class="line">fromAreaA.qiao.toArea();</span><br><span class="line"></span><br><span class="line">QiaoD qiaoD = new QiaoD();</span><br><span class="line">fromAreaA.qiao = qiaoD;</span><br><span class="line"></span><br><span class="line">fromAreaA.fromArea();</span><br><span class="line">fromAreaA.qiao.toArea();</span><br></pre></td></tr></table></figure>
-<p>从上面可以看出，Qiao和FromArea两者是独立变化的，它们的抽象和实现是分离的。</p>
-<p>如果有更多的Qiao和FromArea的实现，只要扩展它们即可。</p>
-<h3 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h3><p>组合模式，又叫“整体-部分设计模式”。它一般用于实现树形结构。</p>
-<p>节点</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">public class TreeNode &#123;</span><br><span class="line"></span><br><span class="line">    private String name;</span><br><span class="line">    private TreeNode parent;</span><br><span class="line">    private Vector&lt;TreeNode&gt; children = new Vector&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    public TreeNode(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setParent(TreeNode parent) &#123;</span><br><span class="line">        this.parent = parent;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public TreeNode getParent() &#123;</span><br><span class="line">        return parent;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void addChild(TreeNode child) &#123;</span><br><span class="line">        children.add(child);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean removeChild(TreeNode child) &#123;</span><br><span class="line">        return children.remove(child);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Enumeration&lt;TreeNode&gt; getChildren() &#123;</span><br><span class="line">        return children.elements();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>整体，建立一棵树：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class Tree &#123;</span><br><span class="line">    TreeNode root = null;</span><br><span class="line"></span><br><span class="line">    public Tree(String name) &#123;</span><br><span class="line">        root = new TreeNode(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Tree tree = new Tree(&quot;A&quot;);</span><br><span class="line">        TreeNode nodeB = new TreeNode(&quot;B&quot;);</span><br><span class="line">        TreeNode nodeC = new TreeNode(&quot;C&quot;);</span><br><span class="line"></span><br><span class="line">        nodeB.addChild(nodeC);</span><br><span class="line">        tree.root.addChild(nodeB);</span><br><span class="line">        System.out.println(&quot;build the tree finished!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h3><p>享元模式主要是实现对象的共享。联想数据库的连接池。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">public class ConnectionPool &#123;  </span><br><span class="line">      </span><br><span class="line">    private Vector&lt;Connection&gt; pool;  </span><br><span class="line">      </span><br><span class="line">    /*公有属性*/  </span><br><span class="line">    private String url = &quot;jdbc:mysql://localhost:3306/test&quot;;  </span><br><span class="line">    private String username = &quot;root&quot;;  </span><br><span class="line">    private String password = &quot;root&quot;;  </span><br><span class="line">    private String driverClassName = &quot;com.mysql.jdbc.Driver&quot;;  </span><br><span class="line">  </span><br><span class="line">    private int poolSize = 100;  </span><br><span class="line">    private static ConnectionPool instance = null;  </span><br><span class="line">    Connection conn = null;  </span><br><span class="line">  </span><br><span class="line">    /*构造方法，做一些初始化工作*/  </span><br><span class="line">    private ConnectionPool() &#123;  </span><br><span class="line">        pool = new Vector&lt;Connection&gt;(poolSize);  </span><br><span class="line">  </span><br><span class="line">        for (int i = 0; i &lt; poolSize; i++) &#123;  </span><br><span class="line">            try &#123;  </span><br><span class="line">                Class.forName(driverClassName);  </span><br><span class="line">                conn = DriverManager.getConnection(url, username, password);  </span><br><span class="line">                pool.add(conn);  </span><br><span class="line">            &#125; catch (ClassNotFoundException e) &#123;  </span><br><span class="line">                e.printStackTrace();  </span><br><span class="line">            &#125; catch (SQLException e) &#123;  </span><br><span class="line">                e.printStackTrace();  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    /* 返回连接到连接池 */  </span><br><span class="line">    public synchronized void release() &#123;  </span><br><span class="line">        pool.add(conn);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    /* 返回连接池中的一个数据库连接 */  </span><br><span class="line">    public synchronized Connection getConnection() &#123;  </span><br><span class="line">        if (pool.size() &gt; 0) &#123;  </span><br><span class="line">            Connection conn = pool.get(0);  </span><br><span class="line">            pool.remove(conn);  </span><br><span class="line">            return conn;  </span><br><span class="line">        &#125; else &#123;  </span><br><span class="line">            return null;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-	  
-		<!--MOB SHARE BEGIN-->
- <button id="rewardButton" class="-mob-share-open" style="margin-right:5px;">
-    <span>分享</span>
-  </button>
-<div class="-mob-share-ui" style="display: none">
-    <ul class="-mob-share-list">
-        <li class="-mob-share-weibo"><p>新浪微博</p></li>
-            <li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
-            <li class="-mob-share-qzone"><p>QQ空间</p></li>
-            <li class="-mob-share-qq"><p>QQ好友</p></li>
-            <li class="-mob-share-weixin"><p>微信</p></li>
-            <li class="-mob-share-douban"><p>豆瓣</p></li>
-            <li class="-mob-share-renren"><p>人人网</p></li>
-            <li class="-mob-share-kaixin"><p>开心网</p></li>
-            <li class="-mob-share-facebook"><p>Facebook</p></li>
-            <li class="-mob-share-twitter"><p>Twitter</p></li>
-            <li class="-mob-share-pocket"><p>Pocket</p></li>
-            <li class="-mob-share-google"><p>Google+</p></li>
-            <li class="-mob-share-youdao"><p>有道云笔记</p></li>
-    </ul>
-    <div class="-mob-share-close">取消</div>
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
 </div>
-<div class="-mob-share-ui-bg"></div>
-<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=230df6a994c78"></script>
-<!--MOB SHARE END-->
-      
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  
-  
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.png" alt="长孙雨聪--七星上将 微信支付">
-        <p>微信支付</p>
-      </div>
-    
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.png" alt="长孙雨聪--七星上将 支付宝">
-        <p>支付宝</p>
-      </div>
-    
-
-    
-
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
   </div>
 </div>
 
-      </div>
-    
-	
-	<div>
-	  
-		<div>
-    
-        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
-    
-</div>
-	  
-	</div>
-
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    长孙雨聪--七星上将
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://zhangsunyucong.top/2018/04/10/java-pattern-structure/" title="23种设计模式之结构型设计模式">http://zhangsunyucong.top/2018/04/10/java-pattern-structure/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-
-      </div>
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/04/09/java-pattern-builder-factory-clone/" rel="next" title="23种设计模式之创建型模式">
-                <i class="fa fa-chevron-left"></i> 23种设计模式之创建型模式
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/18/android-color-matrix/" rel="prev" title="从矩阵来看颜色变换">
-                从矩阵来看颜色变换 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-  
-	  
-	  
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
-      <div id="SOHUCS"></div>
     </div>
+  </div>
 
-  
-
-
-
-        </div>
+</header>
         
-          
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
+  <aside class="sidebar">
 
-  <aside id="sidebar" class="sidebar">
-    
-      <div id="sidebar-dimmer"></div>
-    
-    <div class="sidebar-inner">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
 
-      
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">适配器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">类的适配器模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">对象的适配器模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E7%9A%84%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.3.</span> <span class="nav-text">接口的适配器模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">装饰者模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">代理模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">外观模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F"><span class="nav-number">6.</span> <span class="nav-text">桥接模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F"><span class="nav-number">7.</span> <span class="nav-text">组合模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F"><span class="nav-number">8.</span> <span class="nav-text">享元模式</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">长孙雨聪--七星上将</p>
+  <div class="site-description" itemprop="description">广西科技大学，Android工程师一枚。</div>
+  
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+         
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-			<a href="/" class="site-author-image" rel="start" style="border:none">
-              <img class="site-author-image" itemprop="image" src="/images/myphoto.jpg" alt="长孙雨聪--七星上将">
-			</a>	
-            
-              <p class="site-author-name" itemprop="name">长孙雨聪--七星上将</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">24</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
-
-          <div class="links-of-author motion-element">
-            
-              
-                <span class="links-of-author-item">
-                  <a href="https://github.com/zhangsunyucong?tab=repositories" target="_blank" title="GitHub">
-                    
-                      <i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="mailto:969887864@qq.com" target="_blank" title="E-Mail">
-                    
-                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                </span>
-              
-            
-          </div>
-
-          
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                友情链接
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.wanandroid.com/" title="鸿洋_" target="_blank">鸿洋_</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.gcssloop.com/" title="机动车" target="_blank">机动车</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://litten.me/" title="Litten" target="_blank">Litten</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://luuman.github.io" title="luuman" target="_blank">luuman</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.barretlee.com" title="小胡子哥" target="_blank">小胡子哥</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://blog.halyul.cc" title="halyul" target="_blank">halyul</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://blog.csdn.net/mine_song/article/details/64121769" title="剑指" target="_blank">剑指</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.ithmz.com/" title="奶爸大哥" target="_blank">奶爸大哥</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.ruanyifeng.com" title="阮一峰" target="_blank">阮一峰</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://0xcc0xcd.com" title="老罗" target="_blank">老罗</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://wangyuquan.net/" title="top2" target="_blank">top2</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://chenghouwen.com" title="程厚文" target="_blank">程厚文</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://hukai.me/" title="胡凯" target="_blank">胡凯</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://job.alibaba.com" title="阿里社招" target="_blank">阿里社招</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://lao.si" title="孙老四" target="_blank">孙老四</a>
-                  </li>
-                
-              </ul>
-			   
-			   <div id="days"></div>
-
+  <div id="days"></div>
+</script>
 <script language="javascript">
 function show_date_time(){
 	window.setTimeout("show_date_time()", 1000);
@@ -916,727 +197,321 @@ function setzero(i){
 show_date_time();
 </script>
 
-			  
-            </div>
-          
+</div>
 
-         
         </div>
-      </section>
+      </div>
+    </div>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://www.wanandroid.com/" title="http:&#x2F;&#x2F;www.wanandroid.com&#x2F;" rel="noopener" target="_blank">鸿洋_</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://www.gcssloop.com/" title="http:&#x2F;&#x2F;www.gcssloop.com&#x2F;" rel="noopener" target="_blank">机动车</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://www.ruanyifeng.com/" title="http:&#x2F;&#x2F;www.ruanyifeng.com" rel="noopener" target="_blank">阮一峰</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://0xcc0xcd.com/" title="http:&#x2F;&#x2F;0xcc0xcd.com" rel="noopener" target="_blank">老罗</a>
+            </li>
+        </ul>
 
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#适配器模式"><span class="nav-number">2.</span> <span class="nav-text">适配器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#类的适配器模式"><span class="nav-number">2.1.</span> <span class="nav-text">类的适配器模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象的适配器模式"><span class="nav-number">2.2.</span> <span class="nav-text">对象的适配器模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接口的适配器模式"><span class="nav-number">2.3.</span> <span class="nav-text">接口的适配器模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#装饰者模式"><span class="nav-number">3.</span> <span class="nav-text">装饰者模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代理模式"><span class="nav-number">4.</span> <span class="nav-text">代理模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外观模式"><span class="nav-number">5.</span> <span class="nav-text">外观模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#桥接模式"><span class="nav-number">6.</span> <span class="nav-text">桥接模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合模式"><span class="nav-number">7.</span> <span class="nav-text">组合模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#享元模式"><span class="nav-number">8.</span> <span class="nav-text">享元模式</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
+  
+      </div>
     </div>
   </aside>
 
 
-        
-      </div>
-    </main>
+    </div>
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2020</span>
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhangsunyucong.top/2018/04/10/java-pattern-structure/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="长孙雨聪--七星上将">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="长孙雨聪--七星上将">
+      <meta itemprop="description" content="广西科技大学，Android工程师一枚。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="23种设计模式之结构型设计模式 | 长孙雨聪--七星上将">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          23种设计模式之结构型设计模式
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-04-10 11:00:35" itemprop="dateCreated datePublished" datetime="2018-04-10T11:00:35+08:00">2018-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2020-02-22 17:42:54" itemprop="dateModified" datetime="2020-02-22T17:42:54+08:00">2020-02-22</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <hr>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本篇文章主要讲23种设计模式中的7种结构型设计模式，包括适配器模式，装饰者模式，代理模式，外观模式，桥接模式，组合模式，享元模式。</p>
+<h3 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h3><p>适配器模式是将一个类的方法接口转换成客户端期望的接口表示。我们可以约定，把客户端期望的接口叫做目标Targetable，被转换的类叫source。适配器模式可以分为：类的适配器模式，对象的适配器，接口的适配器。</p>
+<span id="more"></span>
+
+<h4 id="类的适配器模式"><a href="#类的适配器模式" class="headerlink" title="类的适配器模式"></a>类的适配器模式</h4><p>已有的被转换的类：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class SourceClass &#123;</span><br><span class="line"></span><br><span class="line">    public void method1() &#123;</span><br><span class="line">        System.out.print(&quot;Hi, I am a method in sourceClass&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>期望的目标：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface Targetable &#123;</span><br><span class="line">    void method1();</span><br><span class="line">    void method2();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现目标，进行适配</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class AdapterClass extends SourceClass implements Targetable &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void method2() &#123;</span><br><span class="line">        System.out.print(&quot;Hi All, I am a method in adapterClass&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样子就将SourceClass按照意愿Targetable适配转换成了AdapterClass，AdapterClass具有了SourceClass的所有的功能，同时也达到了扩展SourceClass。由于类的适配器模式是通过继承实现的，它具有了继承的优缺点。关于缺点，比如通过AdapterClass对象可以调用属于SourceClass而在Targetable接口中没有的方法。</p>
+<h4 id="对象的适配器模式"><a href="#对象的适配器模式" class="headerlink" title="对象的适配器模式"></a>对象的适配器模式</h4><p>对象的适配器模式，就是将原来类的对象转换为目标接口的对象。对象适配器模式没有继承被转换类，而是持有被转换类的对象。这可以避免继承被带来的副作用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class AdapterObjectClass implements Targetable&#123;</span><br><span class="line"></span><br><span class="line">    private SourceClass mSourceClass;</span><br><span class="line"></span><br><span class="line">    public AdapterObjectClass(SourceClass mSourceClass) &#123;</span><br><span class="line">        this.mSourceClass = mSourceClass;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void method2() &#123;</span><br><span class="line">        System.out.print(&quot;hi all, i am a method in AdapterObjectClass&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void method1() &#123;</span><br><span class="line">        mSourceClass.method1();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="接口的适配器模式"><a href="#接口的适配器模式" class="headerlink" title="接口的适配器模式"></a>接口的适配器模式</h4><p>当一个接口有很多的抽象方法时，当我们写这个接口的实现类，必须实现该接口的全部方法。而有时候接口中并不是所有的抽象方法都是我们必须的，而我们只需要实现其中的某一些方法。为了解决这个问题，我们可以使用接口的适配器模式，引入一个抽象类，这个抽象类提供了接口所有抽象方法的空实现。我们可以继承这个抽象类，并只重写我们需要的方法即可。</p>
+<p>比如，在上面我们只要Targetable的method2方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public abstract class AdapterInterfaceClass implements Targetable&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void method1() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void method2() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class AdapterWraper extends AdapterInterfaceClass &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void method1() &#123;</span><br><span class="line">        System.out.print(&quot;hi all, I am a method in AdapterWraper class&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h3><p>装饰者模式的核心思想是，装饰者和被装饰者实现同一个接口，将被装饰者注入装饰者中，可以在装饰者中扩展被装饰者。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Person &#123;</span><br><span class="line">    void eat();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>被装饰者：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class Man implements Person &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void eat() &#123;</span><br><span class="line">        System.out.print(&quot;There is a man who is eating&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>装饰者：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class ManDecorator implements Person &#123;</span><br><span class="line"></span><br><span class="line">    private Person mPerson;</span><br><span class="line"></span><br><span class="line">    public ManDecorator(Person person) &#123;</span><br><span class="line">        mPerson = person;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void eat() &#123;</span><br><span class="line">        mPerson.eat();</span><br><span class="line">        drinkWater();</span><br><span class="line">        System.out.print(&quot;I finish my lunch&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void drinkWater() &#123;</span><br><span class="line">        System.out.print(&quot;Man is drinking water&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Man man = new Man();</span><br><span class="line">ManDecorator manDecorator = new ManDecorator(man);</span><br><span class="line">manDecorator.eat();</span><br></pre></td></tr></table></figure>
+
+<p>输出的结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">There is a man who is eating</span><br><span class="line">Man is drinking water</span><br><span class="line">I finish my lunch</span><br></pre></td></tr></table></figure>
+
+<h3 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h3><p>注意区别代理模式和动态代理。</p>
+<p>生活中代理的例子。比如如果你要租房子，你可能不知道该地区的房子信息，这时你可以找一个熟悉的人来帮忙，这个帮你的人就是代理；又比如，打官司时，我们可能并不精通法律知识，这时我们可以找一个代理律师来帮我们。等等。。对于，代理的工作可以抽象为一个接口。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface WorkInterface &#123;</span><br><span class="line">    void rentHouse();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一个房东：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class LandLady implements WorkInterface &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void rentHouse() &#123;</span><br><span class="line">        System.out.print(&quot;您好！我是房东。我这里有房子出租！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代理房东的代理类：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class Proxy implements WorkInterface &#123;</span><br><span class="line"></span><br><span class="line">    private LandLady mLandLady;</span><br><span class="line"></span><br><span class="line">    public Proxy() &#123;</span><br><span class="line">        mLandLady = new LandLady();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void rentHouse() &#123;</span><br><span class="line">        mLandLady.rentHouse();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>租客去找代理租房子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WorkInterface proxy = new Proxy();</span><br><span class="line">proxy.rentHouse();</span><br></pre></td></tr></table></figure>
+
+<h3 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h3><p>在医院里的前台接待员就是一个外观模式的体现。由于病人来到医院可能对医院内部和流程并不熟悉，那么可以由熟悉这些的接待员来帮病人来完成这些事情。</p>
+<p>部门1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class ModuleA &#123;</span><br><span class="line"></span><br><span class="line">    //提供给外部调用的方法</span><br><span class="line">    public void a1() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    //内部完成工作的实现</span><br><span class="line">    private void a2() &#123;&#125;</span><br><span class="line">    private void a3() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>部门2</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class ModuleB &#123;</span><br><span class="line"></span><br><span class="line">    //提供给外部调用的方法</span><br><span class="line">    public void b1() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    //内部完成工作的实现</span><br><span class="line">    private void b2() &#123;&#125;</span><br><span class="line">    private void b3() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>部门3</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class ModuleC &#123;</span><br><span class="line"></span><br><span class="line">    //提供给外部调用的方法</span><br><span class="line">    public void c1() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    //内部完成工作的实现</span><br><span class="line">    private void c2() &#123;&#125;</span><br><span class="line">    private void c3() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>外观类:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class ModuleFacade &#123;</span><br><span class="line"></span><br><span class="line">    private ModuleA mModuleA = new ModuleA();</span><br><span class="line">    private ModuleB mMBModuleB = new ModuleB();</span><br><span class="line">    private ModuleC mMCModuleC = new ModuleC();</span><br><span class="line"></span><br><span class="line">    public void a1() &#123;</span><br><span class="line">        mModuleA.a1();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void b1() &#123;</span><br><span class="line">        mMBModuleB.b1();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void c1() &#123;</span><br><span class="line">        mMCModuleC.c1();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当我们需要ModuleA，ModuleB， ModuleC的功能时，我们并不直接和他们打交道，也不需要了解部门的功能是如何实现的，而我们只需要去找外观类沟通即可。</p>
+<p>外观模式的关键点是整合。</p>
+<h3 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h3><p>桥接模式，提供一个解耦或者连接抽象化和实现化的一个桥梁，使得二者可以独立变化。</p>
+<p>一个接口作为桥，一个抽象类持有桥。桥和抽象类两者可以独立变化。</p>
+<p>桥：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Qiao &#123;</span><br><span class="line">    void toArea();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>抽象类：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public abstract class FromArea &#123;</span><br><span class="line">    public Qiao qiao;</span><br><span class="line">    abstract public void fromArea();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>QiaoC.java</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class QiaoC implements Qiao &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void toArea() &#123;</span><br><span class="line">        System.out.print(&quot;I want to go Area C&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>QiaoD.java</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class QiaoD implements Qiao &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void toArea() &#123;</span><br><span class="line">        System.out.print(&quot;I want to go Area D&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>FromAreaA.java</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class FromAreaA extends FromArea &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void fromArea() &#123;</span><br><span class="line">        System.out.print(&quot;I come from area A&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>FromAreaB.java</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class FromAreaB extends FromArea &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void fromArea() &#123;</span><br><span class="line">        System.out.print(&quot;I come from area B&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">FromAreaA fromAreaA = new FromAreaA();</span><br><span class="line">QiaoC qiaoC = new QiaoC();</span><br><span class="line">fromAreaA.qiao = qiaoC;</span><br><span class="line"></span><br><span class="line">fromAreaA.fromArea();</span><br><span class="line">fromAreaA.qiao.toArea();</span><br><span class="line"></span><br><span class="line">QiaoD qiaoD = new QiaoD();</span><br><span class="line">fromAreaA.qiao = qiaoD;</span><br><span class="line"></span><br><span class="line">fromAreaA.fromArea();</span><br><span class="line">fromAreaA.qiao.toArea();</span><br></pre></td></tr></table></figure>
+
+<p>从上面可以看出，Qiao和FromArea两者是独立变化的，它们的抽象和实现是分离的。</p>
+<p>如果有更多的Qiao和FromArea的实现，只要扩展它们即可。</p>
+<h3 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h3><p>组合模式，又叫“整体-部分设计模式”。它一般用于实现树形结构。</p>
+<p>节点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">public class TreeNode &#123;</span><br><span class="line"></span><br><span class="line">    private String name;</span><br><span class="line">    private TreeNode parent;</span><br><span class="line">    private Vector&lt;TreeNode&gt; children = new Vector&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    public TreeNode(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setParent(TreeNode parent) &#123;</span><br><span class="line">        this.parent = parent;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public TreeNode getParent() &#123;</span><br><span class="line">        return parent;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void addChild(TreeNode child) &#123;</span><br><span class="line">        children.add(child);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean removeChild(TreeNode child) &#123;</span><br><span class="line">        return children.remove(child);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Enumeration&lt;TreeNode&gt; getChildren() &#123;</span><br><span class="line">        return children.elements();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>整体，建立一棵树：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class Tree &#123;</span><br><span class="line">    TreeNode root = null;</span><br><span class="line"></span><br><span class="line">    public Tree(String name) &#123;</span><br><span class="line">        root = new TreeNode(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Tree tree = new Tree(&quot;A&quot;);</span><br><span class="line">        TreeNode nodeB = new TreeNode(&quot;B&quot;);</span><br><span class="line">        TreeNode nodeC = new TreeNode(&quot;C&quot;);</span><br><span class="line"></span><br><span class="line">        nodeB.addChild(nodeC);</span><br><span class="line">        tree.root.addChild(nodeB);</span><br><span class="line">        System.out.println(&quot;build the tree finished!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h3><p>享元模式主要是实现对象的共享。联想数据库的连接池。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">public class ConnectionPool &#123;  </span><br><span class="line">      </span><br><span class="line">    private Vector&lt;Connection&gt; pool;  </span><br><span class="line">      </span><br><span class="line">    /*公有属性*/  </span><br><span class="line">    private String url = &quot;jdbc:mysql://localhost:3306/test&quot;;  </span><br><span class="line">    private String username = &quot;root&quot;;  </span><br><span class="line">    private String password = &quot;root&quot;;  </span><br><span class="line">    private String driverClassName = &quot;com.mysql.jdbc.Driver&quot;;  </span><br><span class="line">  </span><br><span class="line">    private int poolSize = 100;  </span><br><span class="line">    private static ConnectionPool instance = null;  </span><br><span class="line">    Connection conn = null;  </span><br><span class="line">  </span><br><span class="line">    /*构造方法，做一些初始化工作*/  </span><br><span class="line">    private ConnectionPool() &#123;  </span><br><span class="line">        pool = new Vector&lt;Connection&gt;(poolSize);  </span><br><span class="line">  </span><br><span class="line">        for (int i = 0; i &lt; poolSize; i++) &#123;  </span><br><span class="line">            try &#123;  </span><br><span class="line">                Class.forName(driverClassName);  </span><br><span class="line">                conn = DriverManager.getConnection(url, username, password);  </span><br><span class="line">                pool.add(conn);  </span><br><span class="line">            &#125; catch (ClassNotFoundException e) &#123;  </span><br><span class="line">                e.printStackTrace();  </span><br><span class="line">            &#125; catch (SQLException e) &#123;  </span><br><span class="line">                e.printStackTrace();  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    /* 返回连接到连接池 */  </span><br><span class="line">    public synchronized void release() &#123;  </span><br><span class="line">        pool.add(conn);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    /* 返回连接池中的一个数据库连接 */  </span><br><span class="line">    public synchronized Connection getConnection() &#123;  </span><br><span class="line">        if (pool.size() &gt; 0) &#123;  </span><br><span class="line">            Connection conn = pool.get(0);  </span><br><span class="line">            pool.remove(conn);  </span><br><span class="line">            return conn;  </span><br><span class="line">        &#125; else &#123;  </span><br><span class="line">            return null;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># java</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/04/09/java-pattern-builder-factory-clone/" rel="prev" title="23种设计模式之创建型模式">
+                  <i class="fa fa-chevron-left"></i> 23种设计模式之创建型模式
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/04/18/android-color-matrix/" rel="next" title="从矩阵来看颜色变换">
+                  从矩阵来看颜色变换 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">长孙雨聪--七星上将</span>
-  
 </div>
-
-Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
-
-
-
-
-        
 <div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv">
-      <i class="fa fa-user"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
     </span>
-  
-
-  
-    <span class="site-pv">
-      <i class="fa fa-eye"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
     </span>
-  
 </div>
 
+    </div>
+  </footer>
 
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
   </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
 
 
 
 
 
   
-  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":"trfalseue","github_id":"zhangsunyucong","repo":null,"client_id":"685353436ce7e2edc4ea","client_secret":"5f01cf660d6953403f0f7d5af0ba4759ce6cea9b","admin_user":null,"distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"5292acebfb1fe6f072a1ff4b362cc62b"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
 
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("2YPqqc43cMkbPegNE3Auieo4-gzGzoHsz", "TVVsPYw3swS3SrByLqNtqlAL");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-  
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.3"></script>
-  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.3"></script>
-
-
-  
-  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.3"></script>
-
-
-  
 </body>
 </html>
-<!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/src/love.js"></script>
