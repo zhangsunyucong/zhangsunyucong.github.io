@@ -152,8 +152,22 @@ proxy-groups:
     proxies:
       - ⚖️ 负载均衡-轮询
       - ⚖️ 负载均衡-散列
+      - 链式代理
       - ♻️ 自动选择
       - DIRECT
+      - 🇨🇳_CN_中国->🇺🇸_US_美国
+      - 🇧🇿_BZ_伯利兹
+      - 🇳🇱_NL_荷兰
+      - 🇯🇵_JP_日本
+      - 🇺🇸_US_美国->🇩🇪_DE_德国
+      - 🇺🇸_US_美国_1
+      - 🇧🇿_BZ_伯利兹->🇺🇸_US_美国
+      - 🇧🇿_BZ_伯利兹->🇫🇷_FR_法国
+      - 🇺🇸_US_美国_2
+      - 🇺🇸_US_美国_3
+  - name: "链式代理"
+    type: relay
+    proxies:
       - 🇨🇳_CN_中国->🇺🇸_US_美国
       - 🇧🇿_BZ_伯利兹
       - 🇳🇱_NL_荷兰
@@ -212,6 +226,7 @@ proxy-groups:
       - 🇧🇿_BZ_伯利兹->🇫🇷_FR_法国
       - 🇺🇸_US_美国_2
       - 🇺🇸_US_美国_3
+      - 链式代理
   - name: ⚖️ 负载均衡-轮询
     type: load-balance
     url: http://www.google.com/generate_204
@@ -228,6 +243,7 @@ proxy-groups:
       - 🇧🇿_BZ_伯利兹->🇫🇷_FR_法国
       - 🇺🇸_US_美国_2
       - 🇺🇸_US_美国_3
+      - 链式代理
   - name: 📲 电报信息
     type: select
     proxies:
