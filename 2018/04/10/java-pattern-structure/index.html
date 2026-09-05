@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  <title>23种设计模式之结构型设计模式 | 长孙雨聪--七星上将</title>
+  <meta name="description" content="前言本篇文章主要讲23种设计模式中的7种结构型设计模式，包括适配器模式，装饰者模式，代理模式，外观模式，桥接模式，组合模式，享元模式。 适配器模式适配器模式是将一个类的方法接口转换成客户端期望的接口表示。我们可以约定，把客户端期望的接口叫做目标Targetable，被转换的类叫source。适配器模式可以分为：类的适配器模式，对象的适配器，接口的适配器。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="23种设计模式之结构型设计模式">
+<meta property="og:url" content="http://zhangsunyucong.top/2018/04/10/java-pattern-structure/index.html">
+<meta property="og:site_name" content="长孙雨聪--七星上将">
+<meta property="og:description" content="前言本篇文章主要讲23种设计模式中的7种结构型设计模式，包括适配器模式，装饰者模式，代理模式，外观模式，桥接模式，组合模式，享元模式。 适配器模式适配器模式是将一个类的方法接口转换成客户端期望的接口表示。我们可以约定，把客户端期望的接口叫做目标Targetable，被转换的类叫source。适配器模式可以分为：类的适配器模式，对象的适配器，接口的适配器。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-04-10T03:00:35.000Z">
+<meta property="article:modified_time" content="2025-03-15T12:53:27.948Z">
+<meta property="article:author" content="长孙雨聪--七星上将">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+  <link rel="icon" href="/images/logo.svg">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-gb-web@latest/lxgwwenkaigb-regular/result.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-gb-web@latest/lxgwwenkaigb-medium/result.css">
+
+  
+  
+  
+    
+<link rel="stylesheet" href="/css/math.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('warmpaper-theme');
+        if (saved === 'dark' || saved === 'light') {
+          document.documentElement.setAttribute('data-theme', saved);
+        }
+      } catch (e) {}
+    })();
+  </script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="长孙雨聪--七星上将" type="application/atom+xml">
+</head>
+
+<body>
+  <div class="site-wrapper">
+    <header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="/"><img class="site-logo" src="/images/logo.svg" alt="Logo">长孙雨聪--七星上将</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span class="nav-toggle-icon"></span>
+    </button>
+    <nav class="site-nav">
+      
+        <a class="nav-link" href="/">首页</a>
+      
+        <a class="nav-link" href="/archives">归档</a>
+      
+        <a class="nav-link" href="/tags">标签</a>
+      
+        <a class="nav-link" href="/about">关于</a>
+      
+      <button class="theme-toggle" type="button" aria-label="切换主题" title="切换主题" data-theme-state="light">
+        <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+        <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+    <main class="main-content">
+      
+<article class="post post-has-toc">
+  <header class="post-header">
+    <h1 class="post-title">23种设计模式之结构型设计模式</h1>
+    <div class="post-meta">
+      <time datetime="2018-04-10T03:00:35.000Z">2018-04-10</time>
+      
+    </div>
+  </header>
+
+  <div class="post-body-wrapper">
+    <div class="post-content">
+      <hr>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本篇文章主要讲23种设计模式中的7种结构型设计模式，包括适配器模式，装饰者模式，代理模式，外观模式，桥接模式，组合模式，享元模式。</p>
+<h3 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h3><p>适配器模式是将一个类的方法接口转换成客户端期望的接口表示。我们可以约定，把客户端期望的接口叫做目标Targetable，被转换的类叫source。适配器模式可以分为：类的适配器模式，对象的适配器，接口的适配器。</p>
+<span id="more"></span>
+
+<h4 id="类的适配器模式"><a href="#类的适配器模式" class="headerlink" title="类的适配器模式"></a>类的适配器模式</h4><p>已有的被转换的类：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class SourceClass &#123;</span><br><span class="line"></span><br><span class="line">    public void method1() &#123;</span><br><span class="line">        System.out.print(&quot;Hi, I am a method in sourceClass&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>期望的目标：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface Targetable &#123;</span><br><span class="line">    void method1();</span><br><span class="line">    void method2();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现目标，进行适配</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class AdapterClass extends SourceClass implements Targetable &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void method2() &#123;</span><br><span class="line">        System.out.print(&quot;Hi All, I am a method in adapterClass&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样子就将SourceClass按照意愿Targetable适配转换成了AdapterClass，AdapterClass具有了SourceClass的所有的功能，同时也达到了扩展SourceClass。由于类的适配器模式是通过继承实现的，它具有了继承的优缺点。关于缺点，比如通过AdapterClass对象可以调用属于SourceClass而在Targetable接口中没有的方法。</p>
+<h4 id="对象的适配器模式"><a href="#对象的适配器模式" class="headerlink" title="对象的适配器模式"></a>对象的适配器模式</h4><p>对象的适配器模式，就是将原来类的对象转换为目标接口的对象。对象适配器模式没有继承被转换类，而是持有被转换类的对象。这可以避免继承被带来的副作用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class AdapterObjectClass implements Targetable&#123;</span><br><span class="line"></span><br><span class="line">    private SourceClass mSourceClass;</span><br><span class="line"></span><br><span class="line">    public AdapterObjectClass(SourceClass mSourceClass) &#123;</span><br><span class="line">        this.mSourceClass = mSourceClass;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void method2() &#123;</span><br><span class="line">        System.out.print(&quot;hi all, i am a method in AdapterObjectClass&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void method1() &#123;</span><br><span class="line">        mSourceClass.method1();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="接口的适配器模式"><a href="#接口的适配器模式" class="headerlink" title="接口的适配器模式"></a>接口的适配器模式</h4><p>当一个接口有很多的抽象方法时，当我们写这个接口的实现类，必须实现该接口的全部方法。而有时候接口中并不是所有的抽象方法都是我们必须的，而我们只需要实现其中的某一些方法。为了解决这个问题，我们可以使用接口的适配器模式，引入一个抽象类，这个抽象类提供了接口所有抽象方法的空实现。我们可以继承这个抽象类，并只重写我们需要的方法即可。</p>
+<p>比如，在上面我们只要Targetable的method2方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public abstract class AdapterInterfaceClass implements Targetable&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void method1() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void method2() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class AdapterWraper extends AdapterInterfaceClass &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void method1() &#123;</span><br><span class="line">        System.out.print(&quot;hi all, I am a method in AdapterWraper class&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h3><p>装饰者模式的核心思想是，装饰者和被装饰者实现同一个接口，将被装饰者注入装饰者中，可以在装饰者中扩展被装饰者。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Person &#123;</span><br><span class="line">    void eat();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>被装饰者：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class Man implements Person &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void eat() &#123;</span><br><span class="line">        System.out.print(&quot;There is a man who is eating&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>装饰者：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class ManDecorator implements Person &#123;</span><br><span class="line"></span><br><span class="line">    private Person mPerson;</span><br><span class="line"></span><br><span class="line">    public ManDecorator(Person person) &#123;</span><br><span class="line">        mPerson = person;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void eat() &#123;</span><br><span class="line">        mPerson.eat();</span><br><span class="line">        drinkWater();</span><br><span class="line">        System.out.print(&quot;I finish my lunch&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void drinkWater() &#123;</span><br><span class="line">        System.out.print(&quot;Man is drinking water&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Man man = new Man();</span><br><span class="line">ManDecorator manDecorator = new ManDecorator(man);</span><br><span class="line">manDecorator.eat();</span><br></pre></td></tr></table></figure>
+
+<p>输出的结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">There is a man who is eating</span><br><span class="line">Man is drinking water</span><br><span class="line">I finish my lunch</span><br></pre></td></tr></table></figure>
+
+<h3 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h3><p>注意区别代理模式和动态代理。</p>
+<p>生活中代理的例子。比如如果你要租房子，你可能不知道该地区的房子信息，这时你可以找一个熟悉的人来帮忙，这个帮你的人就是代理；又比如，打官司时，我们可能并不精通法律知识，这时我们可以找一个代理律师来帮我们。等等。。对于，代理的工作可以抽象为一个接口。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface WorkInterface &#123;</span><br><span class="line">    void rentHouse();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一个房东：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class LandLady implements WorkInterface &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void rentHouse() &#123;</span><br><span class="line">        System.out.print(&quot;您好！我是房东。我这里有房子出租！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代理房东的代理类：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class Proxy implements WorkInterface &#123;</span><br><span class="line"></span><br><span class="line">    private LandLady mLandLady;</span><br><span class="line"></span><br><span class="line">    public Proxy() &#123;</span><br><span class="line">        mLandLady = new LandLady();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void rentHouse() &#123;</span><br><span class="line">        mLandLady.rentHouse();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>租客去找代理租房子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WorkInterface proxy = new Proxy();</span><br><span class="line">proxy.rentHouse();</span><br></pre></td></tr></table></figure>
+
+<h3 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h3><p>在医院里的前台接待员就是一个外观模式的体现。由于病人来到医院可能对医院内部和流程并不熟悉，那么可以由熟悉这些的接待员来帮病人来完成这些事情。</p>
+<p>部门1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class ModuleA &#123;</span><br><span class="line"></span><br><span class="line">    //提供给外部调用的方法</span><br><span class="line">    public void a1() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    //内部完成工作的实现</span><br><span class="line">    private void a2() &#123;&#125;</span><br><span class="line">    private void a3() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>部门2</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class ModuleB &#123;</span><br><span class="line"></span><br><span class="line">    //提供给外部调用的方法</span><br><span class="line">    public void b1() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    //内部完成工作的实现</span><br><span class="line">    private void b2() &#123;&#125;</span><br><span class="line">    private void b3() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>部门3</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class ModuleC &#123;</span><br><span class="line"></span><br><span class="line">    //提供给外部调用的方法</span><br><span class="line">    public void c1() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    //内部完成工作的实现</span><br><span class="line">    private void c2() &#123;&#125;</span><br><span class="line">    private void c3() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>外观类:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class ModuleFacade &#123;</span><br><span class="line"></span><br><span class="line">    private ModuleA mModuleA = new ModuleA();</span><br><span class="line">    private ModuleB mMBModuleB = new ModuleB();</span><br><span class="line">    private ModuleC mMCModuleC = new ModuleC();</span><br><span class="line"></span><br><span class="line">    public void a1() &#123;</span><br><span class="line">        mModuleA.a1();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void b1() &#123;</span><br><span class="line">        mMBModuleB.b1();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void c1() &#123;</span><br><span class="line">        mMCModuleC.c1();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当我们需要ModuleA，ModuleB， ModuleC的功能时，我们并不直接和他们打交道，也不需要了解部门的功能是如何实现的，而我们只需要去找外观类沟通即可。</p>
+<p>外观模式的关键点是整合。</p>
+<h3 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h3><p>桥接模式，提供一个解耦或者连接抽象化和实现化的一个桥梁，使得二者可以独立变化。</p>
+<p>一个接口作为桥，一个抽象类持有桥。桥和抽象类两者可以独立变化。</p>
+<p>桥：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Qiao &#123;</span><br><span class="line">    void toArea();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>抽象类：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public abstract class FromArea &#123;</span><br><span class="line">    public Qiao qiao;</span><br><span class="line">    abstract public void fromArea();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>QiaoC.java</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class QiaoC implements Qiao &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void toArea() &#123;</span><br><span class="line">        System.out.print(&quot;I want to go Area C&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>QiaoD.java</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class QiaoD implements Qiao &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void toArea() &#123;</span><br><span class="line">        System.out.print(&quot;I want to go Area D&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>FromAreaA.java</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class FromAreaA extends FromArea &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void fromArea() &#123;</span><br><span class="line">        System.out.print(&quot;I come from area A&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>FromAreaB.java</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class FromAreaB extends FromArea &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void fromArea() &#123;</span><br><span class="line">        System.out.print(&quot;I come from area B&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">FromAreaA fromAreaA = new FromAreaA();</span><br><span class="line">QiaoC qiaoC = new QiaoC();</span><br><span class="line">fromAreaA.qiao = qiaoC;</span><br><span class="line"></span><br><span class="line">fromAreaA.fromArea();</span><br><span class="line">fromAreaA.qiao.toArea();</span><br><span class="line"></span><br><span class="line">QiaoD qiaoD = new QiaoD();</span><br><span class="line">fromAreaA.qiao = qiaoD;</span><br><span class="line"></span><br><span class="line">fromAreaA.fromArea();</span><br><span class="line">fromAreaA.qiao.toArea();</span><br></pre></td></tr></table></figure>
+
+<p>从上面可以看出，Qiao和FromArea两者是独立变化的，它们的抽象和实现是分离的。</p>
+<p>如果有更多的Qiao和FromArea的实现，只要扩展它们即可。</p>
+<h3 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h3><p>组合模式，又叫“整体-部分设计模式”。它一般用于实现树形结构。</p>
+<p>节点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">public class TreeNode &#123;</span><br><span class="line"></span><br><span class="line">    private String name;</span><br><span class="line">    private TreeNode parent;</span><br><span class="line">    private Vector&lt;TreeNode&gt; children = new Vector&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    public TreeNode(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setParent(TreeNode parent) &#123;</span><br><span class="line">        this.parent = parent;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public TreeNode getParent() &#123;</span><br><span class="line">        return parent;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void addChild(TreeNode child) &#123;</span><br><span class="line">        children.add(child);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean removeChild(TreeNode child) &#123;</span><br><span class="line">        return children.remove(child);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Enumeration&lt;TreeNode&gt; getChildren() &#123;</span><br><span class="line">        return children.elements();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>整体，建立一棵树：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class Tree &#123;</span><br><span class="line">    TreeNode root = null;</span><br><span class="line"></span><br><span class="line">    public Tree(String name) &#123;</span><br><span class="line">        root = new TreeNode(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Tree tree = new Tree(&quot;A&quot;);</span><br><span class="line">        TreeNode nodeB = new TreeNode(&quot;B&quot;);</span><br><span class="line">        TreeNode nodeC = new TreeNode(&quot;C&quot;);</span><br><span class="line"></span><br><span class="line">        nodeB.addChild(nodeC);</span><br><span class="line">        tree.root.addChild(nodeB);</span><br><span class="line">        System.out.println(&quot;build the tree finished!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h3><p>享元模式主要是实现对象的共享。联想数据库的连接池。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">public class ConnectionPool &#123;  </span><br><span class="line">      </span><br><span class="line">    private Vector&lt;Connection&gt; pool;  </span><br><span class="line">      </span><br><span class="line">    /*公有属性*/  </span><br><span class="line">    private String url = &quot;jdbc:mysql://localhost:3306/test&quot;;  </span><br><span class="line">    private String username = &quot;root&quot;;  </span><br><span class="line">    private String password = &quot;root&quot;;  </span><br><span class="line">    private String driverClassName = &quot;com.mysql.jdbc.Driver&quot;;  </span><br><span class="line">  </span><br><span class="line">    private int poolSize = 100;  </span><br><span class="line">    private static ConnectionPool instance = null;  </span><br><span class="line">    Connection conn = null;  </span><br><span class="line">  </span><br><span class="line">    /*构造方法，做一些初始化工作*/  </span><br><span class="line">    private ConnectionPool() &#123;  </span><br><span class="line">        pool = new Vector&lt;Connection&gt;(poolSize);  </span><br><span class="line">  </span><br><span class="line">        for (int i = 0; i &lt; poolSize; i++) &#123;  </span><br><span class="line">            try &#123;  </span><br><span class="line">                Class.forName(driverClassName);  </span><br><span class="line">                conn = DriverManager.getConnection(url, username, password);  </span><br><span class="line">                pool.add(conn);  </span><br><span class="line">            &#125; catch (ClassNotFoundException e) &#123;  </span><br><span class="line">                e.printStackTrace();  </span><br><span class="line">            &#125; catch (SQLException e) &#123;  </span><br><span class="line">                e.printStackTrace();  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    /* 返回连接到连接池 */  </span><br><span class="line">    public synchronized void release() &#123;  </span><br><span class="line">        pool.add(conn);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    /* 返回连接池中的一个数据库连接 */  </span><br><span class="line">    public synchronized Connection getConnection() &#123;  </span><br><span class="line">        if (pool.size() &gt; 0) &#123;  </span><br><span class="line">            Connection conn = pool.get(0);  </span><br><span class="line">            pool.remove(conn);  </span><br><span class="line">            return conn;  </span><br><span class="line">        &#125; else &#123;  </span><br><span class="line">            return null;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+    </div>
+
+    
+      <nav class="toc-sidebar" aria-labelledby="toc-title">
+  <div class="toc-wrapper">
+    <span class="toc-indicator" aria-hidden="true"></span>
+    <h3 class="toc-title" id="toc-title">Contents</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="toc-text">适配器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="toc-text">装饰者模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F"><span class="toc-text">代理模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F"><span class="toc-text">外观模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F"><span class="toc-text">桥接模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F"><span class="toc-text">组合模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F"><span class="toc-text">享元模式</span></a></li></ol>
+  </div>
+</nav>
+
+    
+  </div>
+
+  
+
+  
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <a href="/tags/java/">#java</a>
+        
+      </div>
+    
+    <nav class="post-nav">
+      
+        <a class="prev" href="/2018/04/18/android-color-matrix/">&laquo; 从矩阵来看颜色变换</a>
+      
+      
+        <a class="next" href="/2018/04/09/java-pattern-builder-factory-clone/">23种设计模式之创建型模式 &raquo;</a>
+      
+    </nav>
+  </footer>
+
+  
+    
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    options: {
+      // Skip the TOC sidebar and nav so heading math copied into the TOC
+      // isn't typeset a second time.
+      ignoreHtmlClass: 'toc-sidebar|site-nav',
+      enableMenu: false
+    }
+  };
+</script>
+
+<script defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@4.1.2/tex-mml-chtml.js"
+        integrity="sha384-Nfw2UPOp2WaWfAjGXccSL8qKx4KWXN9NUonXtPcotBXKSqHMyNWrahYzDzIXhpTy"
+        crossorigin="anonymous"></script>
+
+  
+</article>
+
+    </main>
+    <footer class="site-footer">
+  <div class="footer-inner">
+    
+      <p>© 2017 – 2026 长孙雨聪</p>
+    
+    <p>Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &middot; Theme <a href="https://github.com/finch-xu/hexo-theme-warmpaper" target="_blank" rel="noopener">Warmpaper</a></p>
+  </div>
+</footer>
+
+  </div>
+  
+<script src="/js/main.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

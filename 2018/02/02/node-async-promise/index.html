@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  <title>初始Promise/A+规范 | 长孙雨聪--七星上将</title>
+  <meta name="description" content="前言这篇文章主要讲两个内容，一是，初步认识Promise，二是，Async模块和Async&#x2F;Await的使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初始Promise&#x2F;A+规范">
+<meta property="og:url" content="http://zhangsunyucong.top/2018/02/02/node-async-promise/index.html">
+<meta property="og:site_name" content="长孙雨聪--七星上将">
+<meta property="og:description" content="前言这篇文章主要讲两个内容，一是，初步认识Promise，二是，Async模块和Async&#x2F;Await的使用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/node_promise_1.png?imageView2/2/w/600">
+<meta property="article:published_time" content="2018-02-02T02:19:32.000Z">
+<meta property="article:modified_time" content="2025-03-15T12:53:27.948Z">
+<meta property="article:author" content="长孙雨聪--七星上将">
+<meta property="article:tag" content="node.js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://o8bym0zmt.bkt.clouddn.com/node_promise_1.png?imageView2/2/w/600">
+  <link rel="icon" href="/images/logo.svg">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-gb-web@latest/lxgwwenkaigb-regular/result.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-gb-web@latest/lxgwwenkaigb-medium/result.css">
+
+  
+  
+  
+    
+<link rel="stylesheet" href="/css/math.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('warmpaper-theme');
+        if (saved === 'dark' || saved === 'light') {
+          document.documentElement.setAttribute('data-theme', saved);
+        }
+      } catch (e) {}
+    })();
+  </script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="长孙雨聪--七星上将" type="application/atom+xml">
+</head>
+
+<body>
+  <div class="site-wrapper">
+    <header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="/"><img class="site-logo" src="/images/logo.svg" alt="Logo">长孙雨聪--七星上将</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span class="nav-toggle-icon"></span>
+    </button>
+    <nav class="site-nav">
+      
+        <a class="nav-link" href="/">首页</a>
+      
+        <a class="nav-link" href="/archives">归档</a>
+      
+        <a class="nav-link" href="/tags">标签</a>
+      
+        <a class="nav-link" href="/about">关于</a>
+      
+      <button class="theme-toggle" type="button" aria-label="切换主题" title="切换主题" data-theme-state="light">
+        <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+        <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+    <main class="main-content">
+      
+<article class="post post-has-toc">
+  <header class="post-header">
+    <h1 class="post-title">初始Promise/A+规范</h1>
+    <div class="post-meta">
+      <time datetime="2018-02-02T02:19:32.000Z">2018-02-02</time>
+      
+    </div>
+  </header>
+
+  <div class="post-body-wrapper">
+    <div class="post-content">
+      <hr>
+<p><img src="http://o8bym0zmt.bkt.clouddn.com/node_promise_1.png?imageView2/2/w/600" alt="view继承关系"></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这篇文章主要讲两个内容，一是，初步认识Promise，二是，Async模块和Async&#x2F;Await的使用</p>
+<span id="more"></span>
+
+<h3 id="什么是Promise"><a href="#什么是Promise" class="headerlink" title="什么是Promise"></a>什么是Promise</h3><p>Promise表示一个异步操作的最终结果。一个Promise对象有一个then方法，then方法中返回一个Promise。</p>
+<h4 id="相关的概念"><a href="#相关的概念" class="headerlink" title="相关的概念"></a>相关的概念</h4><blockquote>
+<ul>
+<li>promise是一个包含了兼容promise规范then方法的对象或函数，</li>
+</ul>
+</blockquote>
+<ul>
+<li>thenable 是一个包含了then方法的对象或函数。</li>
+<li>value 是任何Javascript值。 (包括 undefined, thenable, promise等).</li>
+<li>exception 是由throw表达式抛出来的值。</li>
+<li>reason 是一个用于描述Promise被拒绝原因的值。</li>
+</ul>
+<h4 id="Promise的状态"><a href="#Promise的状态" class="headerlink" title="Promise的状态"></a>Promise的状态</h4><p>Promise有三种状态：pending, fulfilled 或 rejected。pending是等待执行状态，fulfilled是成功执行状态，rejected是失败执行状态。</p>
+<p>Promise只能从pending到fulfilled或者从pending到rejected状态，当状态发生改变时，promise.then(onFulfilled, onRejected)方法将被调用。Promise可以使用resolve或者reject将value或者reason作为下一个Promise的第一个回调参数。</p>
+<p>来个简单的Promise基本用法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var promise = new Promise(function(resolve, reject)&#123;</span><br><span class="line">    //do something</span><br><span class="line">    if(success)&#123;</span><br><span class="line">        resolve(value);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        reject(value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">promise.then(function(value)&#123;</span><br><span class="line">    //成功时调用</span><br><span class="line">&#125;, function(value)&#123;</span><br><span class="line">    //失败时调用</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面的代码只是表示Promise用法的流程.</p>
+<p>使用Promise&#x2F;A+规范实现以下几个功能</p>
+<blockquote>
+<ul>
+<li>上一步的结果可以作为下一步的参数</li>
+</ul>
+</blockquote>
+<ul>
+<li>出现异常时，能够捕获到异常</li>
+<li>可以在每一步进行流程控制</li>
+</ul>
+<p>Promise的具体知识，可以<a href="https://segmentfault.com/a/1190000002452115">参考这里</a></p>
+<p>下面介绍Async模块和ES7的Async&#x2F;Await的使用</p>
+<h3 id="Async模块"><a href="#Async模块" class="headerlink" title="Async模块"></a>Async模块</h3><p>Async模块的github地址：<a href="https://github.com/caolan/async/">https://github.com/caolan/async/</a></p>
+<p>配置好node的环境后（具体过程，自己百度），安装Async模块</p>
+<blockquote>
+<p>npm install –save async</p>
+</blockquote>
+<p>Async模块提供了很多关于集合，流程控制，工具方法，这里只体验几个常见的流程控制方法：series，parallel，waterfall，auto。其他方法的用法，可以查看官方文档：<a href="https://caolan.github.io/async/">文档地址</a></p>
+<h4 id="series的使用"><a href="#series的使用" class="headerlink" title="series的使用"></a>series的使用</h4><blockquote>
+<p>series(tasks, callback)</p>
+</blockquote>
+<p>tasks可以是数组或者对象</p>
+<p>series是串行执行tasks中的任务，如果有一个任务执行返回了错误信息，则不再继续执行后面未执行的任务，并将结果以数组或者对象的形式传给callback。具体结果的格式由你定义tasks时使用的是数组还是对象。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">async.series([</span><br><span class="line">    function (callback) &#123;</span><br><span class="line">        setTimeout(function () &#123;</span><br><span class="line">            console.log(&quot;one&quot;);</span><br><span class="line">            callback(null, &#x27;one&#x27;);</span><br><span class="line">        &#125;, 300);</span><br><span class="line">    &#125;,</span><br><span class="line">    function (callback) &#123;</span><br><span class="line">        setTimeout(function () &#123;</span><br><span class="line">            console.log(&quot;two&quot;);</span><br><span class="line">            callback(null, &#x27;two&#x27;);</span><br><span class="line">        &#125;, 200);</span><br><span class="line">    &#125;,</span><br><span class="line">    function (callback) &#123;</span><br><span class="line">        setTimeout(function () &#123;</span><br><span class="line">            console.log(&quot;three&quot;);</span><br><span class="line">            callback(null, &#x27;three&#x27;);</span><br><span class="line">        &#125;, 100);</span><br><span class="line">    &#125;</span><br><span class="line">], function (err, results) &#123;</span><br><span class="line">    console.log(err);</span><br><span class="line">    console.log(results);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<blockquote>
+<p>one<br>two<br>three<br>null<br>[ ‘one’, ‘two’, ‘three’ ]</p>
+</blockquote>
+<p>当tasks是对象：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">async.series(&#123;</span><br><span class="line">        one: function (callback) &#123;</span><br><span class="line">            setTimeout(function () &#123;</span><br><span class="line">                console.log(&quot;one&quot;);</span><br><span class="line">                callback(null, &#x27;one&#x27;);</span><br><span class="line">            &#125;, 300);</span><br><span class="line">        &#125;,</span><br><span class="line">        two: function (callback) &#123;</span><br><span class="line">            setTimeout(function () &#123;</span><br><span class="line">                console.log(&quot;two&quot;);</span><br><span class="line">                callback(null, &#x27;two&#x27;);</span><br><span class="line">            &#125;, 200);</span><br><span class="line">        &#125;,</span><br><span class="line">        three: function (callback) &#123;</span><br><span class="line">            setTimeout(function () &#123;</span><br><span class="line">                console.log(&quot;three&quot;);</span><br><span class="line">                callback(null, &#x27;three&#x27;);</span><br><span class="line">            &#125;, 100);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, function (err, results) &#123;</span><br><span class="line">        if(err) &#123;</span><br><span class="line">            console.log(&quot;异常结束&quot; + &#x27;结果为：&#x27; + results);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        console.log(results);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<blockquote>
+<p>one<br>two<br>three<br>{ one: ‘one’, two: ‘two’, three: ‘three’ }</p>
+</blockquote>
+<p>上面代码中，从上到下的函数开始执行时间是逐渐减小的，而运行结果的输出顺序是one，two，three，说明series是串行执行任务的。</p>
+<p>将第二个任务的代码改为以下的样子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function (callback) &#123;</span><br><span class="line">    console.log(&quot;two&quot;);</span><br><span class="line">    setTimeout(function () &#123;</span><br><span class="line">        callback(&quot;errMsg&quot;, &#x27;two&#x27;);</span><br><span class="line">    &#125;, 200);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行的结果为：</p>
+<blockquote>
+<p>one<br>two<br>errMsg<br>[ ‘one’, ‘two’ ]</p>
+</blockquote>
+<p>可以看到，当第二个任务返回了错误信息，则不会再继续执行后面未执行的任务</p>
+<h4 id="parallel的使用"><a href="#parallel的使用" class="headerlink" title="parallel的使用"></a>parallel的使用</h4><blockquote>
+<p>parallel(tasks, callback)</p>
+</blockquote>
+<p>tasks可以是一个数组或者对象</p>
+<p>parallel是并行执行多个任务，如果有一个任务执行返回了一个错误信息，则不再继续执行后面未执行的任务，并将结果以数组或者对象的形式传给callback。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">async.parallel([</span><br><span class="line">        function (callback) &#123;</span><br><span class="line">            setTimeout(function() &#123;</span><br><span class="line">                console.log(&#x27;one&#x27;);</span><br><span class="line">                callback(null, &#x27;one&#x27;);</span><br><span class="line">            &#125;, 500);</span><br><span class="line">        &#125;,</span><br><span class="line">        function (callback) &#123;</span><br><span class="line">            setTimeout(function() &#123;</span><br><span class="line">                console.log(&#x27;two&#x27;);</span><br><span class="line">                callback(null, &#x27;two&#x27;);</span><br><span class="line">            &#125;, 200);</span><br><span class="line">        &#125;,</span><br><span class="line">        function (callback) &#123;</span><br><span class="line">            setTimeout(function() &#123;</span><br><span class="line">                console.log(&#x27;three&#x27;);</span><br><span class="line">                callback(null, &#x27;three&#x27;);</span><br><span class="line">            &#125;, 100);</span><br><span class="line">        &#125;</span><br><span class="line">    ], function (err, results) &#123;</span><br><span class="line">        console.log(err);</span><br><span class="line">        console.log(results);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>运行结果为：</p>
+<blockquote>
+<p>three<br>two<br>one<br>null<br>[ ‘one’, ‘two’, ‘three’ ]</p>
+</blockquote>
+<p>结果中的输出顺序是three,two,one，说明parallel是并行执行任务的。</p>
+<p>同样，将第二个任务的代码改为：（数组定义tasks）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function (callback) &#123;</span><br><span class="line">    setTimeout(function() &#123;</span><br><span class="line">        console.log(&#x27;two&#x27;);</span><br><span class="line">        callback(&quot;errMsg&quot;, &#x27;two&#x27;);</span><br><span class="line">    &#125;, 200);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>运行的结果为：</p>
+<blockquote>
+<p>three<br>two<br>errMsg<br>[ &lt;1 empty item&gt;, ‘two’, ‘three’ ]<br>one</p>
+</blockquote>
+<hr>
+<p>将第二个任务代码改为：（数组定义tasks）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function (callback) &#123;</span><br><span class="line">    setTimeout(function() &#123;</span><br><span class="line">        console.log(&#x27;two&#x27;);</span><br><span class="line">        callback(&quot;errMsg&quot;, &#x27;two&#x27;);</span><br><span class="line">    &#125;, 200);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>将第三个任务代码改为：（数组定义tasks）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function (callback) &#123;</span><br><span class="line">    setTimeout(function() &#123;</span><br><span class="line">        console.log(&#x27;three&#x27;);</span><br><span class="line">        callback(null, &#x27;three&#x27;);</span><br><span class="line">    &#125;, 200);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也就是，第三个的开始执行时间改成和出现错误信息的第二个任务的时间一样。</p>
+<p>运行的结果为：</p>
+<blockquote>
+<p>two<br>errMsg<br>[ &lt;1 empty item&gt;, ‘two’ ]<br>three<br>one</p>
+</blockquote>
+<p>从结果中可以看出，当前面执行的未完成的任务会占一个位置，而后面未完成的任务不会占数组的位置。</p>
+<blockquote>
+<p>parallelLimit(tasks, limit, callback)</p>
+</blockquote>
+<p>parallelLimit和parallel差不多，区别是它可以指定同时并行执行任务的最大数量。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">async.parallelLimit(&#123;</span><br><span class="line">    one: function (callback) &#123;</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            console.log(&#x27;one&#x27;);</span><br><span class="line">            callback(null, &#x27;one&#x27;);</span><br><span class="line">        &#125;, 200);</span><br><span class="line">    &#125;,</span><br><span class="line">    two: function (callback) &#123;</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            console.log(&#x27;two&#x27;);</span><br><span class="line">            callback(error, &#x27;two&#x27;);</span><br><span class="line">        &#125;, 200);</span><br><span class="line">    &#125;,</span><br><span class="line">    three: function (callback) &#123;</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            console.log(&#x27;three&#x27;);</span><br><span class="line">            callback(null, &#x27;three&#x27;);</span><br><span class="line">        &#125;, 100);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, 2, function (err, results) &#123;</span><br><span class="line">    console.log(err);</span><br><span class="line">    console.log(results);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>运行的结果为：</p>
+<blockquote>
+<p>one<br>two<br>errMsg<br>{ one: ‘one’, two: ‘two’ }<br>three</p>
+</blockquote>
+<p>如果是tasks是数组时，运行的结果是：</p>
+<blockquote>
+<p>two<br>errMsg<br>[ &lt;1 empty item&gt;, ‘two’ ]<br>one</p>
+</blockquote>
+<p>由于同时并行执行任务的最大数量是2，由于第二个任务产生错误信息，第三个任务还没开始执行。另外如果要取最后回调结果中的值，对象定义tasks可能会更好。</p>
+<h4 id="waterfall的使用"><a href="#waterfall的使用" class="headerlink" title="waterfall的使用"></a>waterfall的使用</h4><blockquote>
+<p>waterfall(tasks, callback)</p>
+</blockquote>
+<p>tasks只能是数组类型</p>
+<p>waterfall会串行执行tasks中的任务，前一个任务的结果可以作为下一个任务的参数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">async.waterfall([</span><br><span class="line">    function (callback) &#123;</span><br><span class="line">        console.log(&quot;one&quot;);</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            callback(null, &#x27;one&#x27;, &#x27;two&#x27;);</span><br><span class="line">        &#125;, 200);</span><br><span class="line">    &#125;,</span><br><span class="line">    function (arg1, arg2, callback) &#123;</span><br><span class="line">        console.log(&quot;two&quot; + &#x27;参数：&#x27; + &quot;arg1是&quot; + arg1 + &quot;arg2是&quot; + arg2);</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            callback(null, &#x27;three&#x27;);</span><br><span class="line">        &#125;, 200);</span><br><span class="line">    &#125;,</span><br><span class="line">    function (arg3, callback) &#123;</span><br><span class="line">        console.log(&quot;three&quot; + &#x27;参数：&#x27; + &quot;arg3是&quot; + arg3);</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            callback(null, &#x27;done&#x27;, &#x27;done1&#x27;);</span><br><span class="line">        &#125;, 200);</span><br><span class="line">    &#125;</span><br><span class="line">], function (err, results) &#123;</span><br><span class="line">    if(err) &#123;</span><br><span class="line">        console.log(&quot;异常结束&quot; + &#x27;结果为：&#x27; + results);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    console.log(results);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>运行的结果是：</p>
+<blockquote>
+<p>one<br>two参数：arg1是onearg2是two<br>three参数：arg3是three<br>done</p>
+</blockquote>
+<p>输出的结果的顺序是one，two， three，是串行执行的。前一个任务的结果可以作为下一个任务的参数。</p>
+<p>注意一下，代码中控制台输出的one，two，three代码是移到了定时器的外面。</p>
+<h4 id="auto的使用"><a href="#auto的使用" class="headerlink" title="auto的使用"></a>auto的使用</h4><blockquote>
+<p>auto(tasks, concurrencyopt, callback)</p>
+</blockquote>
+<p>auto可以串行和并行执行任务，可以定义任务之间的依赖关系。没有依赖关系的任务会尽可能快的开始并行执行，串行是由于任务的依赖关系而实现的。concurrencyopt指定的是并行执行任务的最大数量。tasks只能是对象类型。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">async.auto(&#123;</span><br><span class="line">    task1: function(callback) &#123;</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            console.log(&#x27;task1&#x27;);</span><br><span class="line">            callback(null, &#x27;data&#x27;, &#x27;data1&#x27;);</span><br><span class="line">        &#125;, 200);</span><br><span class="line">    &#125;,</span><br><span class="line">    task2: function(callback) &#123;</span><br><span class="line">        setTimeout(function () &#123;</span><br><span class="line">            console.log(&#x27;task2&#x27;);</span><br><span class="line">            callback(null, &#x27;data2&#x27;);</span><br><span class="line">        &#125;, 100)</span><br><span class="line">    &#125;,</span><br><span class="line">    task3: [&#x27;task1&#x27;, &#x27;task2&#x27;, function(results, callback) &#123;</span><br><span class="line">        console.log(&#x27;task3&#x27;, JSON.stringify(results));</span><br><span class="line">        setTimeout(function () &#123;</span><br><span class="line">            console.log(&#x27;task3&#x27;);</span><br><span class="line">            callback(null, &#x27;data3&#x27;);</span><br><span class="line">        &#125;, 200);</span><br><span class="line"></span><br><span class="line">    &#125;],</span><br><span class="line">    task4: [&#x27;task3&#x27;, function(results, callback) &#123;</span><br><span class="line">        console.log(&#x27;task4&#x27;, JSON.stringify(results));</span><br><span class="line">        setTimeout(function () &#123;</span><br><span class="line">            console.log(&#x27;task4&#x27;);</span><br><span class="line">            callback(null, &#123;&#x27;task2&#x27;:results.task2, &#x27;task4&#x27;:&#x27;data4&#x27;&#125;);</span><br><span class="line">        &#125;, 100);</span><br><span class="line"></span><br><span class="line">    &#125;]</span><br><span class="line">&#125;, function(err, results) &#123;</span><br><span class="line">    console.log(&#x27;err = &#x27;, err);</span><br><span class="line">    console.log(&#x27;results = &#x27;, results);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>运行的结果是：</p>
+<blockquote>
+<p>task2<br>task1<br>task3 {“task2”:”data2”,”task1”:[“data”,”data1”]}<br>task3<br>task4 {“task2”:”data2”,”task1”:[“data”,”data1”],”task3”:”data3”}<br>task4<br>err &#x3D;  null<br>results &#x3D;  { task2: ‘data2’,<br>  task1: [ ‘data’, ‘data1’ ],<br>  task3: ‘data3’,<br>  task4: { task2: ‘data2’, task4: ‘data4’ } }</p>
+</blockquote>
+<p>task1和task2是不依赖于任何其他任务的，它们会尽可能的开始，而且由于它们是并行执行的，task2的开始时间较短，所以task2比task1先开始。task3依赖于task1和task2，所以task3等到task1和task2执行完毕后再执行。task4依赖task3，所以task4要等到task3执行完毕后再执行。</p>
+<h3 id="ES7的Async-Await"><a href="#ES7的Async-Await" class="headerlink" title="ES7的Async&#x2F;Await"></a>ES7的Async&#x2F;Await</h3><p>主要看它们的用法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var task1 = function () &#123;</span><br><span class="line">    return new Promise(function (resolve, reject) &#123;</span><br><span class="line">        setTimeout(function () &#123;</span><br><span class="line">            resolve(&quot;result&quot;);</span><br><span class="line">        &#125;, 1000);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var excTask1 = async function () &#123;</span><br><span class="line">    console.log(&quot;start&quot;);</span><br><span class="line">    console.log(await task1());</span><br><span class="line">    console.log(&quot;end&quot;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function awaitDemo() &#123;</span><br><span class="line">    excTask1();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>连续点击运行四次，运行的结果为：</p>
+<blockquote>
+<p>start<br>start<br>start<br>start<br>result<br>end<br>result<br>end<br>result<br>end<br>result<br>end</p>
+</blockquote>
+<p>async代表是一个async函数，await只能用在async函数中，await等待一个Promise的返回，直到Promise返回了才会继续执行await后面的代码。这里的Promise利用setTimeout模拟异步任务。</p>
+<p>从输出结果中可以看出，每次执行都是到await时，就停止等待Promise的返回，后再继续执行await后面的代码。</p>
+
+    </div>
+
+    
+      <nav class="toc-sidebar" aria-labelledby="toc-title">
+  <div class="toc-wrapper">
+    <span class="toc-indicator" aria-hidden="true"></span>
+    <h3 class="toc-title" id="toc-title">Contents</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFPromise"><span class="toc-text">什么是Promise</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Async%E6%A8%A1%E5%9D%97"><span class="toc-text">Async模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ES7%E7%9A%84Async-Await"><span class="toc-text">ES7的Async&#x2F;Await</span></a></li></ol>
+  </div>
+</nav>
+
+    
+  </div>
+
+  
+
+  
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <a href="/tags/node-js/">#node.js</a>
+        
+      </div>
+    
+    <nav class="post-nav">
+      
+        <a class="prev" href="/2018/02/06/android-simple-draw-and-path/">&laquo; Android中绘制简单几何图形和路径Path</a>
+      
+      
+        <a class="next" href="/2018/02/01/android-handler/">Android中的消息机制 &raquo;</a>
+      
+    </nav>
+  </footer>
+
+  
+    
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    options: {
+      // Skip the TOC sidebar and nav so heading math copied into the TOC
+      // isn't typeset a second time.
+      ignoreHtmlClass: 'toc-sidebar|site-nav',
+      enableMenu: false
+    }
+  };
+</script>
+
+<script defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@4.1.2/tex-mml-chtml.js"
+        integrity="sha384-Nfw2UPOp2WaWfAjGXccSL8qKx4KWXN9NUonXtPcotBXKSqHMyNWrahYzDzIXhpTy"
+        crossorigin="anonymous"></script>
+
+  
+</article>
+
+    </main>
+    <footer class="site-footer">
+  <div class="footer-inner">
+    
+      <p>© 2017 – 2026 长孙雨聪</p>
+    
+    <p>Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &middot; Theme <a href="https://github.com/finch-xu/hexo-theme-warmpaper" target="_blank" rel="noopener">Warmpaper</a></p>
+  </div>
+</footer>
+
+  </div>
+  
+<script src="/js/main.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

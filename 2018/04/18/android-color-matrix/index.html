@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  <title>从矩阵来看颜色变换 | 长孙雨聪--七星上将</title>
+  <meta name="description" content="开篇之前从矩阵的角度分析了平移，旋转，缩放，对称的变换，文章在从矩阵来看Android中的一些动画变换。 在android中，图片的对象主要是bitmap，它是由点阵和颜色值组成的。1、点阵是一个图片宽*图片高的矩阵，矩阵中的每一个元素对应着图片的一个像素。根据点阵可以计算出图片占用的内存大小。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从矩阵来看颜色变换">
+<meta property="og:url" content="http://zhangsunyucong.top/2018/04/18/android-color-matrix/index.html">
+<meta property="og:site_name" content="长孙雨聪--七星上将">
+<meta property="og:description" content="开篇之前从矩阵的角度分析了平移，旋转，缩放，对称的变换，文章在从矩阵来看Android中的一些动画变换。 在android中，图片的对象主要是bitmap，它是由点阵和颜色值组成的。1、点阵是一个图片宽*图片高的矩阵，矩阵中的每一个元素对应着图片的一个像素。根据点阵可以计算出图片占用的内存大小。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/android_color_matrix.png">
+<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/android_color_matrix_methods.png">
+<meta property="article:published_time" content="2018-04-18T08:49:03.000Z">
+<meta property="article:modified_time" content="2025-03-15T12:53:27.946Z">
+<meta property="article:author" content="长孙雨聪--七星上将">
+<meta property="article:tag" content="android">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://o8bym0zmt.bkt.clouddn.com/android_color_matrix.png">
+  <link rel="icon" href="/images/logo.svg">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-gb-web@latest/lxgwwenkaigb-regular/result.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-gb-web@latest/lxgwwenkaigb-medium/result.css">
+
+  
+  
+  
+    
+<link rel="stylesheet" href="/css/math.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('warmpaper-theme');
+        if (saved === 'dark' || saved === 'light') {
+          document.documentElement.setAttribute('data-theme', saved);
+        }
+      } catch (e) {}
+    })();
+  </script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="长孙雨聪--七星上将" type="application/atom+xml">
+</head>
+
+<body>
+  <div class="site-wrapper">
+    <header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="/"><img class="site-logo" src="/images/logo.svg" alt="Logo">长孙雨聪--七星上将</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span class="nav-toggle-icon"></span>
+    </button>
+    <nav class="site-nav">
+      
+        <a class="nav-link" href="/">首页</a>
+      
+        <a class="nav-link" href="/archives">归档</a>
+      
+        <a class="nav-link" href="/tags">标签</a>
+      
+        <a class="nav-link" href="/about">关于</a>
+      
+      <button class="theme-toggle" type="button" aria-label="切换主题" title="切换主题" data-theme-state="light">
+        <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+        <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+    <main class="main-content">
+      
+<article class="post post-has-toc">
+  <header class="post-header">
+    <h1 class="post-title">从矩阵来看颜色变换</h1>
+    <div class="post-meta">
+      <time datetime="2018-04-18T08:49:03.000Z">2018-04-18</time>
+      
+    </div>
+  </header>
+
+  <div class="post-body-wrapper">
+    <div class="post-content">
+      <hr>
+<h3 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h3><p>之前从矩阵的角度分析了平移，旋转，缩放，对称的变换，文章在<a href="https://zhangsunyucong.top/2018/02/07/android-animation-matrix/">从矩阵来看Android中的一些动画变换</a>。</p>
+<p>在android中，图片的对象主要是bitmap，它是由点阵和颜色值组成的。<br>1、点阵是一个图片宽*图片高的矩阵，矩阵中的每一个元素对应着图片的一个像素。根据点阵可以计算出图片占用的内存大小。</p>
+<span id="more"></span>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ALPHA_8：  每个像素占用1byte内存</span><br><span class="line">ARGB_4444: 每个像素占用2byte内存</span><br><span class="line">ARGB_8888: 每个像素占用4byte内存</span><br><span class="line">RGB_565:   每个像素占用2byte内存</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">图片占用内存 = 图片高度显示像素 * 图片宽度显示像素 * 每个像素占用的内存大小</span><br><span class="line"></span><br><span class="line">显示像素 = 图片实际像素 * 手机density / 图片density </span><br><span class="line"></span><br><span class="line">假设有一张长宽为800*600、通道为ARGB_8888的图片，那么它占的内存为：</span><br><span class="line">800*600*4byte = 1875KB = 1.83M </span><br></pre></td></tr></table></figure>
+
+<p>2、颜色值，是由三原色和透明度决定的，即ARGB，分别对应着四个颜色通道，每个通道用8byte定义，所以一个颜色值就是一个int整型，可以表示256x256x256种颜色值。</p>
+<p>在android中和颜色有关的几个常量：ARGB_8888、ARGB_4444、RGB_565。<br>ARGB_8888，是图片的透明度、R、G、B的每个颜色值占8bit，可以表示256x256x256种颜色，也就是可以表示最多的颜色值，图片质量也是最好的。</p>
+<p>ARGB_4444，是图片的透明度、R、G、B的每个颜色值占4bit，可以表示16x16x16种颜色，相对ARGB_8888，它节省了空间，却失去了很多色彩。</p>
+<p>RGB_565，它只有R、G、B三个颜色通道，没有透明度通道，可以表达32x64x32种颜色。</p>
+<p>四个颜色通道是由一个4x5的变换矩阵控制的。</p>
+<h3 id="颜色矩阵变换"><a href="#颜色矩阵变换" class="headerlink" title="颜色矩阵变换"></a>颜色矩阵变换</h3><p><img src="http://o8bym0zmt.bkt.clouddn.com/android_color_matrix.png" alt="推导"></p>
+<p>所以，可以知道，红色通道由第一行控制。<br>绿色通道由第二行控制。<br>蓝色通道由第三行控制。<br>透明度通道由第四行控制。<br>另外的，第五列是每个通道的偏移量。注意倍数和相加的影响，每个通道最后的值不应该大于256.</p>
+<p>在android中，有一个和颜色矩阵相关的android.graphics.Matrix类，该类中有与颜色变换相关的方法。</p>
+<p><img src="http://o8bym0zmt.bkt.clouddn.com/android_color_matrix_methods.png" alt="方法"></p>
+<p>关于Matrix方法的使用这里就不详细讲了。</p>
+<p>实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public static Bitmap testBitmap(Bitmap bitmap)</span><br><span class="line">&#123;</span><br><span class="line">       Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),</span><br><span class="line">               bitmap.getHeight(), Config.RGB_565);</span><br><span class="line"></span><br><span class="line">       Canvas canvas = new Canvas(output);</span><br><span class="line"></span><br><span class="line">       Paint paint = new Paint();        </span><br><span class="line">       ColorMatrix cm = new ColorMatrix();</span><br><span class="line">       float[] array = &#123;1,0,0,0,100,</span><br><span class="line">               0,1,0,0,100,</span><br><span class="line">               0,0,1,0,0,</span><br><span class="line">               0,0,0,1,0&#125;;</span><br><span class="line">       cm.set(array);</span><br><span class="line">       paint.setColorFilter(new ColorMatrixColorFilter(cm));</span><br><span class="line"></span><br><span class="line">       canvas.drawBitmap(bitmap, 0, 0, paint);</span><br><span class="line">       return output;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="JNI图片压缩"><a href="#JNI图片压缩" class="headerlink" title="JNI图片压缩"></a>JNI图片压缩</h3><p>在上面提到过一张图片占用多大内存的计算，现在我们的手机拍出来的照片占的内存越来越大，所以在开发的过程中，我们就很有必要对图片压缩后再上传。而比较好的压缩方法是JNI压缩。</p>
+<p><a href="https://github.com/zhangsunyucong/JniCompressImage.git">github地址</a></p>
+
+    </div>
+
+    
+      <nav class="toc-sidebar" aria-labelledby="toc-title">
+  <div class="toc-wrapper">
+    <span class="toc-indicator" aria-hidden="true"></span>
+    <h3 class="toc-title" id="toc-title">Contents</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E7%AF%87"><span class="toc-text">开篇</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%9C%E8%89%B2%E7%9F%A9%E9%98%B5%E5%8F%98%E6%8D%A2"><span class="toc-text">颜色矩阵变换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JNI%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9"><span class="toc-text">JNI图片压缩</span></a></li></ol>
+  </div>
+</nav>
+
+    
+  </div>
+
+  
+
+  
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <a href="/tags/android/">#android</a>
+        
+      </div>
+    
+    <nav class="post-nav">
+      
+      
+        <a class="next" href="/2018/04/10/java-pattern-structure/">23种设计模式之结构型设计模式 &raquo;</a>
+      
+    </nav>
+  </footer>
+
+  
+    
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    options: {
+      // Skip the TOC sidebar and nav so heading math copied into the TOC
+      // isn't typeset a second time.
+      ignoreHtmlClass: 'toc-sidebar|site-nav',
+      enableMenu: false
+    }
+  };
+</script>
+
+<script defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@4.1.2/tex-mml-chtml.js"
+        integrity="sha384-Nfw2UPOp2WaWfAjGXccSL8qKx4KWXN9NUonXtPcotBXKSqHMyNWrahYzDzIXhpTy"
+        crossorigin="anonymous"></script>
+
+  
+</article>
+
+    </main>
+    <footer class="site-footer">
+  <div class="footer-inner">
+    
+      <p>© 2017 – 2026 长孙雨聪</p>
+    
+    <p>Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &middot; Theme <a href="https://github.com/finch-xu/hexo-theme-warmpaper" target="_blank" rel="noopener">Warmpaper</a></p>
+  </div>
+</footer>
+
+  </div>
+  
+<script src="/js/main.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

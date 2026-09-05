@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  <title>HandlerThread和IntentService | 长孙雨聪--七星上将</title>
+  <meta name="description" content="前言在这一篇文章中，会看HandlerThread和IntentService的源码。为什么一起讲它们呢？在Android中有一条思路，就是从java的线程，到Android中的消息机制，到将java线程和消息机制结合就是HandlerThread，而IntentService就是在HandlerThread基础上再与service结合在一起。 关于Android中的异步的东西，还有AsyncT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HandlerThread和IntentService">
+<meta property="og:url" content="http://zhangsunyucong.top/2018/02/23/android-intentservice-handlerthread/index.html">
+<meta property="og:site_name" content="长孙雨聪--七星上将">
+<meta property="og:description" content="前言在这一篇文章中，会看HandlerThread和IntentService的源码。为什么一起讲它们呢？在Android中有一条思路，就是从java的线程，到Android中的消息机制，到将java线程和消息机制结合就是HandlerThread，而IntentService就是在HandlerThread基础上再与service结合在一起。 关于Android中的异步的东西，还有AsyncT">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-02-23T01:54:05.000Z">
+<meta property="article:modified_time" content="2025-03-15T12:53:27.947Z">
+<meta property="article:author" content="长孙雨聪--七星上将">
+<meta property="article:tag" content="android">
+<meta name="twitter:card" content="summary">
+  <link rel="icon" href="/images/logo.svg">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-gb-web@latest/lxgwwenkaigb-regular/result.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-gb-web@latest/lxgwwenkaigb-medium/result.css">
+
+  
+  
+  
+    
+<link rel="stylesheet" href="/css/math.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('warmpaper-theme');
+        if (saved === 'dark' || saved === 'light') {
+          document.documentElement.setAttribute('data-theme', saved);
+        }
+      } catch (e) {}
+    })();
+  </script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="长孙雨聪--七星上将" type="application/atom+xml">
+</head>
+
+<body>
+  <div class="site-wrapper">
+    <header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="/"><img class="site-logo" src="/images/logo.svg" alt="Logo">长孙雨聪--七星上将</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span class="nav-toggle-icon"></span>
+    </button>
+    <nav class="site-nav">
+      
+        <a class="nav-link" href="/">首页</a>
+      
+        <a class="nav-link" href="/archives">归档</a>
+      
+        <a class="nav-link" href="/tags">标签</a>
+      
+        <a class="nav-link" href="/about">关于</a>
+      
+      <button class="theme-toggle" type="button" aria-label="切换主题" title="切换主题" data-theme-state="light">
+        <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+        <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+    <main class="main-content">
+      
+<article class="post post-has-toc">
+  <header class="post-header">
+    <h1 class="post-title">HandlerThread和IntentService</h1>
+    <div class="post-meta">
+      <time datetime="2018-02-23T01:54:05.000Z">2018-02-23</time>
+      
+    </div>
+  </header>
+
+  <div class="post-body-wrapper">
+    <div class="post-content">
+      <hr>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在这一篇文章中，会看HandlerThread和IntentService的源码。为什么一起讲它们呢？在Android中有一条思路，就是从java的线程，到Android中的消息机制，到将java线程和消息机制结合就是HandlerThread，而IntentService就是在HandlerThread基础上再与service结合在一起。</p>
+<p>关于Android中的异步的东西，还有AsyncTask，AsyncTask是对java中的线程池的再次封装。进一步，可以联想到Loader.</p>
+<span id="more"></span>
+
+<p>回到本篇文章主题。</p>
+<p>HandlerThread是一个直接继承于Thread的，并在run方法中将线程的Looper进行常规的初始化。而我们要做的就是提供一个Handler，并将Handler与HanderThread的Looper进行关联，通过Handler发送消息和处理消息。</p>
+<p>IntentService直接继承于Service，在它的内部封装了HandlerThread的使用过程：提供一个Handler（即：ServiceHandler），并将Handler与HanderThread的Looper进行关联，然后它进一步将启动Service的Intent以消息的形式，通过Handler传给onHandleIntent方法，然后IntentService优雅的结束自己。我们要做的就是在onHandleIntent中做线程要做的事情。</p>
+<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p>HandlerThread.jva</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public class HandlerThread extends Thread &#123;</span><br><span class="line">    int mPriority;</span><br><span class="line">    int mTid = -1;</span><br><span class="line">    Looper mLooper;</span><br><span class="line">    private @Nullable Handler mHandler;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">    protected void onLooperPrepared() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        mTid = Process.myTid();</span><br><span class="line">        Looper.prepare();</span><br><span class="line">        synchronized (this) &#123;</span><br><span class="line">            mLooper = Looper.myLooper();</span><br><span class="line">            notifyAll();</span><br><span class="line">        &#125;</span><br><span class="line">        Process.setThreadPriority(mPriority);</span><br><span class="line">        onLooperPrepared();</span><br><span class="line">        Looper.loop();</span><br><span class="line">        mTid = -1;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>HandlerThread的run方法做了主要的工作。创建Looper，在onLooperPrepare做开始循环前的初始化工作，开始Looper循环。</p>
+<p>在具体使用HandlerThread时，就是创建Handler，将Handler与HandlerThread的Looper进行关联，然后通过Handler发送消息，处理消息。说明，消息是在HandlerThread线程中处理的。</p>
+<p>IntentService.java</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line">public abstract class IntentService extends Service &#123;</span><br><span class="line">    private volatile Looper mServiceLooper;</span><br><span class="line">    private volatile ServiceHandler mServiceHandler;</span><br><span class="line">    private String mName;</span><br><span class="line">    private boolean mRedelivery;</span><br><span class="line"></span><br><span class="line">    private final class ServiceHandler extends Handler &#123;</span><br><span class="line">        public ServiceHandler(Looper looper) &#123;</span><br><span class="line">            super(looper);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void handleMessage(Message msg) &#123;</span><br><span class="line">            onHandleIntent((Intent)msg.obj);</span><br><span class="line">            stopSelf(msg.arg1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Creates an IntentService.  Invoked by your subclass&#x27;s constructor.</span><br><span class="line">     *</span><br><span class="line">     * @param name Used to name the worker thread, important only for debugging.</span><br><span class="line">     */</span><br><span class="line">    public IntentService(String name) &#123;</span><br><span class="line">        super();</span><br><span class="line">        mName = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onCreate() &#123;</span><br><span class="line">        // TODO: It would be nice to have an option to hold a partial wakelock</span><br><span class="line">        // during processing, and to have a static startService(Context, Intent)</span><br><span class="line">        // method that would launch the service &amp; hand off a wakelock.</span><br><span class="line"></span><br><span class="line">        super.onCreate();</span><br><span class="line">        HandlerThread thread = new HandlerThread(&quot;IntentService[&quot; + mName + &quot;]&quot;);</span><br><span class="line">        thread.start();</span><br><span class="line"></span><br><span class="line">        mServiceLooper = thread.getLooper();</span><br><span class="line">        mServiceHandler = new ServiceHandler(mServiceLooper);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onStart(@Nullable Intent intent, int startId) &#123;</span><br><span class="line">        Message msg = mServiceHandler.obtainMessage();</span><br><span class="line">        msg.arg1 = startId;</span><br><span class="line">        msg.obj = intent;</span><br><span class="line">        mServiceHandler.sendMessage(msg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * You should not override this method for your IntentService. Instead,</span><br><span class="line">     * override &#123;@link #onHandleIntent&#125;, which the system calls when the IntentService</span><br><span class="line">     * receives a start request.</span><br><span class="line">     * @see android.app.Service#onStartCommand</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    public int onStartCommand(@Nullable Intent intent, int flags, int startId) &#123;</span><br><span class="line">        onStart(intent, startId);</span><br><span class="line">        return mRedelivery ? START_REDELIVER_INTENT : START_NOT_STICKY;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onDestroy() &#123;</span><br><span class="line">        mServiceLooper.quit();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Unless you provide binding for your service, you don&#x27;t need to implement this</span><br><span class="line">     * method, because the default implementation returns null.</span><br><span class="line">     * @see android.app.Service#onBind</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    @Nullable</span><br><span class="line">    public IBinder onBind(Intent intent) &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * This method is invoked on the worker thread with a request to process.</span><br><span class="line">     * Only one Intent is processed at a time, but the processing happens on a</span><br><span class="line">     * worker thread that runs independently from other application logic.</span><br><span class="line">     * So, if this code takes a long time, it will hold up other requests to</span><br><span class="line">     * the same IntentService, but it will not hold up anything else.</span><br><span class="line">     * When all requests have been handled, the IntentService stops itself,</span><br><span class="line">     * so you should not call &#123;@link #stopSelf&#125;.</span><br><span class="line">     *</span><br><span class="line">     * @param intent The value passed to &#123;@link</span><br><span class="line">     *               android.content.Context#startService(Intent)&#125;.</span><br><span class="line">     *               This may be null if the service is being restarted after</span><br><span class="line">     *               its process has gone away; see</span><br><span class="line">     *               &#123;@link android.app.Service#onStartCommand&#125;</span><br><span class="line">     *               for details.</span><br><span class="line">     */</span><br><span class="line">    @WorkerThread</span><br><span class="line">    protected abstract void onHandleIntent(@Nullable Intent intent);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>IntentService是一个service子类,在onCreate中初始化了HandlerThread和ServiceHandler，并将ServiceHandler与HandlerThread的Looper进行关联。在onStart中，将启动服务的Intent封装进Message中，然后发给ServiceHandler。ServiceHandler再将Intent传递给onHandleIntent，最后优雅的结束自己。</p>
+<p>在具体使用IntentService时，就是在onHandleIntent中正确的处理启动service的Intent即可。说明，onHandleIntent做的事情是在HandlerThread中进行的，因为HandlerThread的Looper与ServiceHandler已经关联，onHandleIntent是在ServiceHandler中被调用的（好啰嗦）。</p>
+
+    </div>
+
+    
+      <nav class="toc-sidebar" aria-labelledby="toc-title">
+  <div class="toc-wrapper">
+    <span class="toc-indicator" aria-hidden="true"></span>
+    <h3 class="toc-title" id="toc-title">Contents</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E7%A0%81"><span class="toc-text">源码</span></a></li></ol>
+  </div>
+</nav>
+
+    
+  </div>
+
+  
+
+  
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <a href="/tags/android/">#android</a>
+        
+      </div>
+    
+    <nav class="post-nav">
+      
+        <a class="prev" href="/2018/02/23/android-layout-inflater/">&laquo; Android中的布局加载器LayoutInflater</a>
+      
+      
+        <a class="next" href="/2018/02/07/android-animation-matrix/">从矩阵来看Android中的一些动画变换 &raquo;</a>
+      
+    </nav>
+  </footer>
+
+  
+    
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    options: {
+      // Skip the TOC sidebar and nav so heading math copied into the TOC
+      // isn't typeset a second time.
+      ignoreHtmlClass: 'toc-sidebar|site-nav',
+      enableMenu: false
+    }
+  };
+</script>
+
+<script defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@4.1.2/tex-mml-chtml.js"
+        integrity="sha384-Nfw2UPOp2WaWfAjGXccSL8qKx4KWXN9NUonXtPcotBXKSqHMyNWrahYzDzIXhpTy"
+        crossorigin="anonymous"></script>
+
+  
+</article>
+
+    </main>
+    <footer class="site-footer">
+  <div class="footer-inner">
+    
+      <p>© 2017 – 2026 长孙雨聪</p>
+    
+    <p>Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &middot; Theme <a href="https://github.com/finch-xu/hexo-theme-warmpaper" target="_blank" rel="noopener">Warmpaper</a></p>
+  </div>
+</footer>
+
+  </div>
+  
+<script src="/js/main.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

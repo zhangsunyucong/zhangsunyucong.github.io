@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  <title>Android中view的位置坐标和view的滑动 | 长孙雨聪--七星上将</title>
+  <meta name="description" content="view体系结构？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android中view的位置坐标和view的滑动">
+<meta property="og:url" content="http://zhangsunyucong.top/2018/01/25/android-view-positon-and-scroll/index.html">
+<meta property="og:site_name" content="长孙雨聪--七星上将">
+<meta property="og:description" content="view体系结构？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/android_view_relation.png?imageView2/2/w/640">
+<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/android_view_relation_1.png?imageView2/2/w/800">
+<meta property="og:image" content="http://o8bym0zmt.bkt.clouddn.com/android_view_relation_2.png">
+<meta property="article:published_time" content="2018-01-25T01:57:38.000Z">
+<meta property="article:modified_time" content="2025-03-15T12:53:27.947Z">
+<meta property="article:author" content="长孙雨聪--七星上将">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://o8bym0zmt.bkt.clouddn.com/android_view_relation.png?imageView2/2/w/640">
+  <link rel="icon" href="/images/logo.svg">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-gb-web@latest/lxgwwenkaigb-regular/result.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-gb-web@latest/lxgwwenkaigb-medium/result.css">
+
+  
+  
+  
+    
+<link rel="stylesheet" href="/css/math.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('warmpaper-theme');
+        if (saved === 'dark' || saved === 'light') {
+          document.documentElement.setAttribute('data-theme', saved);
+        }
+      } catch (e) {}
+    })();
+  </script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="长孙雨聪--七星上将" type="application/atom+xml">
+</head>
+
+<body>
+  <div class="site-wrapper">
+    <header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="/"><img class="site-logo" src="/images/logo.svg" alt="Logo">长孙雨聪--七星上将</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span class="nav-toggle-icon"></span>
+    </button>
+    <nav class="site-nav">
+      
+        <a class="nav-link" href="/">首页</a>
+      
+        <a class="nav-link" href="/archives">归档</a>
+      
+        <a class="nav-link" href="/tags">标签</a>
+      
+        <a class="nav-link" href="/about">关于</a>
+      
+      <button class="theme-toggle" type="button" aria-label="切换主题" title="切换主题" data-theme-state="light">
+        <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+        <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+    <main class="main-content">
+      
+<article class="post post-has-toc">
+  <header class="post-header">
+    <h1 class="post-title">Android中view的位置坐标和view的滑动</h1>
+    <div class="post-meta">
+      <time datetime="2018-01-25T01:57:38.000Z">2018-01-25</time>
+      
+    </div>
+  </header>
+
+  <div class="post-body-wrapper">
+    <div class="post-content">
+      <hr>
+<h3 id="view体系结构？"><a href="#view体系结构？" class="headerlink" title="view体系结构？"></a>view体系结构？</h3><p><img src="http://o8bym0zmt.bkt.clouddn.com/android_view_relation.png?imageView2/2/w/640" alt="view继承关系"></p>
+ <span id="more"></span>
+
+
+<p><img src="http://o8bym0zmt.bkt.clouddn.com/android_view_relation_1.png?imageView2/2/w/800" alt="view继承关系1"></p>
+<p>View是Android中界面层控件的一个抽象。从上图中可以看出控件层的继承关系，TextView是View的直接子类，LinearLayout是ViewGroup的直接子类，ViewGroup是View的直接子类，所以TextView和LinearLayout都是一个view，都直接或者间接继承于View。View是所有控件和控件组的子类。</p>
+<h3 id="View相关的坐标"><a href="#View相关的坐标" class="headerlink" title="View相关的坐标"></a>View相关的坐标</h3><p><img src="http://o8bym0zmt.bkt.clouddn.com/android_view_relation_2.png" alt="view位置关系"></p>
+<p>Android手机屏幕的坐标原点（0，0）在屏幕的左上角，向右为x轴的正方向，向下为y轴的正方向。</p>
+<p>View的位置由四个顶点确定，且View的位置都是相对于父控件来说的。</p>
+<p>View的四个顶点分别对应于View类中的mLeft，mTop，mRight，mBottom，它们在View中都提供了相应的get方法。</p>
+<blockquote>
+<p>View的坐标和宽度为：<br>左上角坐标为（left， top），右下角坐标为（right，bottom）<br>宽度 &#x3D; mRight - mLeft<br>高度 &#x3D; mBottom - mTop</p>
+</blockquote>
+<p>相应的，改变View位置（四个顶点）的方法有：</p>
+<blockquote>
+<p>（1）View的layout(int left, int top, int right, int bottom)<br>（2）水平方向：offsetLeftAndRight，改变mLeft和mRight<br>——-垂直方法：offsetTopAndBottom，改变mTop和mBottom</p>
+</blockquote>
+<p>关于View的坐标，Android也提供了x，y，translationX，translationY参数，它们也是相对于父控件而言的，与上面的参数有以下关系：</p>
+<blockquote>
+<p>x &#x3D; mLeft + translationX<br>y &#x3D; mTop + translationY<br>刚开始时，translationX和translationY的默认值都是0。</p>
+</blockquote>
+<p>Android中的scrollX和scrollY，它们和View的边缘以及View内容的边缘有关，产生于scrollTo和scrollBy。</p>
+<blockquote>
+<p>当view内容的上边缘在view的上边缘的上面，scrollY为正值，反之为负值<br>当view内容的左边缘在view的左边缘的左面，scrollX为正值，反之为负值</p>
+</blockquote>
+<h3 id="MotionEvent相关的坐标"><a href="#MotionEvent相关的坐标" class="headerlink" title="MotionEvent相关的坐标"></a>MotionEvent相关的坐标</h3><p>MotionEvent相关的坐标是用于表示事件MotionEvent发生的坐标，有getX，getY，getScrollX，getScrollY。</p>
+<blockquote>
+<p>相对于所在控件，有event.getX()和event.getY()<br>相对于屏幕，有event.getScrollX()和event.getScrollY()</p>
+</blockquote>
+<h3 id="实现View滑动的几种方法"><a href="#实现View滑动的几种方法" class="headerlink" title="实现View滑动的几种方法"></a>实现View滑动的几种方法</h3><blockquote>
+<p>（1）使用View的scrollTo和scrollBy<br>（2）使用View的布局参数，改变外边距<br>（3）使用View的layout、offsetLeftAndRight和offsetTopAndBottom方法<br>（4）使用动画</p>
+</blockquote>
+<h4 id="1-使用View的scrollTo和scrollBy"><a href="#1-使用View的scrollTo和scrollBy" class="headerlink" title="(1) 使用View的scrollTo和scrollBy"></a>(1) 使用View的scrollTo和scrollBy</h4><p>scrollTo和scrollBy都是View中的方法，scrollTo是view的绝对运动，scrollBy是相对于view当前位置的相对运动。它们滑动的是View的内容。</p>
+<p>从源码分析，scrollTo和scrollBy的关系</p>
+<p>View#scrollTo</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public void scrollTo(int x, int y) &#123;</span><br><span class="line">    if (mScrollX != x || mScrollY != y) &#123;</span><br><span class="line">        int oldX = mScrollX;</span><br><span class="line">        int oldY = mScrollY;</span><br><span class="line">        mScrollX = x;</span><br><span class="line">        mScrollY = y;</span><br><span class="line">        invalidateParentCaches();</span><br><span class="line">        onScrollChanged(mScrollX, mScrollY, oldX, oldY);</span><br><span class="line">        if (!awakenScrollBars()) &#123;</span><br><span class="line">            postInvalidateOnAnimation();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>View#scrollBy</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public void scrollBy(int x, int y) &#123;</span><br><span class="line">    scrollTo(mScrollX + x, mScrollY + y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从上面可以看出，scrollTo是直接赋值给mScrollX和mScrollY，并回调onScrollChanged。在scrollBy中是在原来值的基础上相加然后调用scrollTo的，即是相对于view当前位置的。</p>
+<h4 id="（2）使用View的布局参数，改变外边距"><a href="#（2）使用View的布局参数，改变外边距" class="headerlink" title="（2）使用View的布局参数，改变外边距"></a>（2）使用View的布局参数，改变外边距</h4><p>这种方法就是通过设置View布局参数的Margin值实现的。如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MarginLayoutParams mlp = (MarginLayoutParams)view.getLayoutParams();</span><br><span class="line">mlp.leftMargin =+ 100;</span><br><span class="line">view.setLayoutParams(mlp);</span><br></pre></td></tr></table></figure>
+<p>向右滑动100个像素，但滑动效果几乎是瞬间完成的。</p>
+<h4 id="（3）使用View的layout、offsetLeftAndRight和offsetTopAndBottom方法"><a href="#（3）使用View的layout、offsetLeftAndRight和offsetTopAndBottom方法" class="headerlink" title="（3）使用View的layout、offsetLeftAndRight和offsetTopAndBottom方法"></a>（3）使用View的layout、offsetLeftAndRight和offsetTopAndBottom方法</h4><p>上面，我们已经知道View的位置是由四个顶点决定的，通过改变它的顶点坐标就可以改变view的位置。View的layout、offsetLeftAndRight和offsetTopAndBottom都可以直接改变view顶点的值。</p>
+<h4 id="（4）使用动画"><a href="#（4）使用动画" class="headerlink" title="（4）使用动画"></a>（4）使用动画</h4><p>使用动画是使用位移动画，改变translationX和translationY的值。位移动画要注意View动画和属性动画的区别，view动画并不能改变view的位置。属性动画是在Android3.0之后引入的，为了兼容之前的系统版本，可以使用nineoldandroids库。</p>
+<h3 id="实现弹性的滑动"><a href="#实现弹性的滑动" class="headerlink" title="实现弹性的滑动"></a>实现弹性的滑动</h3><blockquote>
+<p>（1）使用动画实现滑动<br>（2）使用scroller</p>
+</blockquote>
+<h4 id="（1）使用动画实现滑动"><a href="#（1）使用动画实现滑动" class="headerlink" title="（1）使用动画实现滑动"></a>（1）使用动画实现滑动</h4><p>动画本来就是在一定时间内完成的，所以使用动画可以实现弹性的滑动。</p>
+<h4 id="（2）使用scroller"><a href="#（2）使用scroller" class="headerlink" title="（2）使用scroller"></a>（2）使用scroller</h4><p>scroller实现弹性滑动的原理和动画是差不多的，都是在一定的时间内，从初始值到终值点，不断的改变scrollX和scrollY。</p>
+<p>scroller实现滑动的经典代码段</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//1、初始化Scroller</span><br><span class="line">mScroller = new Scroller(context);</span><br><span class="line"></span><br><span class="line">//2、设置初始值、终点值、滑动的时间</span><br><span class="line"> public void smoothScrollTo(int destX,int destY)&#123;</span><br><span class="line">    int scrollX=getScrollX();</span><br><span class="line">    int delta=destX-scrollX;</span><br><span class="line">    //1000秒内滑向destX</span><br><span class="line">    mScroller.startScroll(scrollX,0,delta,0,1000);</span><br><span class="line">    invalidate();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//3、重写computeScroll</span><br><span class="line">@Override</span><br><span class="line">public void computeScroll() &#123;</span><br><span class="line">    super.computeScroll();</span><br><span class="line">    if(mScroller.computeScrollOffset())&#123;</span><br><span class="line">        ((View) getParent()).scrollTo(mScroller.getCurrX(),mScroller.getCurrY());</span><br><span class="line">        //通过不断的重绘不断的调用computeScroll方法</span><br><span class="line">        invalidate();</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>scroller是如何不断的改变scrollX和scrollY呢？</p>
+<p>首先看View#startScroll</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public void startScroll(int startX, int startY, int dx, int dy, int duration) &#123;</span><br><span class="line">    mMode = SCROLL_MODE;</span><br><span class="line">    mFinished = false;</span><br><span class="line">    mDuration = duration;</span><br><span class="line">    mStartTime = AnimationUtils.currentAnimationTimeMillis();</span><br><span class="line">    mStartX = startX;</span><br><span class="line">    mStartY = startY;</span><br><span class="line">    mFinalX = startX + dx;</span><br><span class="line">    mFinalY = startY + dy;</span><br><span class="line">    mDeltaX = dx;</span><br><span class="line">    mDeltaY = dy;</span><br><span class="line">    mDurationReciprocal = 1.0f / (float) mDuration;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>startScroll其实只是设置滑动的始点值和根据滑动的距离计算终点值、及滑动的总时间等。接着就调用invalidate方法重绘，重绘会调用view的draw方法。在view的draw方法中会调用computeScroll方法。</p>
+<p>进入computeScroll方法，首先是看computeScrollOffset源码<br>Scroller#computeScrollOffset</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public boolean computeScrollOffset() &#123;</span><br><span class="line">    //返回false，结束</span><br><span class="line">    if (mFinished) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //计算消逝的时间</span><br><span class="line">    int timePassed = (int)(AnimationUtils.currentAnimationTimeMillis() - mStartTime);</span><br><span class="line"></span><br><span class="line">    if (timePassed &lt; mDuration) &#123;</span><br><span class="line">        switch (mMode) &#123;</span><br><span class="line">            case SCROLL_MODE:</span><br><span class="line">                //有点类似插值器，根据消逝的事件计算百分比</span><br><span class="line">                final float x = mInterpolator.getInterpolation(timePassed * mDurationReciprocal);</span><br><span class="line">                //有点类似估值器，根据消逝的时间百分比计算实际值</span><br><span class="line">                mCurrX = mStartX + Math.round(x * mDeltaX);</span><br><span class="line">                mCurrY = mStartY + Math.round(x * mDeltaY);</span><br><span class="line">                break;</span><br><span class="line">            case FLING_MODE:</span><br><span class="line">                ...</span><br><span class="line"></span><br><span class="line">                if (mCurrX == mFinalX &amp;&amp; mCurrY == mFinalY) &#123;</span><br><span class="line">                    mFinished = true;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        mCurrX = mFinalX;</span><br><span class="line">        mCurrY = mFinalY;</span><br><span class="line">        mFinished = true;</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>computeScrollOffset判断滑动是否结束和计算滑动的值，而在computeScroll中接着会不断获取计算后的滑动值，使用scrollTo进行滑动，然后再调用invalidate方法重绘，即再调用view的draw方法。在view的draw方法中会调用computeScroll方法，如此反复…</p>
+
+    </div>
+
+    
+      <nav class="toc-sidebar" aria-labelledby="toc-title">
+  <div class="toc-wrapper">
+    <span class="toc-indicator" aria-hidden="true"></span>
+    <h3 class="toc-title" id="toc-title">Contents</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#view%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%EF%BC%9F"><span class="toc-text">view体系结构？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#View%E7%9B%B8%E5%85%B3%E7%9A%84%E5%9D%90%E6%A0%87"><span class="toc-text">View相关的坐标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MotionEvent%E7%9B%B8%E5%85%B3%E7%9A%84%E5%9D%90%E6%A0%87"><span class="toc-text">MotionEvent相关的坐标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0View%E6%BB%91%E5%8A%A8%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="toc-text">实现View滑动的几种方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%BC%B9%E6%80%A7%E7%9A%84%E6%BB%91%E5%8A%A8"><span class="toc-text">实现弹性的滑动</span></a></li></ol>
+  </div>
+</nav>
+
+    
+  </div>
+
+  
+
+  
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <a href="/tags/Android/">#Android</a>
+        
+      </div>
+    
+    <nav class="post-nav">
+      
+        <a class="prev" href="/2018/01/31/android-activity-start-up/">&laquo; Android中Activity的启动流程</a>
+      
+      
+        <a class="next" href="/2018/01/18/android-wave-view/">自定义波纹WaveView &raquo;</a>
+      
+    </nav>
+  </footer>
+
+  
+    
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    options: {
+      // Skip the TOC sidebar and nav so heading math copied into the TOC
+      // isn't typeset a second time.
+      ignoreHtmlClass: 'toc-sidebar|site-nav',
+      enableMenu: false
+    }
+  };
+</script>
+
+<script defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@4.1.2/tex-mml-chtml.js"
+        integrity="sha384-Nfw2UPOp2WaWfAjGXccSL8qKx4KWXN9NUonXtPcotBXKSqHMyNWrahYzDzIXhpTy"
+        crossorigin="anonymous"></script>
+
+  
+</article>
+
+    </main>
+    <footer class="site-footer">
+  <div class="footer-inner">
+    
+      <p>© 2017 – 2026 长孙雨聪</p>
+    
+    <p>Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &middot; Theme <a href="https://github.com/finch-xu/hexo-theme-warmpaper" target="_blank" rel="noopener">Warmpaper</a></p>
+  </div>
+</footer>
+
+  </div>
+  
+<script src="/js/main.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>
